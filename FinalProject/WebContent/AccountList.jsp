@@ -22,7 +22,7 @@ String cp = request.getContextPath();
 	crossorigin="anonymous"></script>
 </head>
 <body>
-
+	<!--testest-->
 	<!-- 메뉴 영역 -->
 	<div>
 		<c:import url="MenuNavbar_new.jsp"></c:import>
