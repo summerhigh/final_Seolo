@@ -31,7 +31,6 @@ body {
 
 <body>
 	<!-- 메뉴 영역 -->
-	<!--  -->
 	<div>
 		<c:import url="MenuNavbar_admin.jsp"></c:import>
 	</div>
