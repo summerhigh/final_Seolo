@@ -29,20 +29,20 @@ String cp = request.getContextPath();
 
 		<div class="navbar-collapse offcanvas-collapse" id="Main">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a class="nav-link" href="#">&nbsp;&nbsp;메인</a></li>
+				<li class="nav-item"><a class="nav-link" href="<%=cp%>/Mainview_admin.jsp">&nbsp;&nbsp;메인</a></li>
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;알림/공지</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown01">
-						<a class="dropdown-item" href="#">서비스 소개</a> <a class="dropdown-item" href="<%=cp%>/NoticeList.jsp">공지사항</a> <a class="dropdown-item" href="<%=cp%>/FaqList.jsp">자주 묻는 질문</a>
+						<a class="dropdown-item" href="<%=cp%>/Introduction.jsp">서비스 소개</a> <a class="dropdown-item" href="<%=cp%>/NoticeList.jsp">공지사항</a> <a class="dropdown-item" href="<%=cp%>/FaqListNode.jsp">자주 묻는 질문</a>
 					</div></li>
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;회원 조회</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown01">
-						<a class="dropdown-item" href="<%=cp%>/MyChecklists.jsp">회원 리스트 조회</a> <a class="dropdown-item" href="<%=cp%>/searchRegion_gu.jsp">탈퇴회원 리스트 조회</a>
+						<a class="dropdown-item" href="<%=cp%>/AccountList.jsp">회원 리스트</a> <a class="dropdown-item" href="<%=cp%>/WithdrawalAccountList.jsp">탈퇴회원 리스트</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link" href="#">신고처리</a></li>
 			</ul>
 
 			<ul class="navbar-nav mr-auto navbar-right navbar-nav my-2 my-md-0 mr-md-3">
-				<li class="nav-item"><a class="nav-link" href="#">&nbsp;&nbsp;로그아웃</a></li>
+				<li class="nav-item"><a class="nav-link" href="<%=cp%>/ReportCheck.jsp">&nbsp;&nbsp;로그아웃</a></li>
 			</ul>
 
 			<!-- 원래는 이거(회원가입/로그인)였다가 로그인하면 마이페이지/ 로그아웃으로 변경된다.

@@ -32,7 +32,7 @@ String cp = request.getContextPath();
 	<!-- user 바 -->
 	<!-- <h2>회원 리스트</h2> -->
 	<div class="py-5 text-center">
-			<h2 style="margin-top: 50px;">탈퇴회원 리스트 조회</h2>
+			<h2 style="margin-top: 50px;">탈퇴회원 리스트</h2>
 	</div>
 	<div class="card-header" data-select2-id="56">
 		<div

@@ -25,14 +25,14 @@ String cp = request.getContextPath();
 
 	<!-- 메뉴 영역 -->
 	<div>
-		<c:import url="MenuNavbar_new.jsp"></c:import>
+		<c:import url="MenuNavbar_admin.jsp"></c:import>
 	</div>
 
 	<!-- 콘텐츠 영역 -->
 	<!-- user 바 -->
 	<!-- <h2>회원 리스트</h2> -->
 	<div class="py-5 text-center">
-			<h2 style="margin-top: 50px;">회원 리스트 조회</h2>
+			<h2 style="margin-top: 50px;">회원 리스트</h2>
 	</div>
 	<div class="card-header" data-select2-id="56">
 		<div
