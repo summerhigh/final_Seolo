@@ -14,31 +14,169 @@
 integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 crossorigin="anonymous">
 <style type="text/css">
-	p 
-	{ 
-		font-size: small;
-		color: red; 
-	}
+	p { font-size: small; color: red; }
+	.errMsg { font-size: small; color: red; }
+	.okMsg { font-size: small; color: blue; }
 </style>
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 
-	$(document).ready(function()
+	$(function()
 	{
-		
-		$("#submitBtn").click(function()
+		// 인증번호 발송 flag변수 선언
+		var flagIdn = false;
+			
+		// 닉네임 중복확인 ajax
+		// $.post(요청 주소, 전송 데이터, 응답액션처리)
+		$("#nickName").on("change keyup paste", function()
 		{
-			//alert("확인");
-			$("#personalInsertForm").submit();
+			$("#nickErrMsg").html("");
+			$("#nickOkMsg").html("");
+			
+			confirmNick();
+		});
+		
+		// 인증번호 전송
+		$("#idnBtn").click(function()
+		{
+			if ($("#name").val()=="" || $("#tel").val()=="")
+			{
+				$("#idnErrMsg").html("이름과 휴대폰번호를 입력해주세요.");
+				return;
+			}
+			
+			$("#idnNumber").removeAttr("disabled");
+			$("#idnErrMsg").html("입력한 휴대폰번호로 인증번호가 발송되었습니다. 번호를 입력해주세요.");
+			flagIdn = false;
+		});
+		
+		// 인증번호 확인 (인증번호는 1234로 가정)
+		$("#idnNumber").on("change keyup paste", function()
+		{
+			
+			if ($("#idnNumber").val()=="1234")
+			{
+				$("#idnErrMsg").html("");
+				$("#idnOkMsg").html("인증번호를 정확히 입력했습니다.");
+				flagIdn = true;
+			}
+			else if ($("#idnNumber").val()!="1234")
+			{
+				$("#idnOkMsg").html("");
+				$("#idnErrMsg").html("인증번호를 정확히 입력해주세요.");
+				flagIdn = false;
+			}
 			
 		});
 		
+		// submit 전 유효성검사 → submit
+		$("#submitBtn").click(function()
+		{
+			if ($("#nickErrMsg").text()!="" || $("#idnErrMsg").text()!="")
+			// 닉네임 중복일 때, 인증번호 입력 안했는데/잘못 입력했는데 가입하려고 할 때 못하게 막음
+			{
+				return;
+			}
+			
+			$(".errMsg").html("");	// 에러 메세지 초기화
+			
+			if ($("#id").val()=="")
+			{
+				$("#idErrMsg").html("아이디를 입력해주세요.");
+				$("#id").focus();
+				return;
+			}
+			
+			if ($("#name").val()=="")
+			{
+				$("#nameErrMsg").html("이름을 입력해주세요.");
+				$("#name").focus();
+				return;
+			}
+			
+			if ($("#nickName").val()=="")
+			{
+				$("#nickErrMsg").html("닉네임을 입력해주세요.");
+				$("#nickName").focus();
+				return;
+			}
+			
+			if ($("#password").val()=="")
+			{
+				$("#pwErrMsg").html("비밀번호를 입력해주세요.");
+				$("#password").focus();
+				return;
+			}
+			
+			if ($("#password2").val()=="")
+			{
+				$("#pw2ErrMsg").html("비밀번호를 입력해주세요.");
+				$("#password2").focus();
+				return;
+			}
+			
+			if ($("#email").val()=="")
+			{
+				$("#emailErrMsg").html("이메일을 입력해주세요.");
+				$("#email").focus();
+				return;
+			}
+			
+			if ($("#tel").val()=="")
+			{
+				$("#telErrMsg").html("휴대폰 번호를 입력해주세요.");
+				$("#tel").focus();
+				return;
+			}
+			
+			if ($("#upun").val()=="" || $("#roadAddr").val()=="" || $("#detailAddr").val()=="")
+			{
+				$("#addrErrMsg").html("상세주소 포함 주소를 입력해주세요.");
+				$("#detailAddr").focus();
+				return;
+			}
+			
+			if (!flagIdn)
+			{
+				$("#idnOkMsg").html("");
+				$("#idnErrMsg").html("인증번호를 정확히 입력해주세요.");
+			}
+			
+			
+			$("#personalInsertForm").submit();
+		});
 		
 		
-		
-	});
-	
+		// 닉네임 ajax
+		function confirmNick()
+		{
+			if ($("#nickName").val()=="")
+			{
+				$("#nickOkMsg").html("");
+				$("#nickErrMsg").html("");
+				return;
+			}
+			
+			$.post("confirmnickname.action", {nickName : $("#nickName").val()}, function(data)
+			{
+				var result = data;
 
+				if (data == 1)
+				{
+					$("#nickOkMsg").html("");
+					$("#nickErrMsg").html("사용할 수 없는 닉네임입니다.");
+				}
+				else
+				{
+					$("#nickErrMsg").html("");
+					$("#nickOkMsg").html("사용 가능한 닉네임입니다.");
+				}
+				
+			});
+		}
+	});
+
+	
 </script>
 
 
@@ -74,7 +212,7 @@ crossorigin="anonymous">
                 </tr>
                 <tr>
                 	<th></th>
-                	<td><p>사용할 수 없는 아이디입니다.</p><p>아이디를 입력해주세요.</p></td>
+                	<td><!-- <p>사용할 수 없는 아이디입니다.</p> --><span id="idErrMsg" class="errMsg"></span></td>
                 </tr>
                 <tr>
                   <th><span>이름</span></th>
@@ -82,31 +220,34 @@ crossorigin="anonymous">
                 </tr>
                 <tr>
                 	<th></th>
-                	<td><p>이름을 입력해주세요.</p></td>
+                	<td><span id="nameErrMsg" class="errMsg"></span></td>
                 </tr>
+                <!-- ★ 소연 수정 -->
                 <tr>
                   <th><span>닉네임</span></th>
-                  <td><input type="text" id="nickName" name="nickName" class="nickname" placeholder="닉네임을 입력하세요."></td>
+                  <td>
+					<input type="text" class="nickName" placeholder="닉네임을 입력하세요." id="nickName" name="nickName">
+                  </td>
                 </tr>
                 <tr>
                 	<th></th>
-                	<td><p>사용할 수 없는 닉네임입니다.</p><p>닉네임을 입력해주세요.</p></td>
+                	<td><span id="nickErrMsg" class="errMsg"></span><span id="nickOkMsg" class="okMsg"></span></td>
                 </tr>
                 <tr>
                   <th><span>비밀번호</span></th>
-                  <td><input type="text" id="password" name="password" class="password" placeholder="비밀번호를 입력하세요."></td>
+                  <td><input type="password" id="password" name="password" class="password" placeholder="비밀번호를 입력하세요."></td>
                 </tr>
                 <tr>
                 	<th></th>
-                	<td><p>비밀번호를 입력해주세요.</p></td>
+                	<td><span id="pwErrMsg" class="errMsg"></span></td>
                 </tr>
                 <tr>
                   <th><span>번호확인</span></th>
-                  <td><input type="text" class="password2" placeholder="비밀번호를 확인하세요."></td>
+                  <td><input type="password" id="password2" class="password2" placeholder="비밀번호를 한번 더 입력해주세요."></td>
                 </tr>
                  <tr>
                 	<th></th>
-                	<td><p>비밀번호를 확인해주세요.</p></td>
+                	<td><span id="pw2ErrMsg" class="errMsg"></span></td>
                 </tr>
                 <tr class="email">
                   <th><span>이메일</span></th>
@@ -115,7 +256,7 @@ crossorigin="anonymous">
                   </td>
                 <tr>
                 	<th></th>
-                	<td><p>이메일을 입력해주세요.</p></td>
+                	<td><span id="emailErrMsg" class="errMsg"></span></td>
                 </tr>  
                 <tr>
                   <th><span>휴대폰 번호</span></th>
@@ -126,17 +267,23 @@ crossorigin="anonymous">
                 <tr>
                 	<th></th>
                 	<td><p>이미 가입했거나, 현재 가입이 불가능한 번호입니다.</p>
-						<p>휴대전화를 입력해주세요.</p></td>
+						<span id="telErrMsg" class="errMsg"></span></td>
                 </tr>  
                 <tr>
                   <th><span>인증번호</span></th>
-                  <td><input type="text" class="send_number" placeholder="인증번호를 입력하세요.">
-                      <button type="button" class="btn btn-secondary"><font size="2.5">인증번호 발송</font></button>
+                  <td><input type="text" class="send_number" placeholder="인증번호를 입력하세요." id="idnNumber" name="idnNumber"
+                  		onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" disabled="disabled">
+                      <button type="button" class="btn btn-secondary" id="idnBtn"><font size="2.5">인증번호 발송</font>
+                      </button>
                   </td>
                 </tr>
                 <tr>
+                	<th></th>
+                	<td><span id="idnErrMsg" class="errMsg"></span><span id="idnOkMsg" class="okMsg"></span></td>
+                </tr>
+                <tr>
                   <th><span>주소</span></th>
-                  <td><input type="text" class="upun" readonly="readonly" placeholder="우편번호">
+                  <td><input type="text" id="upun" class="upun" readonly="readonly" placeholder="우편번호">
                     <button type="button" class="btn btn-secondary"><font size="2.5">우편번호 검색</font></button>
 					<!-- <input type="text" class="address" readonly="readonly" placeholder="주소"></input> -->
 					<input type="text" id="roadAddr" name="roadAddr" class="address" placeholder="주소"></input>
@@ -144,7 +291,7 @@ crossorigin="anonymous">
                 </tr>
                 <tr>
                 	<th></th>
-                	<td><p>주소를 입력해주세요.</p></td>
+                	<td><span id="addrErrMsg" class="errMsg"></span></td>
                 </tr>  
                 <tr>
               </tbody>
@@ -153,6 +300,9 @@ crossorigin="anonymous">
             <div class="exform_txt"><span>표시는 필수적으로 입력해주셔야 가입이 가능합니다.</span></div>
            
           </div><!-- join_form E  -->
+          <div class="text-center">
+          	<span id="flagMsg" class="errMsg"></span>
+          </div>
           <div class="btn_wrap">
             <button type="button" class="btn btn-secondary">취소하기</button>
 			<button type="button" id="submitBtn" class="btn btn-primary">가입하기</button>
