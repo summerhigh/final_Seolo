@@ -26,14 +26,14 @@
 		 <property name="dataSource" ref="localDataSource"></property>
 	</bean>
 	
-   	<!-- ★ 소연 : 메인, 메뉴바 -->
+   	<!-- 소연 : 메인, 메뉴바 -->
    	<bean name="/main.action" class="com.seolo.main.MainController">
    	</bean>
     
    	<bean name="/nav.action" class="com.seolo.main.NavBarController">
    	</bean>
    
-	<!-- ★찬호 회원가입 로그인 관련 컨트롤러 등록//////////////////////////////////////////////////////////////// -->
+	<!-- 찬호 회원가입 로그인 관련 컨트롤러 등록//////////////////////////////////////////////////////////////// -->
 	
 
 	<!-- 회원가입폼 컨트롤러 등록 -->
@@ -42,6 +42,11 @@
 	
 	<!-- 회원가입 컨트롤러 등록 -->
 	<bean name="/personalinsert.action" class="com.seolo.personal.PersonalInsertController">
+		<property name="dao" ref="personalDAO"></property>
+	</bean>
+	
+	<!-- ★ 소연 수정 : 회원가입 닉네임 ajax -->
+	<bean name="/confirmnickname.action" class="com.seolo.personal.ConfirmNickController">
 		<property name="dao" ref="personalDAO"></property>
 	</bean>
 	
@@ -73,11 +78,11 @@
 		<property name="dao" ref="personalDAO"></property>		
 	</bean>	
 		
-	<!-- ★찬호 //////////////////////////////////////////////////////////////// 회원가입 로그인 관련 컨트롤러 등록 -->
+	<!-- 찬호 //////////////////////////////////////////////////////////////// 회원가입 로그인 관련 컨트롤러 등록 -->
 	
 	
 	
-	<!-- ★ 소연 : 로그인/로그아웃 컨트롤러 등록 -->
+	<!-- 소연 : 로그인/로그아웃 컨트롤러 등록 -->
    	<bean name="/loginform.action" class="com.seolo.personal.LoginFormController">
    	</bean>
    
