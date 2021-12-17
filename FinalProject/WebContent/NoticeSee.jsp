@@ -36,7 +36,6 @@ String cp = request.getContextPath();
 	<br>
 	<br>
 	<br>
-	<br>
 
 	<div class="container">
 		<!-- 게시판 메인 -->
