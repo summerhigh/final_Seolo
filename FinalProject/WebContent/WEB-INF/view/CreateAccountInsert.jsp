@@ -18,6 +18,7 @@ crossorigin="anonymous">
 	.errMsg { font-size: small; color: red; }
 	.okMsg { font-size: small; color: blue; }
 </style>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 
@@ -53,7 +54,6 @@ crossorigin="anonymous">
 		// 인증번호 확인 (인증번호는 1234로 가정)
 		$("#idnNumber").on("change keyup paste", function()
 		{
-			
 			if ($("#idnNumber").val()=="1234")
 			{
 				$("#idnErrMsg").html("");
@@ -66,14 +66,28 @@ crossorigin="anonymous">
 				$("#idnErrMsg").html("인증번호를 정확히 입력해주세요.");
 				flagIdn = false;
 			}
-			
 		});
+		
+		// 비밀번호 확인
+		$("#password2").on("change keyup paste", function()
+		{
+			if ($("#password2").val() != $("#password").val())
+			{
+				$("#pw2ErrMsg").html("비밀번호가 일치하지 않습니다.");
+			}
+			else if ($("#password2").val() == $("#password").val())
+			{
+				$("#pw2ErrMsg").html("");
+			}
+		})
+		
 		
 		// submit 전 유효성검사 → submit
 		$("#submitBtn").click(function()
 		{
-			if ($("#nickErrMsg").text()!="" || $("#idnErrMsg").text()!="")
-			// 닉네임 중복일 때, 인증번호 입력 안했는데/잘못 입력했는데 가입하려고 할 때 못하게 막음
+			if ($("#nickErrMsg").text()!="" || $("#idnErrMsg").text()!="" || $("#pw2ErrMsg").text()!="" )
+			// ①닉네임 중복일 때, ②인증번호 입력 안했는데/잘못 입력했는데,  ③비밀번호 확인 제대로 입력 안했을 때
+			// 가입 못하게 막음
 			{
 				return;
 			}
@@ -129,17 +143,19 @@ crossorigin="anonymous">
 				return;
 			}
 			
-			if ($("#upun").val()=="" || $("#roadAddr").val()=="" || $("#detailAddr").val()=="")
+			if ($("#upun").val()=="" || $("#roadAddr").val()=="" || $("#detailAddr").val()=="" || $("#dong").val()=="")
 			{
 				$("#addrErrMsg").html("상세주소 포함 주소를 입력해주세요.");
 				$("#detailAddr").focus();
 				return;
 			}
 			
+			// 인증번호 제대로 정확히 입력 안되어있으면
 			if (!flagIdn)
 			{
 				$("#idnOkMsg").html("");
 				$("#idnErrMsg").html("인증번호를 정확히 입력해주세요.");
+				return;
 			}
 			
 			
@@ -175,7 +191,54 @@ crossorigin="anonymous">
 			});
 		}
 	});
+	
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("dong").value = extraAddr;
+                
+                } else {
+                    document.getElementById("dong").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('upun').value = data.zonecode;
+                document.getElementById("roadAddr").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("detailAddr").focus();
+            }
+        }).open();
+    }
 	
 </script>
 
@@ -283,11 +346,12 @@ crossorigin="anonymous">
                 </tr>
                 <tr>
                   <th><span>주소</span></th>
-                  <td><input type="text" id="upun" class="upun" readonly="readonly" placeholder="우편번호">
-                    <button type="button" class="btn btn-secondary"><font size="2.5">우편번호 검색</font></button>
-					<!-- <input type="text" class="address" readonly="readonly" placeholder="주소"></input> -->
-					<input type="text" id="roadAddr" name="roadAddr" class="address" placeholder="주소"></input>
-					<input type="text" id="detailAddr" name="detailAddr" class="detailaddress" placeholder="상세주소를 입력해주세요."></input></td>
+                  <td>					
+					<input type="text" id="upun" name="upun" placeholder="우편번호" readonly="readonly">
+					<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+					<input type="text" id="roadAddr" name="roadAddr" placeholder="주소" readonly="readonly"><br>
+					<input type="text" id="detailAddr" name="detailAddr" placeholder="상세주소">
+					<input type="text" id="dong" name="dong" placeholder="참고항목" readonly="readonly"></td>
                 </tr>
                 <tr>
                 	<th></th>
