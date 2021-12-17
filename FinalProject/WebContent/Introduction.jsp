@@ -54,7 +54,8 @@ String cp = request.getContextPath();
 				</div>
 			</div>
 			<div class="d-flex justify-content-end">
-				<button type="submit" class="btn btn-primary">수정하기</button>
+				<button type="submit" href="<%=cp%>/UpdateIntroduction.jsp" class="btn btn-primary">수정하기</button>
+				<a class="btn btn-primary" href="<%=cp%>/UpdateIntroduction.jsp" role="button">수정하기</a>
 			</div>
 			<br><br>
 		</div>

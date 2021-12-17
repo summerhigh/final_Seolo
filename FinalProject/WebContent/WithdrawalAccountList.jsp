@@ -24,8 +24,8 @@ String cp = request.getContextPath();
 <body>
 
 	<!-- 메뉴 영역 -->
-	<div>
-		<c:import url="MenuNavbar_new.jsp"></c:import>
+    <div>
+		<c:import url="MenuNavbar_admin.jsp"></c:import>
 	</div>
 
 	<!-- 콘텐츠 영역 -->
