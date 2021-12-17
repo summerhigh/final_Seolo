@@ -32,7 +32,7 @@ body {
 <body>
 	<!-- 메뉴 영역 -->
 	<div>
-		<c:import url="MenuNavbar_admin.jsp"></c:import>
+		<c:import url="MenuNavbar_new.jsp"></c:import>
 	</div>
 
 	<!-- 콘텐츠 영역 -->
@@ -40,7 +40,7 @@ body {
 	<br>
 	<article>
 		<div class="container" role="main">
-			<h2>공지사항</h2>
+			<h2>공지사항 작성</h2>
 			<br>
 			<form name="form" id="form" role="form" method="post"
 				action="${pageContext.request.contextPath}/board/saveBoard">

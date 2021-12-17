@@ -32,7 +32,7 @@ String cp = request.getContextPath();
 				<li class="nav-item"><a class="nav-link" href="#">&nbsp;&nbsp;메인</a></li>
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;알림/공지</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown01">
-						<a class="dropdown-item" href="<%=cp%>/Introduction_user.jsp">서비스 소개</a> <a class="dropdown-item" href="<%=cp%>/NoticeList_user.jsp">공지사항</a> <a class="dropdown-item" href="<%=cp%>/FaqListNode_user.jsp">자주 묻는 질문</a>
+						<a class="dropdown-item" href="#">서비스 소개</a> <a class="dropdown-item" href="<%=cp%>/NoticeList.jsp">공지사항</a> <a class="dropdown-item" href="<%=cp%>/FaqList.jsp">자주 묻는 질문</a>
 					</div></li>
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;체크리스트</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown01">

@@ -70,6 +70,34 @@ public class PersonalDAO implements IPersonalDAO
 		
 		return result;
 	}
+	
+	// 오버로딩
+	// 비밀번호 확인을위해 해당 아이디, 이름,전화번호가 맞는지 확인 메소드
+	public int searchIdCount(String name, String tel, String id) throws SQLException 
+	{
+		int result = 0;
+		
+		Connection conn = dataSource.getConnection();
+		String sql = "SELECT COUNT(*) AS COUNT FROM PERSONAL WHERE NAME=? AND TEL=? AND PE_ID=?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, name);
+		pstmt.setString(2, tel);
+		pstmt.setString(3, id);
+		
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next())
+		{
+			result = rs.getInt("COUNT");
+		}
+		
+		rs.close();
+		pstmt.close();
+		conn.close();
+		
+		return result;
+	}	
+	
+	
 
 	@Override
 	public String searchId(String name, String tel) throws SQLException		// 아이디 찾기 메소드
@@ -94,33 +122,59 @@ public class PersonalDAO implements IPersonalDAO
 		return result;
 	}
 	
+	// 비밀번호 변경 메소드
+	@Override
+	public int pwdModify(String id, String pw) throws SQLException
+	{
+		int result = 0;
+		
+		Connection conn = dataSource.getConnection();
+		String sql = "UPDATE PERSONAL SET PW = ? WHERE PE_ID = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setString(1, pw);
+		pstmt.setString(2, id);
+		
+		result = pstmt.executeUpdate();
+		pstmt.close();
+		conn.close();
+		
+		return result;
+	}
+
+	
 	
    // ★ 소연 수정 시작
-   @Override
-   public PersonalDTO login(String id, String pw) throws SQLException // 일반회원 로그인 메소드
-   {
-      PersonalDTO result = new PersonalDTO();
+	@Override
+	   public PersonalDTO login(String id, String pw) throws SQLException // 일반회원 로그인 메소드
+	   {
+	      PersonalDTO result = new PersonalDTO();
+	      
+	      Connection conn = dataSource.getConnection();
+	      String sql = "SELECT PE_ID, AC_NO, NICKNAME, WARNING_COUNT(AC_NO) as WARNINGCOUNT FROM PERSONAL WHERE PE_ID=? AND PW=?";
+	      // 성공적으로 로그인했을 경우 회원정보 반환
+	      PreparedStatement pstmt = conn.prepareStatement(sql);
+	      pstmt.setString(1, id);
+	      pstmt.setString(2, pw);
+	      ResultSet rs = pstmt.executeQuery();
+	      if (rs.next())
+	      {
+	         result.setPe_Id(rs.getString(1));
+	         result.setAc_No(rs.getString(2));
+	         result.setNickName(rs.getString(3));
+	         result.setWarningCount(rs.getInt(4));
+	      }
 
-      Connection conn = dataSource.getConnection();
-      String sql = "SELECT PE_ID, AC_NO, NICKNAME FROM PERSONAL WHERE PE_ID=? AND PW=?";
-      // 성공적으로 로그인했을 경우 AC_NO 반환
-      PreparedStatement pstmt = conn.prepareStatement(sql);
-      pstmt.setString(1, id);
-      pstmt.setString(2, pw);
-      ResultSet rs = pstmt.executeQuery();
-      if (rs.next())
-      {
-         result.setPe_Id(rs.getString(1));
-         result.setAc_No(rs.getString(2));
-         result.setNickName(rs.getString(3));
-      }
+	      rs.close();
+	      pstmt.close();
+	      conn.close();
 
-      rs.close();
-      pstmt.close();
-      conn.close();
+	      return result;
+	   }
 
-      return result;
-   }
+
+
+
 
    @Override
    public int confirmId(String id) throws SQLException   // 아이디 중복확인(ajax) (result가 1이면 중복)

@@ -54,7 +54,24 @@
 		<property name="dao" ref="personalDAO"></property>
 	</bean>		
 		
+	<!-- 비밀번호찾기폼1 컨트롤러 등록 -->
+	<bean name="/pwdsearchoneform.action" class="com.seolo.personal.PwdSearchOneFormController">
+	</bean>
 		
+	<!-- 비밀번호찾기1 컨트롤러 등록 -->
+	<bean name="/pwdsearchone.action" class="com.seolo.personal.PwdSearchOneController">
+		<property name="dao" ref="personalDAO"></property>		
+	</bean>
+	
+	<!-- 비밀번호찾기2 컨트롤러 등록 -->
+	<bean name="/pwdsearchtwo.action" class="com.seolo.personal.PwdSearchTwoController">
+		<property name="dao" ref="personalDAO"></property>		
+	</bean>
+			
+	<!-- 비밀번호변경 컨트롤러 등록 -->
+	<bean name="/pwdupdate.action" class="com.seolo.personal.PwdUpdateController">
+		<property name="dao" ref="personalDAO"></property>		
+	</bean>	
 		
 	<!-- ★찬호 //////////////////////////////////////////////////////////////// 회원가입 로그인 관련 컨트롤러 등록 -->
 	

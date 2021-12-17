@@ -23,8 +23,10 @@ String cp = request.getContextPath();
 </head>
 <body>
 
-<!-- 내비바 -->
-<div><c:import url="MenuNavbar_admin.jsp"></c:import></div>
+	<!-- 내비바 -->
+	<div>
+		<c:import url="MenuNavbar_new.jsp"></c:import>
+	</div>
 
 	<br>
 	<br>

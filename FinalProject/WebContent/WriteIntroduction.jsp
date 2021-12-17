@@ -17,21 +17,9 @@ String cp = request.getContextPath();
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
-<title>WriteNotice.jsp</title>
+<title>WriteIntroduction.jsp</title>
 <script>
-$(document).on('click', '#btnSave', function(e)
-		{
-			e.preventDefault();
-			$("#form").submit();
 
-		});
-
-		$(document).on('click', '#btnList', function(e)
-		{
-			e.preventDefault();
-			location.href = "${pageContext.request.contextPath}/board/getBoardList";
-
-		});
 </script>
 <style>
 body {
@@ -52,33 +40,14 @@ body {
 	<br>
 	<article>
 		<div class="container" role="main">
-			<h2>공지사항 작성</h2>
+			<h2>서비스 소개 수정</h2>
 			<br>
 			<form name="form" id="form" role="form" method="post"
 				action="${pageContext.request.contextPath}/board/saveBoard">
-				<div class="mb-3">
-					<label for="title">제목</label> <input type="text"
-						class="form-control" name="title" id="title"
-						placeholder="제목을 입력하세요">
-				</div>
-
-				<div class="mb-3">
-					<label for="reg_id">작성자</label> <input type="text"
-						class="form-control" name="reg_id" id="reg_id"
-						placeholder="이름을 입력하세요">
-				</div>
-
-				<div class="mb-3">
-					<label for="reg_id">분류</label> <select class="form-control">
-						<option>========</option>
-						<option>공지사항</option>
-						<option>점검알림</option>
-					</select>
-				</div>
 
 				<div class="mb-3">
 					<label for="content">내용</label>
-					<textarea class="form-control" rows="10" name="content" id="content"
+					<textarea class="form-control" rows="20" name="content" id="content"
 						placeholder="내용을 입력하세요"></textarea>
 				</div>
 
@@ -88,7 +57,8 @@ body {
 			<div align="right">
 				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 				<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button> -->
-				<button class="btn btn-primary" type="submit">등록하기</button>
+				<button class="btn btn-primary" type="reset">초기화</button>
+				<button class="btn btn-primary" type="submit">수정하기</button>
 				<button class="btn btn-primary" type="submit">취소하기</button>
 			</div>
 

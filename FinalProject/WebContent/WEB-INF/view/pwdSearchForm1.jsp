@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.88.1">
-<title>IdSearchForm.jsp</title>
+<title>pwdSearchForm1.jsp</title>
 
 <!-- Bootstrap core CSS -->
 <link href="<%=cp%>/css/bootstrap.min.css" rel="stylesheet">
@@ -36,24 +36,6 @@
 
 <!-- Custom styles for this template -->
 <link href="<%=cp%>/css/floating-labels.css" rel="stylesheet">
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript">
-
-	$(document).ready(function()
-	{
-		
-		$("#submitBtn").click(function()
-		{
-			
-			$("#idSearchForm").submit();
-		});
-		
-		
-		
-	});
-
-
-</script>
 
 </head>
 <body>
@@ -63,22 +45,22 @@
 	</div>
 	
 	<!-- 아이디 찾기 -->
-	<form class="form-signin" action="idsearch.action" method="post" id="idSearchFrom">
+	<form class="form-signin" action="pwdsearchone.action" method="post" id="pwdSearchForm">
 		<div class="text-center mb-4">
-			<h1 class="h3 mb-3 font-weight-normal">아이디 찾기</h1>
-			<p>회원정보에 등록한 이름과 휴대전화 번호를 통해<br>인증할 수 있습니다.</p>
+			<h1 class="h3 mb-3 font-weight-normal">비밀번호 찾기</h1>
+			<p>비밀번호를 찾고자 하는 아이디를 입력해 주세요.</p>
 		</div>
 		
 		<div class="form-label-group">
-			<input type="text" id="name" name="name" class="form-control" required autofocus>
-			<label for="name">이름</label>
+			<input type="text" id="id" name="id" class="form-control" required autofocus>
+			<label for="id">아이디</label>
 		</div>
-		<div class="form-label-group">
-			<input type="text" id="tel" name="tel" class="form-control" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" required>
-			<label for="tel">휴대폰 번호 (숫자만 입력)</label>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">다음</button>
+		
+		<div class="text-center mb-4">
+			<p class="mt-5 mb-3 text-muted">아이디가 기억나지 않는다면? <a href="idsearchform.action">아이디 찾기</a></p>
 		</div>
-
-		<button class="btn btn-lg btn-primary btn-block" type="submit" id="submitBtn">아이디 찾기</button>
+		
 	</form>
 
 

@@ -8,9 +8,13 @@ public interface IPersonalDAO
 	
 	public PersonalDTO login(String id, String pw) throws SQLException;      // 회원 로그인
 	
-	public int searchIdCount(String id, String tel) throws SQLException; // 해당 이름과 전화번호가 맞는지 확인 메소드
+	public int searchIdCount(String name, String tel) throws SQLException; // 해당 이름과 전화번호가 맞는지 확인 메소드
 	
-	public String searchId(String id, String tel) throws SQLException;   // 아이디 찾기 메소드
+	public int searchIdCount(String name, String tel, String id) throws SQLException; // 비밀번호 아이디 이름 전화번호가 맞는지 확인 메소드
+	
+	public int pwdModify(String id, String pw) throws SQLException; // 비밀번호 변경
+	
+	public String searchId(String name, String tel) throws SQLException;   // 아이디 찾기 메소드
 	
 	public int confirmId(String id) throws SQLException;   // 아이디 중복확인(ajax)
    

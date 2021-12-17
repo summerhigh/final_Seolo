@@ -64,7 +64,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
    		<c:when test="${empty userLogin}">
    			<ul class="navbar-nav mr-auto navbar-right navbar-nav my-2 my-md-0 mr-md-3">
 		        <li class="nav-item">
-		        	<a class="nav-link" href="#">회원 가입</a>
+		        	<a class="nav-link" href="personalinsertform.action">회원 가입</a>
 		      	</li>
 		      	<li class="nav-item">
 		        	<a class="nav-link" href="loginform.action">&nbsp;&nbsp;로그인</a>

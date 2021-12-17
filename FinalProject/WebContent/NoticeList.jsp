@@ -19,7 +19,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 <body>
 
 <!-- 내비바 -->
-<div><c:import url="MenuNavbar_admin.jsp"></c:import></div>
+<div><c:import url="MenuNavbar_new.jsp"></c:import></div>
 
 <br><br><br><br><br>
 

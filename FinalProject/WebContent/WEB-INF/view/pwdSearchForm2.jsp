@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.88.1">
-<title>IdSearchForm.jsp</title>
+<title>pwdSearchForm.jsp</title>
 
 <!-- Bootstrap core CSS -->
 <link href="<%=cp%>/css/bootstrap.min.css" rel="stylesheet">
@@ -41,17 +41,10 @@
 
 	$(document).ready(function()
 	{
-		
-		$("#submitBtn").click(function()
-		{
-			
-			$("#idSearchForm").submit();
-		});
-		
-		
-		
-	});
 
+	});
+	
+	
 
 </script>
 
@@ -61,11 +54,10 @@
 	<div>
 		<c:import url="/nav.action"></c:import>
 	</div>
-	
 	<!-- 아이디 찾기 -->
-	<form class="form-signin" action="idsearch.action" method="post" id="idSearchFrom">
+	<form class="form-signin" action="pwdsearchtwo.action" method="post" id="pwdSearchForm">
 		<div class="text-center mb-4">
-			<h1 class="h3 mb-3 font-weight-normal">아이디 찾기</h1>
+			<h1 class="h3 mb-3 font-weight-normal">비밀번호 찾기</h1>
 			<p>회원정보에 등록한 이름과 휴대전화 번호를 통해<br>인증할 수 있습니다.</p>
 		</div>
 		
@@ -78,10 +70,10 @@
 			<label for="tel">휴대폰 번호 (숫자만 입력)</label>
 		</div>
 
-		<button class="btn btn-lg btn-primary btn-block" type="submit" id="submitBtn">아이디 찾기</button>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">다음</button>
+		<input type="hidden" id="id" name="id" value="${id }">	
 	</form>
 
-
-
+	
 </body>
 </html>

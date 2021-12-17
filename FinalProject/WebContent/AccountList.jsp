@@ -25,14 +25,14 @@ String cp = request.getContextPath();
 
 	<!-- 메뉴 영역 -->
 	<div>
-		<c:import url="MenuNavbar_admin.jsp"></c:import>
+		<c:import url="MenuNavbar_new.jsp"></c:import>
 	</div>
 
 	<!-- 콘텐츠 영역 -->
 	<!-- user 바 -->
 	<!-- <h2>회원 리스트</h2> -->
 	<div class="py-5 text-center">
-			<h2 style="margin-top: 50px;">회원 리스트</h2>
+			<h2 style="margin-top: 50px;">회원 리스트 조회</h2>
 	</div>
 	<div class="card-header" data-select2-id="56">
 		<div
@@ -52,14 +52,12 @@ String cp = request.getContextPath();
 				<div class="col-md">
 					<form>
 						<!-- Search -->
-						<!-- dataSearch 회원 검색부분은 일단 킵! 기능구현 안하면 없애기 -->
 						<div class="input-group input-group-merge input-group-flush">
 							<div class="input-group-prepend">
 								<div class="input-group-text">
 									<i class="tio-search"></i>
 								</div>
 							</div>
-							
 							<input id="datatableSearch" type="search" class="form-control"
 								placeholder="Search users" aria-label="Search users">
 						</div>
@@ -129,7 +127,7 @@ String cp = request.getContextPath();
 				<tbody>
 
 
-					<!-- 한 페이지당 10개 계정 정보 조회 가능 -->
+					<!-- 한 페이지당 9개 계정 정보 조회 가능 -->
 					<tr role="row" class="odd">
 						<td class="table-column-pr-0"></td>
 						<!-- * -->
@@ -224,19 +222,6 @@ String cp = request.getContextPath();
 						<td>2021/10/31</td>
 						<td>31233</td>
 					</tr>
-					<tr role="row" class="odd">
-						<td class="table-column-pr-0"></td>
-						<td class="table-column-pl-0"><a>
-								<div class="media-body">
-									<span class="h5 text-hover-primary mb-0">cat56</span>
-								</div>
-						</a></td>
-						<td>catman</td>
-						<td>이고양</td>
-						<td>catman@example.com</td>
-						<td>2009/03/31</td>
-						<td>11199</td>
-					</tr>
 					<tr role="row" class="even">
 						<td class="table-column-pr-0"></td>
 						<td class="table-column-pl-0"><a>
@@ -250,18 +235,18 @@ String cp = request.getContextPath();
 						<td>2009/03/31</td>
 						<td>11200</td>
 					</tr>
-					<tr role="row" class="even">
+					<tr role="row" class="odd">
 						<td class="table-column-pr-0"></td>
 						<td class="table-column-pl-0"><a>
 								<div class="media-body">
-									<span class="h5 text-hover-primary mb-0">sheep33</span>
+									<span class="h5 text-hover-primary mb-0">cat56</span>
 								</div>
 						</a></td>
-						<td>sheepman</td>
-						<td>이양양</td>
-						<td>sheepman@example.com</td>
-						<td>2020/03/31</td>
-						<td>11399</td>
+						<td>catman</td>
+						<td>이고양</td>
+						<td>catman@example.com</td>
+						<td>2009/03/31</td>
+						<td>11199</td>
 					</tr>
 					<!-- @@@ 프로필 조회 가능 버전
                 <tr role="row" class="even">
@@ -327,7 +312,6 @@ String cp = request.getContextPath();
 		</div>
 		<!-- End Pagination -->
 	</div>
-	<br><br>
 
 </body>
 </html>

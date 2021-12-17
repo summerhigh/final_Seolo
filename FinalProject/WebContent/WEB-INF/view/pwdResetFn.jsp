@@ -1,9 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.88.1">
-<title>IdSearch.jsp</title>
+<title>pwdResetFn.jsp</title>
 
 <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/starter-template/">
 
@@ -46,39 +47,17 @@
 	<div>
 		<c:import url="/nav.action"></c:import>
 	</div>
-
+	
 	<!-- 본문 영역 -->
 	<div class="container">
 		<div class="starter-template">
-			<h3>아이디 찾기 결과</h3>
-			<hr class="mb-4">
-			
-			<c:choose>
-				<c:when test="${result == 0 }">
-					<div class="card" id="yesResult">
-						<div class="card-body">
-			    			고객님의 정보와 일치하는 아이디가 존재하지 않습니다.
-						</div>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="card" id="yesResult">
-						<div class="card-body" >
-			    			고객님의 정보와 일치하는 아이디는 <span style="font-weight: bold;">${id }</span> 입니다.
-						</div>
-					</div>
-				</c:otherwise>
-			</c:choose>
-		</div>
-	</div>
-	<!-- 로그인하기 메인으로 버튼 추가 -->
-	<div class="container">
-		<div class="starter-template">
+			<h3>비밀번호 변경 완료</h3>
 			<hr class="mb-4">
 			
 			<div class="card">
 				<div class="card-body">
-					<p>로그인을 하시면 모든 서비스를 이용할 수 있습니다.</p>
+					<p>비밀번호 변경이 완료되었습니다.</p>
+					<p>변경한 비밀번호로 로그인 해 주세요.</p>
 					<p>
 				    	<a href="loginform.action" class="btn btn-primary my-2">로그인하기</a>
 				    	<a href="main.action" class="btn btn-secondary my-2">메인으로</a>
@@ -86,7 +65,7 @@
 				</div>
 			</div>			
 		</div>
-	</div>	
-
+	</div>
+	
 </body>
 </html>

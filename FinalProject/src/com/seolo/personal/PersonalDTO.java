@@ -21,6 +21,7 @@ public class PersonalDTO
 	private String roadAddr, detailAddr;			// 도로명주소, 상세주소
 	private String profile;							// 프로필 사진
 	private String peDate;			
+	private int warningCount;                  // 누적 경고횟수(함수로 조회)
 	
 	// 가입일시
 	public String getPe_Id()
@@ -112,6 +113,14 @@ public class PersonalDTO
 		this.peDate = peDate;
 	}
 	
+   public int getWarningCount()
+   {
+      return warningCount;
+   }
+   public void setWarningCount(int warningCount)
+   {
+      this.warningCount = warningCount;
+   }
 	
 	
 	

@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.88.1">
-<title>IdSearchForm.jsp</title>
+<title>pwdReset.jsp</title>
 
 <!-- Bootstrap core CSS -->
 <link href="<%=cp%>/css/bootstrap.min.css" rel="stylesheet">
@@ -41,19 +41,23 @@
 
 	$(document).ready(function()
 	{
-		
 		$("#submitBtn").click(function()
 		{
+					
+			$("#pwdResetForm").attr("action", "pwdupdate.action?userId=" + $("#userId").val()
+									+ "&newPwd=" + $("#newPwd").val());	
 			
-			$("#idSearchForm").submit();
+			$("#pwdResetForm").submit();
+		
 		});
 		
-		
-		
 	});
-
+	
+	
 
 </script>
+
+
 
 </head>
 <body>
@@ -63,25 +67,30 @@
 	</div>
 	
 	<!-- 아이디 찾기 -->
-	<form class="form-signin" action="idsearch.action" method="post" id="idSearchFrom">
+	<form class="form-signin" id="pwdResetForm" method="post">
 		<div class="text-center mb-4">
-			<h1 class="h3 mb-3 font-weight-normal">아이디 찾기</h1>
-			<p>회원정보에 등록한 이름과 휴대전화 번호를 통해<br>인증할 수 있습니다.</p>
+			<h1 class="h3 mb-3 font-weight-normal">비밀번호 재설정</h1>
+			<p>비밀번호를 변경해 주세요.</p>
 		</div>
 		
 		<div class="form-label-group">
-			<input type="text" id="name" name="name" class="form-control" required autofocus>
-			<label for="name">이름</label>
+			<input type="text" id="newPwd" class="form-control" required autofocus>
+			<label for="newPwd">새 비밀번호</label>
 		</div>
 		<div class="form-label-group">
-			<input type="text" id="tel" name="tel" class="form-control" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" required>
-			<label for="tel">휴대폰 번호 (숫자만 입력)</label>
+			<input type="text" id="confirmPwd" class="form-control" required>
+			<label for="confirmPwd">새 비밀번호 확인</label>
+		</div>
+		
+		<div class="text-center mb-4">
+			<p>8자 이상 16자 이하로 설정해주세요.</p>
+			<p>영문, 숫자, 특수문자를 함께 사용하면 보다 안전합니다.</p>
 		</div>
 
-		<button class="btn btn-lg btn-primary btn-block" type="submit" id="submitBtn">아이디 찾기</button>
+		<button class="btn btn-lg btn-primary btn-block" type="button" id="submitBtn">확인</button>
+		<input type="hidden" id="userId" value="${id }">
 	</form>
-
-
-
+	
+	
 </body>
 </html>

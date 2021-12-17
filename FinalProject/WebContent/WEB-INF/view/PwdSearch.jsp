@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.88.1">
-<title>IdSearch.jsp</title>
+<title>pwdSearch.jsp</title>
 
 <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/starter-template/">
 
@@ -50,25 +50,13 @@
 	<!-- 본문 영역 -->
 	<div class="container">
 		<div class="starter-template">
-			<h3>아이디 찾기 결과</h3>
+			<h3>비밀번호 찾기 결과</h3>
 			<hr class="mb-4">
-			
-			<c:choose>
-				<c:when test="${result == 0 }">
-					<div class="card" id="yesResult">
-						<div class="card-body">
-			    			고객님의 정보와 일치하는 아이디가 존재하지 않습니다.
-						</div>
+				<div class="card" id="yesResult">
+					<div class="card-body">
+		    			고객님의 입력하신 정보와 일치하는 정보가 존재하지 않습니다.
 					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="card" id="yesResult">
-						<div class="card-body" >
-			    			고객님의 정보와 일치하는 아이디는 <span style="font-weight: bold;">${id }</span> 입니다.
-						</div>
-					</div>
-				</c:otherwise>
-			</c:choose>
+				</div>
 		</div>
 	</div>
 	<!-- 로그인하기 메인으로 버튼 추가 -->
@@ -82,11 +70,12 @@
 					<p>
 				    	<a href="loginform.action" class="btn btn-primary my-2">로그인하기</a>
 				    	<a href="main.action" class="btn btn-secondary my-2">메인으로</a>
+				    	<a href="pwdsearchoneform.action" class="btn btn-secondary my-2">비밀번호찾기</a>				    	
 				    </p>
 				</div>
 			</div>			
 		</div>
-	</div>	
+	</div>		
 
 </body>
 </html>
