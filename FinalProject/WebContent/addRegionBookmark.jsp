@@ -39,7 +39,6 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 			<h2 style="margin-top: 50px;">지역 정보</h2>
 		</div>
 		
-		<button type="button" class="btn btn-outline-primary float-right">관심지역 추가 / 해제</button>
 		<br><br>
 		
 <table class="table table-bordered">
@@ -84,6 +83,27 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
       </td>
     </tr>
 </table>
+<br><br><br>
+
+	<!-- 북마크 관련 추가 -->
+			<div class="card-header"><h4 class="my-0 font-weight-normal">북마크에 추가하시겠습니까?</h4></div>
+		        <div class="card-body">
+					
+					<div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="basic-addon1">북마크 제목</span>
+					  </div>
+					  <input type="text" class="form-control" required="required"
+					   placeholder="북마크 제목을 붙여주세요. 15자 제한">
+					</div>
+					
+		        	<br><br>
+					<div class="text-center mb-4">
+				    	<a class="btn btn-lg btn-outline-primary" href="#" role="button">추가하기</a>
+				    	<a class="btn btn-lg btn-outline-primary" href="#" role="button" >취소하기</a>
+			    	</div>
+		     	</div>
+
 
 </div>
 	<!-- footer 영역 -->
