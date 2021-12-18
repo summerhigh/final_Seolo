@@ -34,6 +34,7 @@ String cp = request.getContextPath();
 				<div class="col-md-6">
 					<img class="card-img-top mb-5 mb-md-0"
 						src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="...">
+						<!-- 나중에 서로 손 잡고있는 사진 등으로 교체하기! 600x700  -->
 				</div>
 				<div class="col-md-6" style="align-content: flex-start;">
 					<!--＠ 서로란/서울사는 솔로(1인가구~) 고정 -->
@@ -55,7 +56,8 @@ String cp = request.getContextPath();
 			</div>
 			<div class="d-flex justify-content-end">
 				<button type="submit" href="<%=cp%>/UpdateIntroduction.jsp" class="btn btn-primary">수정하기</button>
-				<a class="btn btn-primary" href="<%=cp%>/UpdateIntroduction.jsp" role="button">수정하기</a>
+				<!-- 쟤 왜 안가징,,,? 나중에 수정해보기 -->
+				<%-- <a class="btn btn-primary" href="<%=cp%>/UpdateIntroduction.jsp" role="button">수정하기</a> --%>
 			</div>
 			<br><br>
 		</div>

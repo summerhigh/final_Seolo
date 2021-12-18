@@ -134,15 +134,7 @@ String cp = request.getContextPath();
 				</tbody>
 			</table>
 			<br>
-
-			<!-- 글쓰기 버튼 -->
-			<div class="d-flex justify-content-end">
-				<!-- 이 글쓰기 버튼은 관리자에게만 나타나는 버튼! -->
-				<button type="submit" class="btn btn-primary">글쓰기</button>
-			</div>
-			<br> <br>
-
-
+			
 			<!-- 페이징 처리 부분 -->
 			<div class="dataTables_paginate paging_simple_numbers"
 				style="text-align: center;"datatable_paginate">
