@@ -14,7 +14,8 @@ String cp = request.getContextPath();
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
 <style type="text/css">
-.text-essential {
+.text-essential 
+{
 	color: #FFA7A7;
 }
 </style>
@@ -39,23 +40,23 @@ String cp = request.getContextPath();
 		</div>
 
 		<!-- 폼 시작 -->
-		<form class="needs-validation" novalidate="">
+		<form class="needs-validation" novalidate="" action="checkfirstinsert.action">
 			<h4 class="mb-3">
 				거주여부 <span class="text-essential">(*)</span>
 			</h4>
 			<div class="d-block my-3">
 				<div class="custom-control custom-radio">
-					<input id="credit" name="paymentMethod" type="radio"
+					<input id="resNo1" name="resNo" type="radio" value=0
 						class="custom-control-input" checked="" required=""> <label
 						class="custom-control-label" for="credit">거주</label>
 				</div>
 				<div class="custom-control custom-radio">
-					<input id="debit" name="paymentMethod" type="radio"
+					<input id="resNo2" name="resNo" type="radio" value=1
 						class="custom-control-input" required=""> <label
 						class="custom-control-label" for="debit">거주예정</label>
 				</div>
 				<div class="custom-control custom-radio">
-					<input id="paypal" name="paymentMethod" type="radio"
+					<input id="resNo3" name="resNo" type="radio" value=2
 						class="custom-control-input" required=""> <label
 						class="custom-control-label" for="paypal">비거주</label>
 				</div>
@@ -65,7 +66,7 @@ String cp = request.getContextPath();
 
 			<div class="mb-3">
 				<label for="title">제목 <span class="text-essential">(*)</span></label>
-				<input type="text" class="form-control" id="title">
+				<input type="text" class="form-control" id="title" name="title">
 				<div class="invalid-feedback">제목을 입력해주세요.</div>
 			</div>
 
@@ -76,14 +77,27 @@ String cp = request.getContextPath();
 				<div class="col-md-4 order-md-2 mb-4">
 					
 					<h4 class="mb-3">지역분류</h4>
-					<div class="row mb-3" style="align-items: center; display: flex; justify-content: center;">
+					<!-- 주소 검색 버튼을 통해 주소를 검색해와서 구와 동을 삽입해줌. AJAX 필요 -->
+					<!-- <div class="row mb-3" style="align-items: center; display: flex; justify-content: center;">
 						<ul class="col list-group col-md-4 themed-grid-col">
-							<li class="list-group-item">영등포구</li>
+							<li class="list-group-item">
+								<input type="text" name="guName" id="guName" class="list-group-item" value="영등포구">
+							</li>
 						</ul>
 						<ul class="col list-group col-md-5 themed-grid-col"> 
-							<li class="list-group-item">영등포동1가</li>
+							<li class="list-group-item">
+								<input type="text" name="dongName" id="dongName" class="list-group-item" value="영등포동1가">
+							</li>
 						</ul>
+					</div> -->
+					
+					<!-- 일단은 직접 입력받는 것 마냥 진행해본다.. -->
+					<div class="row mb-3" style="align-items: center; display: flex; justify-content: center;">
+						<input type="text" name="guName" id="guName" class="list-group-item" value="영등포구">
+						<input type="text" name="dongName" id="dongName" class="list-group-item" value="영등포동1가">
 					</div>
+					
+					
 					
 					<hr class="mb-4">
 					<h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -135,17 +149,16 @@ String cp = request.getContextPath();
 
 					<div class="row">
 						<div class="col-10">
-							<input type="text" class="form-control"
+							<input type="text" class="form-control" name="place"
 								placeholder="ex) 집에서부터 회사">
-						</div>
-						<span class="col">까지</span>
+						</div><span class="col">까지</span>
 					</div>
 					<br>
 					<div class="row">
 						<div class="col-5">
-							<input type="text" class="form-control" placeholder="ex) 50">
-						</div>
-						<span class="col">분</span>
+							<input type="text" class="form-control" 
+							 name="time" placeholder="ex) 50">
+						</div><span class="col">분</span>
 					</div>
 
 				</div><!-- 본문 우측 영역 끝 -->
@@ -156,41 +169,43 @@ String cp = request.getContextPath();
 						<label for="roadaddr">주소 <span class="text-essential">(*)</span></label>
 						&nbsp; &nbsp;
 						<button type="button" class="btn btn-secondary btn-sm">주소	검색</button>
-						<div class="invalid-feedback">주소를 입력해주세요.</div><br>
-						<input type="text" class="form-control" id="roadaddr"
-							disabled="disabled" placeholder="주소검색 버튼을 눌러주세요.">
-						<!-- <button type="button" class="btn btn-secondary btn-sm">주소
-							검색</button>
-						<div class="invalid-feedback">주소를 입력해주세요.</div> -->
+						<!-- <div class="invalid-feedback">주소를 입력해주세요.</div><br> -->
+						<input type="text" class="form-control" id="roadAddr" name="roadAddr"
+							 placeholder="도로명주소를 입력해주세요.">
+						<!-- 일단 주소 직접 입력받는 것으로 간주하고 진행
+							 원래는 여기서 주소 검색 → 주소입력됨 → 구와 동이 각각 지역 분류에 들어감 인데
+							 일단은 다 따로 입력받는 것으로,,,
+						 -->
 					</div>
 
 					<hr class="mb-4">
 					<h4 class="mb-3">주거비</h4>
+					<h6 class="mb-3">(단위: 만원)</h6>
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="deposit">월세 보증금</label> <input type="text"
-								class="form-control" id="deposit" placeholder="ex) 1000"
-								value="" required="">만원
+							<label for="deposit">월세 보증금</label> 
+							<input type="text" class="form-control" id="deposit" name="deposit"
+							placeholder="ex) 1000" value="" required="">
 						</div>
 						<div class="col-md-6 mb-3">
-							<label for="mwolse">월세</label> <input type="text"
-								class="form-control" id="mwolse" placeholder="ex) 50" value=""
-								required="">만원
+							<label for="mwolse">월세</label> 
+							<input type="text" class="form-control" id="mwolse" name="mwolse"
+							placeholder="ex) 50" value="" required="">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="mjeonse">전세 보증금</label> <input type="text"
-								class="form-control" id="mjeonse"
-								placeholder="ex) 15000 (1억 5천)" value="" required="">만원
+							<label for="mjeonse">전세 보증금</label> 
+							<input type="text" class="form-control" id="mjeonse" name="mjeonse"
+							 placeholder="ex) 15000 (1억 5천)" value="" required="">
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="mmaemae">매매가</label> <input type="text"
-								class="form-control" id="mmaemae"
-								placeholder="ex) 25000 (2억 5천)" value="" required="">만원
+							<label for="mmaemae">매매가</label> 
+							<input type="text" class="form-control" id="mmaemae" name="mmaemae"
+							 placeholder="ex) 25000 (2억 5천)" value="" required="">
 						</div>
 					</div>
 
@@ -199,15 +214,15 @@ String cp = request.getContextPath();
 					<div class="row">
 						<div class="col-md-3 mb-3">
 							<label for="sec_score">점수</label> <select
-								class="custom-select d-block w-100" id="sec_score" required="">
+								class="custom-select d-block w-100" id="security_scoreNo" name="security_scoreNo" required="">
 								<c:forEach var="i" begin="1" end="11" step="1">
 									<option value="i">${(i-1)*0.5 }</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-9 mb-3">
-							<textarea class="form-control" name="" id="sec_comments" rows="3"
-								placeholder="코멘트를 입력해주세요."></textarea>
+							<textarea class="form-control" name="security_co" id="security_co"
+							 rows="3" placeholder="코멘트를 입력해주세요."></textarea>
 						</div>
 					</div>
 
@@ -216,14 +231,14 @@ String cp = request.getContextPath();
 					<div class="row">
 						<div class="col-md-3 mb-3">
 							<label for="trans_score">점수</label> <select
-								class="custom-select d-block w-100" id="trans_score" required="">
+								class="custom-select d-block w-100" id="transport_scoreNo" name="transport_scoreNo" required="">
 								<c:forEach var="i" begin="1" end="11" step="1">
 									<option value="i">${(i-1)*0.5 }</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-9 mb-3">
-							<textarea class="form-control" name="" id="trans_comments"
+							<textarea class="form-control" name="transport_co" id="transport_co"
 								rows="3" placeholder="코멘트를 입력해주세요"></textarea>
 						</div>
 					</div>
@@ -232,15 +247,14 @@ String cp = request.getContextPath();
 					<div class="row">
 						<div class="col-md-3 mb-3">
 							<label for="honjap_score">점수</label> <select
-								class="custom-select d-block w-100" id="honjap_score"
-								required="">
+								class="custom-select d-block w-100" id="honjap_scoreNo" name="honjap_scoreNo" required="">
 								<c:forEach var="i" begin="1" end="11" step="1">
 									<option value="i">${(i-1)*0.5 }</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-9 mb-3">
-							<textarea class="form-control" name="" id="honjap_comments"
+							<textarea class="form-control" name="honjap_co" id="honjap_co"
 								rows="3" placeholder="코멘트를 입력해주세요"></textarea>
 						</div>
 					</div>
@@ -281,15 +295,15 @@ String cp = request.getContextPath();
 					<div class="row">
 						<div class="col-md-3 mb-3">
 							<label for="pet_score">점수</label> <select
-								class="custom-select d-block w-100" id="pet_score" required="">
+								class="custom-select d-block w-100" id="pet_scoreNo" name="pet_scoreNo" required="">
 								<c:forEach var="i" begin="1" end="11" step="1">
 									<option value="i">${(i-1)*0.5 }</option>
 								</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-9 mb-3">
-							<textarea class="form-control" name="" id="pet_comments" rows="3"
-								placeholder="코멘트를 입력해주세요"></textarea>
+							<textarea class="form-control" name="pet_co" id="pet_co" 
+							rows="3" placeholder="코멘트를 입력해주세요"></textarea>
 						</div>
 					</div>
 				</div>
@@ -299,22 +313,22 @@ String cp = request.getContextPath();
 			<h4 class="mb-3">코멘트</h4>
 			<div class="col-md-12 mb-3">
 				<label for="good">장점</label>
-				<textarea class="form-control" name="" id="good" rows="3"
+				<textarea class="form-control" name="good" id="good" rows="3"
 					placeholder="코멘트를 입력해주세요"></textarea>
 
 				<label for="bad">단점</label>
-				<textarea class="form-control" name="" id="bad" rows="3"
+				<textarea class="form-control" name="bad" id="bad" rows="3"
 					placeholder="코멘트를 입력해주세요"></textarea>
 
 				<label for="etc">기타</label>
-				<textarea class="form-control" name="" id="etc" rows="3"
+				<textarea class="form-control" name="etc" id="etc" rows="3"
 					placeholder="코멘트를 입력해주세요"></textarea>
 			</div>
 
 			<hr class="mb-4">
 			<h4 class="mb-3">비밀 코멘트</h4>
 			<div class="col-md-12 mb-3">
-				<textarea class="form-control" name="" id="secret_comments" rows="3"
+				<textarea class="form-control" name="secret_co" id="secret_co" rows="3"
 					placeholder="코멘트를 입력해주세요"></textarea>
 			</div>
 

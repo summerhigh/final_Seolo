@@ -39,7 +39,6 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 			<h2 style="margin-top: 50px;">체크리스트</h2>
 		</div>
 		
-		<button type="button" class="btn btn-outline-primary float-right">북마크 추가 / 해제</button>
 		<br><br>
 		<!-- 폼 시작 -->
 		<form class="needs-validation" novalidate="">
@@ -128,23 +127,24 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 				<!-- 본문 좌측 영역 -->
 				<div class="col-md-8 order-md-1">
 					<h4 class="mb-3">주거비</h4>
+					<h6 class="mb-3">(단위 : 만원)</h6>
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="deposit">월세 보증금</label> 
 							<input type="text" class="form-control" disabled 
-							id="deposit" value="1천" required="">만원
+							id="deposit" value="1천" required="">
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="mwolse">월세</label> 
 							<input type="text" class="form-control" disabled
-							id="mwolse" value="60" required="">만원
+							id="mwolse" value="60" required="">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="mjeonse">전세 보증금</label> 
 							<input type="text" class="form-control" disabled
-							id="mjeonse" value="3천" required="">만원
+							id="mjeonse" value="3천" required="">
 						</div>
 					</div>
 
@@ -152,7 +152,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 						<div class="col-md-6 mb-3">
 							<label for="mmaemae">매매가</label> 
 							<input type="text" class="form-control" disabled
-							id="mmaemae" value="1억 5천" required="">만원
+							id="mmaemae" value="1억 5천" required="">
 						</div>
 					</div>
 
@@ -303,6 +303,29 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 
 
 			<hr class="mb-4">
+			<br><br><br>
+			
+			
+			<!-- 북마크 관련 추가 -->
+			<div class="card-header"><h4 class="my-0 font-weight-normal">북마크에 추가하시겠습니까?</h4></div>
+		        <div class="card-body">
+					
+					<div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="basic-addon1">북마크 제목</span>
+					  </div>
+					  <input type="text" class="form-control" required="required"
+					   placeholder="북마크 제목을 붙여주세요. 15자 제한">
+					</div>
+					
+		        	<br><br>
+					<div class="text-center mb-4">
+				    	<a class="btn btn-lg btn-outline-primary" href="#" role="button">추가하기</a>
+				    	<a class="btn btn-lg btn-outline-primary" href="#" role="button" >취소하기</a>
+			    	</div>
+		     	</div>
+			
+			
 		</form>
 	</div>
 
