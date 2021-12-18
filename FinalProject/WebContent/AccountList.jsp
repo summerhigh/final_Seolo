@@ -45,29 +45,8 @@ String cp = request.getContextPath();
 				</div>
 			</div>
 
-			<div class="col-auto" data-select2-id="54">
-				<!-- Filter -->
-
-
-				<div class="col-md">
-					<form>
-						<!-- Search -->
-						<div class="input-group input-group-merge input-group-flush">
-							<div class="input-group-prepend">
-								<div class="input-group-text">
-									<i class="tio-search"></i>
-								</div>
-							</div>
-							<input id="datatableSearch" type="search" class="form-control"
-								placeholder="Search users" aria-label="Search users">
-						</div>
-						<!-- End Search -->
-					</form>
-				</div>
-			</div>
 			<!-- End Filter -->
 		</div>
-	</div>
 	</div>
 
 
@@ -127,7 +106,7 @@ String cp = request.getContextPath();
 				<tbody>
 
 
-					<!-- 한 페이지당 9개 계정 정보 조회 가능 -->
+					<!-- 한 페이지당 10개 계정 정보 조회 가능 -->
 					<tr role="row" class="odd">
 						<td class="table-column-pr-0"></td>
 						<!-- * -->
@@ -236,6 +215,19 @@ String cp = request.getContextPath();
 						<td>11200</td>
 					</tr>
 					<tr role="row" class="odd">
+						<td class="table-column-pr-0"></td>
+						<td class="table-column-pl-0"><a>
+								<div class="media-body">
+									<span class="h5 text-hover-primary mb-0">cat56</span>
+								</div>
+						</a></td>
+						<td>catman</td>
+						<td>이고양</td>
+						<td>catman@example.com</td>
+						<td>2009/03/31</td>
+						<td>11199</td>
+					</tr>
+					<tr role="row" class="even">
 						<td class="table-column-pr-0"></td>
 						<td class="table-column-pl-0"><a>
 								<div class="media-body">

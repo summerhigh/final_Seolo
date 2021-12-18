@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MenuNavbar_new.jsp</title>
+<title>MenuNavbar_admin.jsp</title>
 <!-- 통일하기로 한 부트스트랩 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" 
 integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
@@ -40,30 +40,25 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
   <div class="navbar-collapse offcanvas-collapse" id="Main">
     <ul class="navbar-nav mr-auto">
        <li class="nav-item">
-        <a class="nav-link" href="main.action">&nbsp;&nbsp;메인</a>
+        <a class="nav-link" href="Main_admin.jsp">&nbsp;&nbsp;메인</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;알림/공지</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="<%=cp%>/Introduction_user.jsp">서비스 소개</a>
-          <a class="dropdown-item" href="<%=cp%>/NoticeList_user.jsp">공지사항</a>
-          <a class="dropdown-item" href="<%=cp%>/FaqListNode_user.jsp">자주 묻는 질문</a>
+          <a class="dropdown-item" href="<%=cp%>/Introduction.jsp">서비스 소개</a>
+          <a class="dropdown-item" href="<%=cp%>/NoticeList.jsp">공지사항</a>
+          <a class="dropdown-item" href="<%=cp%>/FaqListNode.jsp">자주 묻는 질문</a>
         </div>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;체크리스트</a>
+        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;회원조회</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="<%=cp%>/MyChecklists.jsp">나의 체크리스트</a>
-          <a class="dropdown-item" href="<%=cp%>/searchRegion_gu.jsp">지역 정보</a>
+          <a class="dropdown-item" href="<%=cp%>/AccountList.jsp">회원 리스트</a>
+          <a class="dropdown-item" href="<%=cp%>/WithdrawalAccountList.jsp">탈퇴회원 리스트</a>
         </div>
       </li>
-      
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;공동구매</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">나의 공동구매</a>
-          <a class="dropdown-item" href="#">공동구매 모집</a>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" href="<%=cp%>/ReportCheck.jsp">&nbsp;&nbsp;신고처리</a>
       </li>
     </ul>
     
