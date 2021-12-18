@@ -11,7 +11,7 @@ String cp = request.getContextPath();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>NoticeWrite.jsp</title>
+<title>NoticeSee.jsp</title>
 <!-- 공지사항 게시글 클릭시 보이는 상세 페이지 -->
 
 <!-- 통일하기로 한 부트스트랩 -->
@@ -37,7 +37,7 @@ String cp = request.getContextPath();
    <br>
    <br>
    <br>
-
+<!-- 실험 -->
    <div class="container">
       <!-- 게시판 메인 -->
       <div class="page-header">
