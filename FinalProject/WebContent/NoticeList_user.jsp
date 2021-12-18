@@ -136,6 +136,10 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 					<a class="paginate_button previous page-link" aria-controls="datatable" data-dt-idx="0" tabindex="0" id="datatable_previous">
 					<span aria-hidden="true">Prev</span></a>
 				</li> -->
+				<li class="paginate_item page-item disabled">
+               		<a class="paginate_button previous page-link" aria-controls="datatable" data-dt-idx="0" tabindex="0" id="datatable_previous">
+               		<span aria-hidden="true">Prev</span></a>
+           		</li>
 				<li class="paginate_item page-item active">
 					<a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a>
 				</li>
