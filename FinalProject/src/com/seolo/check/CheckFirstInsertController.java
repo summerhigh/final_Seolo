@@ -4,8 +4,6 @@
 
 package com.seolo.check;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -50,7 +48,9 @@ public class CheckFirstInsertController implements Controller
       
       int dongNo = dao.searchDong(dongName);
       
-      // 위도 경도 해결 못 했음
+      // 위도 경도 해결 못 했음.
+      // String wido = request.getParameter("wido");
+      // String gyeongdo = request.getParameter("gyeongdo");
       
       String good = request.getParameter("good");
       String bad = request.getParameter("bad");
@@ -63,52 +63,89 @@ public class CheckFirstInsertController implements Controller
       int hospital = Integer.parseInt(request.getParameter("hospital"));
       int food = Integer.parseInt(request.getParameter("food"));
       int culture = Integer.parseInt(request.getParameter("culture"));
-      int park = Integer.parseInt(request.getParameter("park"));
-      
+      int park = Integer.parseInt(request.getParameter("park"));      
       String conv_co = request.getParameter("conv_co");
       
-      int mwolse = Integer.parseInt(request.getParameter("mwolse"));
+      int mWolse = Integer.parseInt(request.getParameter("mWolse"));
       int deposit = Integer.parseInt(request.getParameter("deposit"));
-      int mjeonse = Integer.parseInt(request.getParameter("mjeonse"));
-      int mmaeame = Integer.parseInt(request.getParameter("mmaeame"));
+      int mJeonse = Integer.parseInt(request.getParameter("mJeonse"));
+      int mMaemae = Integer.parseInt(request.getParameter("mMaemae"));
 
       String place = request.getParameter("place");
-      String time = request.getParameter("time");
+      int time = Integer.parseInt(request.getParameter("time"));
       
       String pet_co = request.getParameter("pet_co");
-      String pet_scoreNo = request.getParameter("pet_scoreNo");
+      int pet_scoreNo = Integer.parseInt(request.getParameter("pet_scoreNo"));
       
       String security_co = request.getParameter("security_co");
-      String security_scoreNo = request.getParameter("security_scoreNo");
+      int security_scoreNo = Integer.parseInt(request.getParameter("security_scoreNo"));
       
       String transport_co = request.getParameter("transport_co");
-      String transport_scoreNo = request.getParameter("transport_scoreNo");
+      int transport_scoreNo = Integer.parseInt(request.getParameter("transport_scoreNo"));
 
       String honjap_co = request.getParameter("honjap_co");
-      String honjap_scoreNo = request.getParameter("honjap_scoreNo");
-      
-
-      /*
-      ArrayList<ViewDTO> viewList = new ArrayList<ViewDTO>();
-      ArrayList<String> guList = new ArrayList<String>();
-      
-      int acNo = Integer.parseInt(request.getParameter("acNo"));
+      int honjap_scoreNo = Integer.parseInt(request.getParameter("honjap_scoreNo"));
       
       try
-      {
-         viewList = dao.list(acNo);
-         guList = dao.guList();
-         
-         mav.addObject("viewList", viewList);
-         mav.addObject("guList", guList);
-         mav.setViewName("/WEB-INF/view/MyChecklists.jsp");
-      }
-      catch (Exception e)
-      {
-         System.out.println(e.toString());
-      }
-      */
-      
+	{
+    	  ChecklistDTO dto = new ChecklistDTO();
+    	  
+    	  dto.setAcNo(acNo);
+    	  dto.setResNo(resNo);
+    	  dto.setTitle(title);
+    	  dto.setRoadAddr(roadAddr);
+    	  dto.setDongNo(dongNo);
+    	  
+    	  // 위도 경도도 넘겨야 함..
+    	  // dto.setWido(wido);
+    	  // dto.setGyeongdo(gyeongdo);
+    	  
+    	  dto.setGood(good);
+    	  dto.setBad(bad);
+    	  dto.setEtc(etc);
+    	  
+    	  dto.setSecret_co(secret_co);
+    	  dto.setMart(mart);
+    	  dto.setLaundry(laundry);
+    	  dto.setHospital(hospital);
+    	  dto.setFood(food);
+    	  dto.setCulture(culture);
+    	  dto.setPark(park);
+    	  dto.setConv_co(conv_co);
+    	  
+    	  dto.setmWolse(mWolse);
+    	  dto.setDeposit(deposit);
+    	  dto.setmJeonse(mJeonse);
+    	  dto.setmMaemae(mMaemae);
+    	  
+    	  dto.setPlace(place);
+    	  dto.setTime(time);
+    	  
+    	  dto.setPet_co(pet_co);
+    	  dto.setPet_scoreNo(pet_scoreNo);
+    	  
+    	  dto.setSecurity_co(security_co);
+    	  dto.setSecurity_scoreNo(security_scoreNo);
+    	  
+    	  dto.setTransport_co(transport_co);
+    	  dto.setTransport_scoreNo(transport_scoreNo);
+    	  
+    	  dto.setHonjap_co(honjap_co);
+    	  dto.setHonjap_scoreNo(honjap_scoreNo);
+    	  
+    	  
+    	  dao.add(dto);
+    	  
+    	  // 첫번째 체크리스트 입력 끝나면 추가항목 입력폼으로 보낸다.
+    	  // 근데 이거 redirect가 맞나..?
+    	  mav.setViewName("redirect:checksecondinsertform.action");
+    	  
+    	  
+	} catch (Exception e)
+	{
+		System.out.println(e.toString());
+	}
+
       return mav;
 
    }

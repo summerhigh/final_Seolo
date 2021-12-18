@@ -94,5 +94,35 @@
    	</bean>
    
    
+    <!-- 미화: 나의 체크리스트 페이지  -->
+   	<!-- <bean id="viewDAO" class="com.seolo.check.ViewDAO">
+   		<property name="dataSource" ref="localDataSource"></property>
+   	</bean>
+   	
+   	<bean name="/mychecklist.action" class="com.seolo.check.MyChecklistController">
+   		<property name="dao" ref="viewDAO"></property>
+   	</bean> -->
+   
+   
+   
+   <!-- 진하 : 체크리스트 작성 컨트롤러 등록  -->
+   
+   <bean name="checkDAO" class="com.seolo.check.ChecklistDAO">
+   		<property name="dataSource" ref="localDataSource"></property>
+   </bean>
+   
+   <!-- MyChecklists.jsp 에서 버튼을 클릭했을 때 -->
+   <bean name="/checkfirstinsertform.action" class="com.seolo.check.CheckFirstInsertFormController">
+   		<property name="dao" ref="checkDAO"></property>
+   </bean>
+   
+   <bean name="/checkfirstinsert.action" class="com.seolo.check.CheckFirstInsertController">
+   		<property name="dao" ref="checkDAO"></property>
+   </bean>
+   
+   <bean name="/checksecondinsertform.action" class="com.seolo.check.CheckSecondInsertFormController">
+   		<property name="dao" ref="checkDAO"></property>
+   </bean>
+   
    
 </beans>
