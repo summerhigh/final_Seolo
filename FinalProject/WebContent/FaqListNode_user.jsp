@@ -20,7 +20,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 <body>
 
 <!-- 내비바 -->
-<div><c:import url="MenuNavbar_admin.jsp"></c:import></div>
+<div><c:import url="MenuNavbar_new.jsp"></c:import></div>
 
 <br><br><br><br><br>
 
@@ -162,13 +162,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 
 
 	  <!--  -->
-      <br>
-      <!-- 글쓰기 버튼 -->
-      <div class="d-flex justify-content-end">
-         <!-- 이 글쓰기 버튼은 관리자에게만 나타나는 버튼! -->
-               <button type="submit" class="btn btn-primary">글쓰기</button>
-           </div>
-      <br><br>
+      <br><br><br>
          
          
       <!-- 페이징 처리 부분 -->
