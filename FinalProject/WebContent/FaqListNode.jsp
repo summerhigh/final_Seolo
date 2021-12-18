@@ -182,11 +182,10 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 		<!-- 페이징 처리 부분 -->
 		<div class="dataTables_paginate paging_simple_numbers" style="text-align:center; id="datatable_paginate">
 			<ul id="datatable_pagination" class="pagination datatable-custom-pagination justify-content-center">
-				<!-- prev 부분도 필요할까봐 넣어둠!
 				<li class="paginate_item page-item disabled">
-					<a class="paginate_button previous page-link" aria-controls="datatable" data-dt-idx="0" tabindex="0" id="datatable_previous">
-					<span aria-hidden="true">Prev</span></a>
-				</li> -->
+               		<a class="paginate_button previous page-link" aria-controls="datatable" data-dt-idx="0" tabindex="0" id="datatable_previous">
+               		<span aria-hidden="true">Prev</span></a>
+           		</li>
 				<li class="paginate_item page-item active">
 					<a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a>
 				</li>
