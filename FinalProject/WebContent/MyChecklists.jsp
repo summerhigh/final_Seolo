@@ -25,7 +25,7 @@ String cp = request.getContextPath();
          <h1 style="margin-top: 70px;">나의 체크리스트</h1>
          <!-- <p class="lead">뭐라고 하징... 암튼 본문 쓸거없으면 삭제하기</p> -->
          <br><br>
-         <a href="#" class="btn btn-primary my-2">새 체크리스트 작성</a>
+         <a href="checkfirstinsertform.action" class="btn btn-primary my-2">새 체크리스트 작성</a>
       </div>
 
       <!-- 본문 상단영역(필터) 시작 -->

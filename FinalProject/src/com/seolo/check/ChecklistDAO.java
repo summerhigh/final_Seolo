@@ -33,7 +33,7 @@ public class ChecklistDAO implements IChecklistDAO
       // mwolse, deposit, mjeonse, mmaemae, place, time, p_comments, p_scoreno, se_comments, se_scoreno
       // t_comments, t_scoreno, h_comments, h_scoreno
 
-      String sql = "{call PRC_CHECKLIST_INSERT(CHECKSEQ.NEXTVAL,?,?,SYSDATE,?,?,?,?,?,? ,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,? ,?,?,?,?)}";
+      String sql = "{call PRC_CHECKLIST_INSERT(?,?,SYSDATE,?,?,?,?,?,? ,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,? ,?,?,?,?)}";
 
       CallableStatement cstmt = conn.prepareCall(sql);
 
@@ -44,36 +44,41 @@ public class ChecklistDAO implements IChecklistDAO
       cstmt.setString(3, dto.getTitle());
       cstmt.setString(4, dto.getRoadAddr());
       cstmt.setInt(5, dto.getDongNo());
-      cstmt.setString(7, dto.getWido());
-      cstmt.setString(8, dto.getGyeongdo());
-      cstmt.setString(9, dto.getGood());
+      cstmt.setString(6, dto.getWido());
+      cstmt.setString(7, dto.getGyeongdo());
+     
+      cstmt.setString(8, dto.getGood());
+      cstmt.setString(9, dto.getBad());
+      cstmt.setString(10, dto.getEtc());
+      
+      cstmt.setString(11, dto.getSecret_co());
+      cstmt.setInt(12, dto.getMart());
+      cstmt.setInt(13, dto.getLaundry());
+      cstmt.setInt(14, dto.getHospital());
+      cstmt.setInt(15, dto.getFood());
+      cstmt.setInt(16, dto.getCulture());
+      cstmt.setInt(17, dto.getPark());
+      cstmt.setString(18, dto.getConv_co());
 
-      cstmt.setString(10, dto.getBad());
-      cstmt.setString(11, dto.getEtc());
-      cstmt.setString(12, dto.getSecret_co());
-      cstmt.setInt(13, dto.getMart());
-      cstmt.setInt(14, dto.getLaundry());
-      cstmt.setInt(15, dto.getHospital());
-      cstmt.setInt(16, dto.getFood());
-      cstmt.setInt(17, dto.getCulture());
-      cstmt.setInt(18, dto.getPark());
-      cstmt.setString(19, dto.getConv_co());
+      cstmt.setInt(19, dto.getmWolse());
+      cstmt.setInt(20, dto.getDeposit());
+      cstmt.setInt(21, dto.getmJeonse());
+      cstmt.setInt(22, dto.getmMaemae());
+      
+      cstmt.setString(23, dto.getPlace());
+      cstmt.setInt(24, dto.getTime());
+      
+      cstmt.setString(25, dto.getPet_co());
+      cstmt.setInt(26, dto.getPet_scoreNo());
+      
+      cstmt.setString(27, dto.getSecurity_co());
+      cstmt.setInt(28, dto.getSecurity_scoreNo());
 
-      cstmt.setInt(20, dto.getmWolse());
-      cstmt.setInt(21, dto.getDeposit());
-      cstmt.setInt(22, dto.getmJeonse());
-      cstmt.setInt(23, dto.getmMaemae());
-      cstmt.setString(24, dto.getPlace());
-      cstmt.setInt(25, dto.getTime());
-      cstmt.setString(26, dto.getPet_co());
-      cstmt.setInt(27, dto.getPet_scoreNo());
-      cstmt.setString(28, dto.getSecurity_co());
-      cstmt.setInt(29, dto.getSecurity_scoreNo());
-
-      cstmt.setString(30, dto.getTransport_co());
-      cstmt.setInt(31, dto.getTransport_scoreNo());
-      cstmt.setString(32, dto.getHonjap_co());
-      cstmt.setInt(33, dto.getHonjap_scoreNo());
+      cstmt.setString(29, dto.getTransport_co());
+      cstmt.setInt(30, dto.getTransport_scoreNo());
+      
+      cstmt.setString(31, dto.getHonjap_co());
+      cstmt.setInt(32, dto.getHonjap_scoreNo());
 
       result = cstmt.executeUpdate();
 
@@ -91,47 +96,52 @@ public class ChecklistDAO implements IChecklistDAO
 
       int result = 0;
 
-      String sql = "{call PRC_CHECKLIST_UPDATE(CHECKSEQ.NEXTVAL,?,?,?,?,?,?,?,?,? ,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,? ,?,?,?,?)}";
+      String sql = "{call PRC_CHECKLIST_UPDATE(?,?,SYSDATE,?,?,?,?,?,? ,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,? ,?,?,?,?)}";
 
       CallableStatement cstmt = conn.prepareCall(sql);
 
       // cstmt.setInt(1, dto.getCheckNo()); 체크고유번호는 시퀀스
       cstmt.setInt(1, dto.getAcNo());
       cstmt.setInt(2, dto.getResNo());
-      cstmt.setString(3, dto.getCheckDate());
-      cstmt.setString(4, dto.getTitle());
-      cstmt.setString(5, dto.getRoadAddr());
-      cstmt.setInt(6, dto.getDongNo());
-      cstmt.setString(7, dto.getWido());
-      cstmt.setString(8, dto.getGyeongdo());
-      cstmt.setString(9, dto.getGood());
+      // cstmt.setString(3, dto.getCheckDate()); 작성일시도 sysdate하기로함
+      cstmt.setString(3, dto.getTitle());
+      cstmt.setString(4, dto.getRoadAddr());
+      cstmt.setInt(5, dto.getDongNo());
+      cstmt.setString(6, dto.getWido());
+      cstmt.setString(7, dto.getGyeongdo());
+     
+      cstmt.setString(8, dto.getGood());
+      cstmt.setString(9, dto.getBad());
+      cstmt.setString(10, dto.getEtc());
+      
+      cstmt.setString(11, dto.getSecret_co());
+      cstmt.setInt(12, dto.getMart());
+      cstmt.setInt(13, dto.getLaundry());
+      cstmt.setInt(14, dto.getHospital());
+      cstmt.setInt(15, dto.getFood());
+      cstmt.setInt(16, dto.getCulture());
+      cstmt.setInt(17, dto.getPark());
+      cstmt.setString(18, dto.getConv_co());
 
-      cstmt.setString(10, dto.getBad());
-      cstmt.setString(11, dto.getEtc());
-      cstmt.setString(12, dto.getSecret_co());
-      cstmt.setInt(13, dto.getMart());
-      cstmt.setInt(14, dto.getLaundry());
-      cstmt.setInt(15, dto.getHospital());
-      cstmt.setInt(16, dto.getFood());
-      cstmt.setInt(17, dto.getCulture());
-      cstmt.setInt(18, dto.getPark());
-      cstmt.setString(19, dto.getConv_co());
+      cstmt.setInt(19, dto.getmWolse());
+      cstmt.setInt(20, dto.getDeposit());
+      cstmt.setInt(21, dto.getmJeonse());
+      cstmt.setInt(22, dto.getmMaemae());
+      
+      cstmt.setString(23, dto.getPlace());
+      cstmt.setInt(24, dto.getTime());
+      
+      cstmt.setString(25, dto.getPet_co());
+      cstmt.setInt(26, dto.getPet_scoreNo());
+      
+      cstmt.setString(27, dto.getSecurity_co());
+      cstmt.setInt(28, dto.getSecurity_scoreNo());
 
-      cstmt.setInt(20, dto.getmWolse());
-      cstmt.setInt(21, dto.getDeposit());
-      cstmt.setInt(22, dto.getmJeonse());
-      cstmt.setInt(23, dto.getmMaemae());
-      cstmt.setString(24, dto.getPlace());
-      cstmt.setInt(25, dto.getTime());
-      cstmt.setString(26, dto.getPet_co());
-      cstmt.setInt(27, dto.getPet_scoreNo());
-      cstmt.setString(28, dto.getSecurity_co());
-      cstmt.setInt(29, dto.getSecurity_scoreNo());
-
-      cstmt.setString(30, dto.getTransport_co());
-      cstmt.setInt(31, dto.getTransport_scoreNo());
-      cstmt.setString(32, dto.getHonjap_co());
-      cstmt.setInt(33, dto.getHonjap_scoreNo());
+      cstmt.setString(29, dto.getTransport_co());
+      cstmt.setInt(30, dto.getTransport_scoreNo());
+      
+      cstmt.setString(31, dto.getHonjap_co());
+      cstmt.setInt(32, dto.getHonjap_scoreNo());
 
       result = cstmt.executeUpdate();
 
@@ -282,7 +292,7 @@ public class ChecklistDAO implements IChecklistDAO
 
       Connection conn = dataSource.getConnection();
 
-      String sql = "SELECT SCORENAME FROM SCORE";
+      String sql = "SELECT SCORENO, SCORENAME FROM SCORE";
 
       PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -290,7 +300,7 @@ public class ChecklistDAO implements IChecklistDAO
 
       while (rs.next())
          result.add(Integer.toString(rs.getInt("SCORENAME")));
-
+      
       rs.close();
       pstmt.close();
       conn.close();
@@ -306,14 +316,14 @@ public class ChecklistDAO implements IChecklistDAO
 
       Connection conn = dataSource.getConnection();
 
-      String sql = "SELECT RESIDENCENAME FROM RESIDENCE";
+      String sql = "SELECT RESIDENCENO, RESIDENCENAME FROM RESIDENCE";
 
       PreparedStatement pstmt = conn.prepareStatement(sql);
 
       ResultSet rs = pstmt.executeQuery();
 
       while (rs.next())
-         result.add(rs.getString("RESIDENCENAME"));
+    	  result.add(rs.getString("RESIDENCENAME"));
 
       rs.close();
       pstmt.close();
@@ -330,7 +340,7 @@ public class ChecklistDAO implements IChecklistDAO
 
       Connection conn = dataSource.getConnection();
 
-      String sql = "SELECT GUNAME FROM GU";
+      String sql = "SELECT GUNO, GUNAME FROM GU";
 
       PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -338,7 +348,7 @@ public class ChecklistDAO implements IChecklistDAO
 
       while (rs.next())
          result.add(rs.getString("GUNAME"));
-
+      
       rs.close();
       pstmt.close();
       conn.close();

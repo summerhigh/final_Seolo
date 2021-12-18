@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-String cp = request.getContextPath();
+	String cp = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -13,6 +13,7 @@ String cp = request.getContextPath();
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
+	
 <style type="text/css">
 .text-essential 
 {
@@ -40,7 +41,7 @@ String cp = request.getContextPath();
 		</div>
 
 		<!-- 폼 시작 -->
-		<form class="needs-validation" novalidate="" action="checkfirstinsert.action">
+		<form class="needs-validation" novalidate=""  action="checkfirstinsert.action">
 			<h4 class="mb-3">
 				거주여부 <span class="text-essential">(*)</span>
 			</h4>
@@ -189,14 +190,14 @@ String cp = request.getContextPath();
 						</div>
 						<div class="col-md-6 mb-3">
 							<label for="mwolse">월세</label> 
-							<input type="text" class="form-control" id="mwolse" name="mwolse"
+							<input type="text" class="form-control" id="mWolse" name="mWolse"
 							placeholder="ex) 50" value="" required="">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="mjeonse">전세 보증금</label> 
-							<input type="text" class="form-control" id="mjeonse" name="mjeonse"
+							<input type="text" class="form-control" id="mJeonse" name="mJeonse"
 							 placeholder="ex) 15000 (1억 5천)" value="" required="">
 						</div>
 					</div>
@@ -204,7 +205,7 @@ String cp = request.getContextPath();
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="mmaemae">매매가</label> 
-							<input type="text" class="form-control" id="mmaemae" name="mmaemae"
+							<input type="text" class="form-control" id="mMaemae" name="mMaemae"
 							 placeholder="ex) 25000 (2억 5천)" value="" required="">
 						</div>
 					</div>
@@ -215,9 +216,12 @@ String cp = request.getContextPath();
 						<div class="col-md-3 mb-3">
 							<label for="sec_score">점수</label> <select
 								class="custom-select d-block w-100" id="security_scoreNo" name="security_scoreNo" required="">
-								<c:forEach var="i" begin="1" end="11" step="1">
+								<%-- <c:forEach var="i" begin="1" end="11" step="1">
 									<option value="i">${(i-1)*0.5 }</option>
-								</c:forEach>
+								</c:forEach> --%>
+								<c:forEach var="score" items="${scores }">
+							 		<option value="${score.scoreName }">${score.scoreName }</option>
+							 	</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-9 mb-3">
@@ -232,9 +236,12 @@ String cp = request.getContextPath();
 						<div class="col-md-3 mb-3">
 							<label for="trans_score">점수</label> <select
 								class="custom-select d-block w-100" id="transport_scoreNo" name="transport_scoreNo" required="">
-								<c:forEach var="i" begin="1" end="11" step="1">
+								<%-- <c:forEach var="i" begin="1" end="11" step="1">
 									<option value="i">${(i-1)*0.5 }</option>
-								</c:forEach>
+								</c:forEach> --%>
+								<c:forEach var="score" items="${scores }">
+							 		<option value="${score.scoreName }">${score.scoreName }</option>
+							 	</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-9 mb-3">
@@ -248,9 +255,12 @@ String cp = request.getContextPath();
 						<div class="col-md-3 mb-3">
 							<label for="honjap_score">점수</label> <select
 								class="custom-select d-block w-100" id="honjap_scoreNo" name="honjap_scoreNo" required="">
-								<c:forEach var="i" begin="1" end="11" step="1">
+								<%-- <c:forEach var="i" begin="1" end="11" step="1">
 									<option value="i">${(i-1)*0.5 }</option>
-								</c:forEach>
+								</c:forEach> --%>
+								<c:forEach var="score" items="${scores }">
+							 		<option value="${score.scoreName }">${score.scoreName }</option>
+							 	</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-9 mb-3">
@@ -296,9 +306,12 @@ String cp = request.getContextPath();
 						<div class="col-md-3 mb-3">
 							<label for="pet_score">점수</label> <select
 								class="custom-select d-block w-100" id="pet_scoreNo" name="pet_scoreNo" required="">
-								<c:forEach var="i" begin="1" end="11" step="1">
+								<%-- <c:forEach var="i" begin="1" end="11" step="1">
 									<option value="i">${(i-1)*0.5 }</option>
-								</c:forEach>
+								</c:forEach> --%>
+								<c:forEach var="score" items="${scores }">
+							 		<option value="${score.scoreName }">${score.scoreName }</option>
+							 	</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-9 mb-3">
@@ -333,7 +346,7 @@ String cp = request.getContextPath();
 			</div>
 
 			<hr class="mb-4">
-			<button class="btn btn-primary btn-lg btn-block" type="submit" style="margin-bottom: 50px;">다음 페이지</button>
+			<button class="btn btn-primary btn-lg btn-block" type="submit" id="next" style="margin-bottom: 50px;">다음 페이지</button>
 		</form>
 	</div>
 
