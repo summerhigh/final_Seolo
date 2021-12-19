@@ -62,6 +62,14 @@
             </button>
          </div>
       </c:if>
+      <c:if test="${errMsg == 2}">
+         <div class="alert alert-danger alert-dismissible fade show" role="alert" id="errMsg">
+            <strong>10회 이상 경고 누적으로<br>로그인이 제한되었습니다.</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+      </c:if>
       
          <h1 class="h3 mb-3 font-weight-normal">로그인</h1>
          <label for="id" class="sr-only">ID</label>

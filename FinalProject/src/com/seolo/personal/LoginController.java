@@ -46,7 +46,11 @@ public class LoginController implements Controller
       {
          mav.setViewName("redirect:loginform.action?errMsg=1");
       }
-      else   // 로그인 성공
+      else if (userLogin.getWarningCount() >= 10) // 로그인 성공했지만 경고횟수 10회 이상 누적 → 로그인 차단
+      {
+    	  mav.setViewName("redirect:loginform.action?errMsg=2");
+      }
+      else	// 로그인 성공 & 경고횟수 10회 이하
       {
          HttpSession session = request.getSession();      // 세션에 해당 계정의 계정정보 값 부여
          session.setAttribute("userLogin", userLogin);
