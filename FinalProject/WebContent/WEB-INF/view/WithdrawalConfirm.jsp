@@ -41,12 +41,10 @@
 
 	$(document).ready(function()
 	{
-		
 		$("#submitBtn").click(function()
 		{
 			$("#withdrawalConfirm").submit();
 		});
-		
 	});
 
 
@@ -61,15 +59,17 @@
 	
 	<div class="container">
 	<!-- 비밀번호 확인 -->
-		<form class="form-signin" action="" method="post" id="withdrawalConfirm">
+		<form class="form-signin" action="withdrawalform.action" method="post" id="withdrawalConfirm">
 		
-		<!-- 컨트롤러 달면 주석처리 해제 -->
-		<!-- <div class="alert alert-primary alert-dismissible fade show" role="alert" id="errMsg">
-            <strong>비밀번호가 <br>올바르지 않습니다!</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-         </div> -->
+		<c:if test="${errMsg == 1}">
+			<div class="alert alert-primary alert-dismissible fade show text-center" role="alert" id="errMsg">
+	            <strong>비밀번호가 <br>올바르지 않습니다!</strong>
+	            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	               <span aria-hidden="true">&times;</span>
+	            </button>
+	        </div>
+		</c:if>
+		
          
 			<div class="text-center mb-4">
 				<h1 class="h3 mb-3 font-weight-normal">회원 탈퇴</h1>
@@ -78,12 +78,12 @@
 			</div>
 			
 			<div class="form-label-group">
-				<input type="text" id="name" name="name" class="form-control" readonly="readonly" required>
-				<label for="name">아이디</label>
+				<input type="text" id="id" name="id" class="form-control" readonly="readonly" value="${userLogin.getPe_Id() }" required>
+				<label for="id">아이디</label>
 			</div>
 			<div class="form-label-group">
-				<input type="text" id="tel" name="tel" class="form-control" required autofocus>
-				<label for="tel">비밀번호</label>
+				<input type="password" id="pwd" name="pwd" class="form-control" required autofocus>
+				<label for="pwd">비밀번호</label>
 			</div>
 	
 			<button class="btn btn-lg btn-primary btn-block" type="submit" id="submitBtn">확인</button>

@@ -25,7 +25,7 @@ public class LoginFormController implements Controller
       
       if (session.getAttribute("userLogin")!=null)   // 로그인 폼은 로그인 된사람이 접근하면 안 됨
       {
-         mav.setViewName("WEB-INF/view/Main.jsp");
+         mav.setViewName("redirect:main.action");
          return mav;
       }
       // 세션 처리-------------------------------------------------------------------------------

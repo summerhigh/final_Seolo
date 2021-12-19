@@ -81,6 +81,22 @@
 	<!-- 찬호 //////////////////////////////////////////////////////////////// 회원가입 로그인 관련 컨트롤러 등록 -->
 	
 	
+	<!-- ★ 소연 : 탈퇴 -->
+	<bean name="/withdrawalconfirm.action" class="com.seolo.personal.WithdrawalConfirmController">
+		<property name="dao" ref="personalDAO"></property>
+	</bean>
+	
+	<bean name="/withdrawalform.action" class="com.seolo.personal.WithdrawalFormController">
+		<property name="dao" ref="personalDAO"></property>
+	</bean>
+	
+	<bean name="/withdrawalformtwo.action" class="com.seolo.personal.WithdrawalFormControllerTwo">
+	</bean>
+	
+	<bean name="/withdrawal.action" class="com.seolo.personal.WithdrawalController">
+		<property name="dao" ref="personalDAO"></property>
+	</bean>
+	
 	
 	<!-- 소연 : 로그인/로그아웃 컨트롤러 등록 -->
    	<bean name="/loginform.action" class="com.seolo.personal.LoginFormController">
