@@ -252,7 +252,24 @@ public class PersonalDAO implements IPersonalDAO
       return result;
    }	
 
-	
+   @Override
+   public int remove(String acNo, int wirNo, String comments) throws SQLException    // 회원 탈퇴
+   {
+       int result=0;
+       
+       Connection conn = dataSource.getConnection();
+       String sql = "{call PRC_ACCOUNT_DELETE(?,?,?)}";
+       CallableStatement cstmt = conn.prepareCall(sql);
+       cstmt.setString(1, acNo);
+       cstmt.setInt(2, wirNo);
+       cstmt.setString(3, comments);
+       
+       result = cstmt.executeUpdate();
+       cstmt.close();
+       conn.close();
+       
+       return result;
+   }
 		
 
 }
