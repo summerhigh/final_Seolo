@@ -14,9 +14,10 @@ String cp = request.getContextPath();
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
 <style type="text/css">
-.text-essential {
-	color: #FFA7A7;
-}
+	.text-essential 
+	{
+		color: #FFA7A7;
+	}
 </style>
 </head>
 <body>
@@ -37,15 +38,15 @@ String cp = request.getContextPath();
 
 		<!-- 폼 시작 -->
 		<form class="needs-validation" novalidate="">
-			<!-- <hr class="mb-4"> -->
 			<div class="form-group row" style="align-items: center; display: flex; justify-content: center;">
-			    <label for="colFormLabel" class="col-sm-2 col-form-label">항목명</label>
+			    <label for="title" class="col-sm-2 col-form-label">항목명</label>
 			    <div class="col-sm-7">
-			      <input type="email" class="form-control" id="colFormLabel" placeholder="ex) 주변 도서관 상태(점수), 고척돔까지(시간)">
+			      <input type="text" class="form-control" id="title" name="title"
+			       placeholder="ex) 주변 도서관 상태(점수), 고척돔까지(시간)">
 			    </div>
 			</div>
 			<div class="form-group row" style="align-items: center; display: flex; justify-content: center;">
-				<label for="colFormLabel" class="col-sm-2 col-form-label">평가기준</label>
+				<label for="timeorScore" class="col-sm-2 col-form-label">평가기준</label>
 				<div class="col-sm-5">
 			    	<select class="custom-select mr-sm-3" name="timeorScore" id="timeorscore">
 						<option value="time">시간</option>
@@ -53,7 +54,7 @@ String cp = request.getContextPath();
 					</select>
 			    </div>
 			    <div class="col-sm-2">
-			    	<!-- 이 버튼 한 번 누르면 개수 세는 변수 +1 증가 -->
+			    	<!-- 이 버튼을 누르면 인서트 되고 다시 이 페이지로 redirect. -->
 			    	<button type="button" class="btn btn-secondary btn-sm">항목추가</button>
 			    </div>
 			</div>
@@ -62,6 +63,7 @@ String cp = request.getContextPath();
 			<div class="row">
 				<h5 class="mb-3 col-sm-4">추가항목명1(점수)</h5>
 				<div class="col-sm-2">
+					<!-- 이 버튼 누르면 딜리트되고 다시 이 페이지로 redirect -->
 			    	<button type="button" class="btn btn-secondary btn-sm">항목삭제</button>
 			    </div>
 			</div>
@@ -98,10 +100,83 @@ String cp = request.getContextPath();
 			</div>
 
 			<hr class="mb-4">
-			<!-- 개수도 같이 넘겨주기~ -->
+			<!-- 이 버튼을 누르면 다음 페이지로  -->
 			<button class="btn btn-primary btn-lg btn-block" type="submit" style="margin-bottom: 50px;">작성 완료</button>
 		</form>
 	</div>
+
+
+
+
+
+
+<!-- 이걸로 수정 -->
+
+	<!-- 체크리스트 작성 뷰 페이지 : 추가항목 작성 페이지! -->
+
+	<!-- 메뉴바 영역 -->
+	<div>
+		<c:import url="MenuNavbar_new.jsp"></c:import>
+	</div>
+
+	<!-- 본문 영역 -->
+	<div class="container">
+	
+		<div class="py-5 text-center">
+			<h2 style="margin-top: 50px;">체크리스트 추가항목 작성</h2>
+			<p class="lead">추가할 항목을 자유롭게 작성해주세요.</p>
+		</div>
+
+
+		<!-- 폼 시작 -->
+		<form class="needs-validation" novalidate="">
+			<div class="form-group row" style="align-items: center; display: flex; justify-content: center;">
+			    <label for="title" class="col-sm-2 col-form-label">항목명</label>
+			    <div class="col-sm-7">
+			      <input type="text" class="form-control" id="title" name="title"
+			       placeholder="ex) 주변 도서관 상태(점수), 고척돔까지(시간)">
+			    </div>
+			</div>
+			<div class="form-group row" style="align-items: center; display: flex; justify-content: center;">
+				<label for="timeorScore" class="col-sm-2 col-form-label">평가기준</label>
+				<div class="col-sm-5">
+			    	<select class="custom-select mr-sm-3" name="timeorScore" id="timeorscore">
+						<option value="time">시간</option>
+						<option value="score">점수</option>
+					</select>
+			    </div>
+			    <div class="col-sm-2">
+			    	<!-- 이 버튼을 누르면 인서트 되고 다시 이 페이지로 redirect. -->
+			    	<button type="button" class="btn btn-secondary btn-sm">항목추가</button>
+			    </div>
+			</div>
+			<hr class="mb-4">
+			
+			<h1>10. 부트스트랩 테이블 종합<small>클래스 활용</small></h1>
+			
+			<table class="table table-striped table-condensed table-hover">
+				<tr>
+					<td>추가항목명</td>
+					<td>점수</td>
+					<td>코멘트</td>
+					<td>삭제</td>
+				</tr>
+				<tr>
+					<td>cell</td>
+					<td>cell</td>
+					<td>cell</td>
+					<td>cell</td>
+				</tr>
+			</table>
+
+		</form>
+		
+	</div> <!-- 컨테이너 -->
+
+
+
+
+
 
 
 	<!-- footer 영역 -->
