@@ -41,9 +41,22 @@
 
 	$(document).ready(function()
 	{
-		
 		$("#submitBtn").click(function()
 		{
+            $("#errMsg").html("");    // 메세지 초기화
+            
+            if (!$("#agree").is(":checked"))
+            {
+                $("#errMsg").html("동의 여부에 체크해주세요.");
+                return;
+            }
+            
+            if (!$("input:radio[name=wirNo]").is(":checked"))
+            {
+                $("#errMsg").html("서비스 탈퇴 사유를 선택해주세요.");
+                return;
+            }
+			
 			var result = confirm("탈퇴 시 6개월간 재가입을 할 수 없습니다. 정말로 탈퇴하시겠습니까?");
 
 	        if (result)
@@ -54,7 +67,8 @@
 		
 		$("#returnBtn").click(function()
 		{
-			// 마이페이지로 돌아가는 링크...
+            // ★ 일단은 메인으로 해놨는데 나중에 마이페이지로 주소 고치기 
+            $(location).attr("href", "main.action");
 		});
 		
 	});
@@ -85,10 +99,10 @@
 		</div>
 		
 		<div style="margin-top: 30px;">
-			<form action="" id="withdrawalForm">
+            <form action="withdrawal.action" id="withdrawalForm">
 				<div class="form-group form-check">
-				    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-				    <label class="form-check-label" for="exampleCheck1"><strong>안내사항을 확인하였으며, 이에 동의합니다.</strong></label>
+                    <input type="checkbox" class="form-check-input" id="agree" name="agree" value="1">
+                    <label class="form-check-label" for="agree"><strong>안내사항을 확인하였으며, 이에 동의합니다.</strong></label>
 				</div>
 				
 				<hr style="margin: 50px 0;">
@@ -119,7 +133,7 @@
 					
 					<div style="margin: 30px 0;">
 						<h5 class="h5 font-weight-normal">탈퇴 상세 사유</h5>
-						<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="의견을 자유롭게 작성해주세요. 사이트의 발전에 큰 도움이 됩니다."></textarea>
+						<textarea class="form-control" id="comments" name="comments" rows="3" placeholder="의견을 자유롭게 작성해주세요. 사이트의 발전에 큰 도움이 됩니다."></textarea>
 					</div>
 
 				  </div>
