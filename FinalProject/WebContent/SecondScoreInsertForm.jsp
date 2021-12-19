@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String cp = request.getContextPath();
+String cp = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -14,15 +14,14 @@
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
 <style type="text/css">
-	.text-essential 
-	{
-		color: #FFA7A7;
-	}
+.text-essential {
+	color: #FFA7A7;
+}
 </style>
 
 </head>
 <body>
-	<!-- 체크리스트 작성 뷰 페이지 : 추가항목 작성 페이지! -->
+	<!-- 점수 추가항목 작성 페이지! -->
 
 	<!-- 메뉴바 영역 -->
 	<div>
@@ -31,7 +30,7 @@
 
 	<!-- 본문 영역 -->
 	<div class="container">
-	
+
 		<div class="py-5 text-center">
 			<h2 style="margin-top: 50px;">체크리스트 추가항목 작성</h2>
 			<p class="lead">추가할 항목을 자유롭게 작성해주세요.</p>
@@ -40,32 +39,37 @@
 
 		<!-- 폼 시작 -->
 		<form class="needs-validation" novalidate="">
-			<div class="form-group row" style="align-items: center; display: flex; justify-content: center;">
-			    <label for="title" class="col-sm-2 col-form-label">추가항목 제목</label>
-			    <div class="col-sm-7">
-			      <input type="text" class="form-control" id="title" name="title"
-			       placeholder="ex) 주변 도서관 상태(점수), 고척돔까지(시간)">
-			    </div>
-			</div>
-			<div class="form-group row" style="align-items: center; display: flex; justify-content: center;">
-			    <label for="title" class="col-sm-2 col-form-label">코멘트</label>
-			    <div class="col-sm-7">
-			      <input type="text" class="form-control" id="title" name="title"
-			       placeholder="ex) 도서관이 가깝고 도서관 규모도 짱크고 완전 새삥이라 만족~!!">
-			    </div>
-			</div>
-			
-			
-			<div class="col-sm-2">
-			    	<!-- 이 버튼을 누르면 인서트 되고 다시 이 페이지로 redirect. -->
-			    	<button type="button" class="btn btn-secondary btn-sm">항목추가</button>
-			    </div>
-			
-			
 
+			<div class="container">
+				<div class="mb-3">
+					<label for="title">추가항목 제목</label> <input type="text"
+						class="form-control" id="title"
+						placeholder="ex) 주변 도서관" required="">
+					<div class="invalid-feedback">필수 입력 사항입니다.</div>
+				</div>
+				<div class="mb-3">
+					<label for="comments">코멘트</label> <input type="text"
+						class="form-control" id="comments" placeholder="ex) 근처에 신축 도서관 있음"
+						required="">
+				</div>
+				<div class="mb-3">
+					<label for="score">점수</label> <select
+						class="custom-select d-block w-100" id="scoreNo" name="scoreNo"
+						required="">
+						<!-- foreach 쓰려면 점수 메소드 만들어서 값 받아와야함!! -->
+						<c:forEach var="score" items="${scores }">
+							<option value="${score.scoreName }">${score.scoreName }</option>
+						</c:forEach>
+					</select>
+					<div class="invalid-feedback">필수 입력 사항입니다.</div>
+				</div>
+				<!-- 완료버튼 클릭시 인서트되고 ChecklistWrite_second.jsp 로 리다이렉트 되어 항목 추가된 것 확인 가능 -->
+				<button class="btn btn-primary btn-lg btn-block" type="submit"
+				id="next" style="margin-bottom: 50px;">입력 완료</button>
+
+			</div>
 		</form>
-		
-	</div> <!-- 컨테이너 -->
+	</div>
 
 
 </body>
