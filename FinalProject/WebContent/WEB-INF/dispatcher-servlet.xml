@@ -7,6 +7,11 @@
 	<context:component-scan
 		base-package="org.springframework.samples.petclinic.web" />
 	
+	<!-- ① 기존 코드 -->
+	<!-- ※ Annotation 표기법으로 Controller 객체를 등록한다. -->
+	<context:component-scan	base-package="com.seolo.controller" />	
+	
+	
 	<!-- ※ 사용자 정의 Controller 객체 등록 및 URL 매핑 주소 등록  -->
 	<!--    - 『name=""』 속성에 매핑 주소를 등록한다. -->
 	<!--      이 과정에서 Front Controller 가 갖고 있는 확장자의 형태로 구성한다. -->
@@ -21,17 +26,30 @@
 	</bean>
 	
 	
+	<!-- ② mybatis 등록 과정에서 생겨나는 추가 코드 -->
+	<!-- ※ mybatis를 사용하기 위한 환경 설정 추가 1 : dataSource -->
+	<!-- ==> 『SqlSessionFactoryBean』 등록 -->
+	<!-- ④ mybatis 등록 과정에서 생겨나는 추가 코드 -->
+	<!-- ※ mybatis를 사용하기 위한 환경 설정 추가 2 : mapperLocations -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="localDataSource"></property>
+		<property name="mapperLocations" value="classpath:com/seolo/mybatis/mapper/*.xml"></property>
+	</bean>
+	
+	
+	<!-- ⑤ sqlSession 등록 과정에서 생겨나는 추가 코드 -->
+	<!-- ※ mybatis를 사용하기 위한 환경 설정 추가 3 : sqlSession -->
+	<!-- ==> 『SqlSessionTemplate』 등록 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	
+	
+	
 	<!-- dao 등록 -->
 	<bean id="personalDAO" class="com.seolo.personal.PersonalDAO">
 		 <property name="dataSource" ref="localDataSource"></property>
 	</bean>
-	
-   	<!-- 소연 : 메인, 메뉴바 -->
-   	<bean name="/main.action" class="com.seolo.main.MainController">
-   	</bean>
-    
-   	<bean name="/nav.action" class="com.seolo.main.NavBarController">
-   	</bean>
    
 	<!-- 찬호 회원가입 아이디 비밀번호 찾기 관련 컨트롤러 등록//////////////////////////////////////////////////////////////// -->
 	
@@ -145,9 +163,9 @@
    		<property name="dao" ref="checkDAO"></property>
    </bean>
    
-   <bean name="/checksecondinsertform.action" class="com.seolo.check.CheckSecondInsertFormController">
+   <!-- <bean name="/checksecondinsertform.action" class="com.seolo.check.CheckSecondInsertFormController">
    		<property name="dao" ref="checkDAO"></property>
-   </bean>
+   </bean> -->
 
    
    
