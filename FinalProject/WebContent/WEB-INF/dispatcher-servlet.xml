@@ -33,7 +33,7 @@
    	<bean name="/nav.action" class="com.seolo.main.NavBarController">
    	</bean>
    
-	<!-- 찬호 회원가입 로그인 관련 컨트롤러 등록//////////////////////////////////////////////////////////////// -->
+	<!-- 찬호 회원가입 아이디 비밀번호 찾기 관련 컨트롤러 등록//////////////////////////////////////////////////////////////// -->
 	
 
 	<!-- 회원가입폼 컨트롤러 등록 -->
@@ -45,10 +45,21 @@
 		<property name="dao" ref="personalDAO"></property>
 	</bean>
 	
+	<!-- ★ 찬호 수정 : 회원가입 아이디 ajax -->
+	<bean name="/confirmId.action" class="com.seolo.personal.ConfirmIdController">
+		<property name="dao" ref="personalDAO"></property>
+	</bean>	
+	
 	<!-- ★ 소연 수정 : 회원가입 닉네임 ajax -->
 	<bean name="/confirmnickname.action" class="com.seolo.personal.ConfirmNickController">
 		<property name="dao" ref="personalDAO"></property>
 	</bean>
+
+	<!-- ★ 찬호 수정 : 회원가입 전화번호 ajax -->
+	<bean name="/confirmtel.action" class="com.seolo.personal.ConfirmTelController">
+		<property name="dao" ref="personalDAO"></property>
+	</bean>
+	
 	
 	<!-- 아아디찾기폼 컨트롤러 등록  -->
 	<bean name="/idsearchform.action" class="com.seolo.personal.IdSearchFormController">
@@ -78,23 +89,37 @@
 		<property name="dao" ref="personalDAO"></property>		
 	</bean>	
 		
-	<!-- 찬호 //////////////////////////////////////////////////////////////// 회원가입 로그인 관련 컨트롤러 등록 -->
+	<!-- ////////////////////////////////////////////////////////////////  회원가입 아이디 비밀번호 찾기 관련 컨트롤러 등록 -->
 	
+   <!-- ★ 소연 : 탈퇴 -->
+    <bean name="/withdrawalconfirm.action" class="com.seolo.personal.WithdrawalConfirmController">
+        <property name="dao" ref="personalDAO"></property>
+    </bean>
+    
+    <bean name="/withdrawalform.action" class="com.seolo.personal.WithdrawalFormController">
+        <property name="dao" ref="personalDAO"></property>
+    </bean>
+    
+    <bean name="/withdrawalformtwo.action" class="com.seolo.personal.WithdrawalFormControllerTwo">
+    </bean>
+    
+    <bean name="/withdrawal.action" class="com.seolo.personal.WithdrawalController">
+        <property name="dao" ref="personalDAO"></property>
+    </bean>	
 	
-	
-	<!-- 소연 : 로그인/로그아웃 컨트롤러 등록 -->
-   	<bean name="/loginform.action" class="com.seolo.personal.LoginFormController">
-   	</bean>
+   <!-- 소연 : 로그인/로그아웃 컨트롤러 등록 -->
+    <bean name="/loginform.action" class="com.seolo.personal.LoginFormController">
+    </bean>
+ 
+    <bean name="/login.action" class="com.seolo.personal.LoginController">
+       <property name="dao" ref="personalDAO"></property>
+    </bean>
+ 
+    <bean name="/logout.action" class="com.seolo.personal.LogoutController">
+    </bean>
    
-   	<bean name="/login.action" class="com.seolo.personal.LoginController">
-      	<property name="dao" ref="personalDAO"></property>
-   	</bean>
-   
-   	<bean name="/logout.action" class="com.seolo.personal.LogoutController">
-   	</bean>
-   
-   
-    <!-- 미화: 나의 체크리스트 페이지  -->
+
+   <!-- 미화: 나의 체크리스트 페이지  -->
    	<!-- <bean id="viewDAO" class="com.seolo.check.ViewDAO">
    		<property name="dataSource" ref="localDataSource"></property>
    	</bean>
@@ -123,6 +148,7 @@
    <bean name="/checksecondinsertform.action" class="com.seolo.check.CheckSecondInsertFormController">
    		<property name="dao" ref="checkDAO"></property>
    </bean>
+
    
    
 </beans>
