@@ -6,35 +6,36 @@ public class PlusDTO
 	//-- '나의 체크리스트' 게시글의 추가항목에 관한 작업(등록, 수정, 삭제...) 시 사용 
 	
 	// 주요 속성 구성
-	private String type; 		//-- 분류: 점수, 시간
-	private int no;				//-- PK
+	private int pTime_no, pScore_no;
+	private int check_no;
 	private String title, comments, scoreName;
 	private int time, scoreNo;
 	
 	// getter, setter 구성
-	public String getScoreName()
+	
+	public int getpTime_no()
 	{
-		return scoreName;
+		return pTime_no;
 	}
-	public String getType()
+	public int getCheck_no()
 	{
-		return type;
+		return check_no;
 	}
-	public void setType(String type)
+	public void setCheck_no(int check_no)
 	{
-		this.type = type;
+		this.check_no = check_no;
 	}
-	public void setScoreName(String scoreName)
+	public void setpTime_no(int pTime_no)
 	{
-		this.scoreName = scoreName;
+		this.pTime_no = pTime_no;
 	}
-	public int getNo()
+	public int getpScore_no()
 	{
-		return no;
+		return pScore_no;
 	}
-	public void setNo(int no)
+	public void setpScore_no(int pScore_no)
 	{
-		this.no = no;
+		this.pScore_no = pScore_no;
 	}
 	public String getTitle()
 	{
@@ -52,6 +53,14 @@ public class PlusDTO
 	{
 		this.comments = comments;
 	}
+	public String getScoreName()
+	{
+		return scoreName;
+	}
+	public void setScoreName(String scoreName)
+	{
+		this.scoreName = scoreName;
+	}
 	public int getTime()
 	{
 		return time;
@@ -68,5 +77,6 @@ public class PlusDTO
 	{
 		this.scoreNo = scoreNo;
 	}
+	
 	
 }

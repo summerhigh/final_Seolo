@@ -18,7 +18,7 @@ public class ChecklistDAO implements IChecklistDAO
       this.dataSource = dataSource;
    }
 
-   // 체크리스트 등록
+   // 체크리스트 등록(추가)
    @Override
    public int add(ChecklistDTO dto) throws SQLException
    {
