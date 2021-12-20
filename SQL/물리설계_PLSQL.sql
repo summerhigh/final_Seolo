@@ -267,3 +267,68 @@ END;
 --==>> Procedure PRC_ACCOUNT_DELETE이(가) 컴파일되었습니다.
 
 COMMIT;
+
+
+--------------------------------------------------------------------------------------------------------
+-- 전화번호 입력하면 가입할 수 있는 번호인지 확인하는 함수 (0이면 가입 가능, 0을 초과할 경우 불가능)
+create or replace FUNCTION TEL_COUNT(V_TEL PERSONAL.TEL%TYPE)
+RETURN NUMBER
+    IS
+        TEMP_NUM    NUMBER;
+        CNTRESULT   NUMBER;
+    BEGIN
+        SELECT COUNT(*) INTO TEMP_NUM
+        FROM PERSONAL
+        WHERE TEL=V_TEL;
+
+        SELECT COUNT(*) INTO CNTRESULT
+        FROM WITHDRAWAL
+        WHERE TEL=V_TEL;
+
+        CNTRESULT := CNTRESULT + TEMP_NUM;
+
+    RETURN CNTRESULT;
+END;
+
+
+--------------------------------------------------------------------------------------------------------
+-- 지역정보 랭킹 조회 함수 (매개변수 : 동 고유번호)
+create or replace FUNCTION LOCAL_BOOKMARKRANK(V_DONG_NO DONG.DONG_NO%TYPE)
+RETURN NUMBER
+    IS
+        CNTRESULT   NUMBER;
+    BEGIN
+    
+        SELECT RANK INTO CNTRESULT
+        FROM
+        (
+            SELECT DONG_NO, ROW_NUMBER() OVER(ORDER BY COUNT(*) DESC) AS RANK
+            FROM LOCAL_BOOKMARK
+            GROUP BY DONG_NO
+        )
+        WHERE DONG_NO=V_DONG_NO;
+
+    RETURN CNTRESULT;
+END;
+--==> Function LOCAL_BOOKMARKRANK이(가) 컴파일되었습니다.
+
+--------------------------------------------------------------------------------------------------------
+-- 체크리스트 랭킹 조회 함수 (매개변수 : 체크리스트 고유번호)
+create or replace FUNCTION CHECK_BOOKMARKRANK(V_CHECK_NO CHECKLIST.CHECK_NO%TYPE)
+RETURN NUMBER
+    IS
+        CNTRESULT   NUMBER;
+    BEGIN
+    
+        SELECT RANK INTO CNTRESULT
+        FROM
+        (
+            SELECT CHECK_NO, ROW_NUMBER() OVER(ORDER BY COUNT(*) DESC) AS RANK
+            FROM CHECK_BOOKMARK
+            GROUP BY CHECK_NO
+        )
+        WHERE CHECK_NO=V_CHECK_NO;
+
+    RETURN CNTRESULT;
+END;
+--==> Function CHECK_BOOKMARKRANK이(가) 컴파일되었습니다.
