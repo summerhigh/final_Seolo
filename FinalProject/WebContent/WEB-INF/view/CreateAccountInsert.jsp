@@ -26,7 +26,31 @@ crossorigin="anonymous">
 	{
 		// 인증번호 발송 flag변수 선언
 		var flagIdn = false;
+		
+		// 아이디 중복 flag 변수 선언
+		
+		var idFlag = false;
+		// 아이디 중복확인 ajax
+		$("#idCheckBtn").click(function()
+		{
+						
+			//$("#idErrMsg").html("");
+			if ($("#id").val() == "")
+			{
+				$("#idErrMsg").css("color", "red");
+				$("#idErrMsg").html("아이디를 입력해 주세요.");
+				return;
+			}
 			
+			$("#idErrMsg").css("display", "inline");
+			confrimId();
+			
+			// 아이디 중복 버튼 클릭 확인
+			idFlag = true;
+			
+		
+		});
+		
 		// 닉네임 중복확인 ajax
 		// $.post(요청 주소, 전송 데이터, 응답액션처리)
 		$("#nickName").on("change keyup paste", function()
@@ -36,6 +60,7 @@ crossorigin="anonymous">
 			
 			confirmNick();
 		});
+		
 		
 		// 인증번호 전송
 		$("#idnBtn").click(function()
@@ -81,10 +106,22 @@ crossorigin="anonymous">
 			}
 		})
 		
-		
 		// submit 전 유효성검사 → submit
 		$("#submitBtn").click(function()
 		{
+					
+			//  전화번호 중복처리--------------------------
+			let result = confirmTel();
+			
+			if (!result)
+			{
+				$("#telErrMsg").html("이미 가입했거나, 현재 가입이 불가능한 번호입니다.");
+				$("#tel").focus();
+				return;
+			}
+			//--------------------------전화번호 중복처리
+			
+		
 			if ($("#nickErrMsg").text()!="" || $("#idnErrMsg").text()!="" || $("#pw2ErrMsg").text()!="" )
 			// ①닉네임 중복일 때, ②인증번호 입력 안했는데/잘못 입력했는데,  ③비밀번호 확인 제대로 입력 안했을 때
 			// 가입 못하게 막음
@@ -142,7 +179,8 @@ crossorigin="anonymous">
 				$("#tel").focus();
 				return;
 			}
-			
+
+					
 			if ($("#upun").val()=="" || $("#roadAddr").val()=="" || $("#detailAddr").val()=="" || $("#dong").val()=="")
 			{
 				$("#addrErrMsg").html("상세주소 포함 주소를 입력해주세요.");
@@ -158,9 +196,79 @@ crossorigin="anonymous">
 				return;
 			}
 			
+			// 아이디 중복확인 클릭 안했을 경우
+			if (!idFlag)
+			{
+				$("#idErrMsg").css("color", "red");
+				$("#idErrMsg").html("아이디 중복확인이 필요합니다.");		
+				$("#id").focus();
+				return;	
+			}
 			
 			$("#personalInsertForm").submit();
 		});
+		
+		
+		// 아이디 ajax
+		function confrimId()
+		{
+			$.post("confirmId.action", {id : $("#id").val() }, function(data)
+			{
+				let result = data;
+				
+				if (result == 1)
+				{
+					$("#idErrMsg").html("사용할 수 없는 아이디입니다");
+					$("#idErrMsg").css("color", "red");
+				}				
+				else
+				{
+					$("#idErrMsg").html("사용 가능한 아이디 입니다.");
+					$("#idErrMsg").css("color", "blue");
+				}
+				
+			});
+		}
+		
+		// 전화번호 ajax
+		function confirmTel()
+		{
+			 
+			let idFlag = true;
+			
+			$.ajax({
+		        url : "confirmtel.action",
+		        type : 'POST',					
+		        async: false,
+		        data : {tel : $("#tel").val()},
+		        dataType : "json",
+		        success : function(data){
+		        	
+		        	let perResult = data.perResult;
+		        	let withResult = data.withResult;
+		        	
+		        	if (perResult == 1 || withResult == 1)
+					{
+		        		idFlag = false;
+		        		
+					}
+		        	
+		        }
+			});
+			
+			return idFlag;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		// 닉네임 ajax
@@ -190,7 +298,29 @@ crossorigin="anonymous">
 				
 			});
 		}
+		
+		
+		
+		
+		
+		
+		
 	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
     function sample6_execDaumPostcode() {
         new daum.Postcode({
@@ -269,13 +399,20 @@ crossorigin="anonymous">
                 <col width="auto"/>
               </colgroup>
               <tbody>
+                <!-- 
                 <tr>
                   <th><span>아이디</span></th>
                   <td><input type="text" id="id" name="id" class="id" placeholder="ID를 입력하세요."></td>
                 </tr>
                 <tr>
-                	<th></th>
-                	<td><!-- <p>사용할 수 없는 아이디입니다.</p> --><span id="idErrMsg" class="errMsg"></span></td>
+                 -->
+                <tr>
+                  <th><span>아이디</span></th>
+                  <td><input type="text" class="send_number" placeholder="아이디를 입력하세요." id="id" name="id">
+                      <button type="button" class="btn btn-secondary" id="idCheckBtn"><font size="1.5">아이디 중복확인</font>
+                      </button>
+                      <span id="idErrMsg" class="errMsg"></span>
+                  </td>
                 </tr>
                 <tr>
                   <th><span>이름</span></th>
@@ -329,7 +466,7 @@ crossorigin="anonymous">
                 </tr>
                 <tr>
                 	<th></th>
-                	<td><p>이미 가입했거나, 현재 가입이 불가능한 번호입니다.</p>
+                	<td><!-- <p>이미 가입했거나, 현재 가입이 불가능한 번호입니다.</p> -->
 						<span id="telErrMsg" class="errMsg"></span></td>
                 </tr>  
                 <tr>

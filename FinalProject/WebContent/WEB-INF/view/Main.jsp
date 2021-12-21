@@ -124,7 +124,7 @@
 		<div class="container marketing">
 
 			<!-- Three columns of text below the carousel -->
-			<div class="row">
+			<!-- <div class="row">
 				<div class="col-lg-4">
 					<svg class="bd-placeholder-img rounded-circle" width="140"
 						height="140" xmlns="http://www.w3.org/2000/svg" role="img"
@@ -141,7 +141,7 @@
 						<a class="btn btn-secondary" href="#">View details &raquo;</a>
 					</p>
 				</div>
-				<!-- /.col-lg-4 -->
+				/.col-lg-4
 				<div class="col-lg-4">
 					<svg class="bd-placeholder-img rounded-circle" width="140"
 						height="140" xmlns="http://www.w3.org/2000/svg" role="img"
@@ -158,7 +158,7 @@
 						<a class="btn btn-secondary" href="#">View details &raquo;</a>
 					</p>
 				</div>
-				<!-- /.col-lg-4 -->
+				/.col-lg-4
 				<div class="col-lg-4">
 					<svg class="bd-placeholder-img rounded-circle" width="140"
 						height="140" xmlns="http://www.w3.org/2000/svg" role="img"
@@ -175,10 +175,28 @@
 						<a class="btn btn-secondary" href="#">View details &raquo;</a>
 					</p>
 				</div>
-				<!-- /.col-lg-4 -->
-			</div>
+				/.col-lg-4
+			</div> -->
 			<!-- /.row -->
-
+			
+			<div class="row featurette">
+				<div class="col-md-12">
+					<h2 class="featurette-heading">
+						공지사항 <span class="text-muted"> Notice</span>
+					</h2>
+					<p class="lead">&nbsp;</p>
+				</div>
+			</div>
+			<div class="row featurette">
+				<div class="col-md-10 mx-auto">
+					<ul class="list-group">
+					  <li class="list-group-item">An item</li>
+					  <li class="list-group-item">A second item</li>
+					  <li class="list-group-item">A third item</li>
+					</ul>
+				</div>
+			</div>
+			
 
 			<!-- START THE FEATURETTES -->
 

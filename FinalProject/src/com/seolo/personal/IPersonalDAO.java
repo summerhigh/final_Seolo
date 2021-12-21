@@ -24,5 +24,5 @@ public interface IPersonalDAO
 	
 	public int confirmNick(String nickname) throws SQLException;   // 닉네임 중복확인(ajax)
 	
-    public int remove(String acNo, int wirNo, String comments) throws SQLException;    // 회원 탈퇴
+	public int remove(String acNo, int wirNo, String comments) throws SQLException;    // 회원 탈퇴
 }
