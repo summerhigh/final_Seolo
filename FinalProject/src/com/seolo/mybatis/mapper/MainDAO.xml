@@ -4,4 +4,22 @@
   
 <mapper namespace="com.seolo.idao.IMainDAO">
 	<!-- 해당 인터페이스(ISampleDAO)의 각각 메소드에 어떤 쿼리문(sql)을 매칭시켜줄지 -->
+	
+	<select id="noticeList" resultType="com.seolo.dto.MainDTO">
+		SELECT NUM, NO_NO, TITLE, NODATE
+		FROM VIEW_MAINNOTICE
+	</select>
+	
+	<select id="localList" resultType="com.seolo.dto.MainDTO">
+		SELECT GUNAME, DONGNAME, DONGNO, RANK
+		FROM VIEW_RANKLOCAL
+		WHERE RANK &lt; 6
+	</select>
+	
+	<select id="checkList" resultType="com.seolo.dto.MainDTO">
+		SELECT CHECK_NO, GUNAME, DONGNAME, RANK
+		FROM VIEW_RANKCHECK
+		WHERE RANK &lt; 6
+	</select>
+	
 </mapper>
