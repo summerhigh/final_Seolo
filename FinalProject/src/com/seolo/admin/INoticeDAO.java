@@ -20,6 +20,11 @@ public interface INoticeDAO
 	// 게시물 목록
 	public ArrayList<NoticeDTO> list();
 	
+	// 게시물 카테고리 목록
+	//public ArrayList<NoticeDTO> catelist();
+	public ArrayList<NoticeDTO> catelist();
+	
+	
 	// 게시물 작성
 	public int add(NoticeDTO n);
 	
