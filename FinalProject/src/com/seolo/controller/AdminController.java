@@ -1,5 +1,5 @@
 /*==========================
-   MainController.java
+   AdminController.java
    - 사용자 정의 컨트롤러
 ==========================*/
 
@@ -13,23 +13,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.seolo.idao.IMainDAO;
-
 @Controller
-public class MainController
+public class AdminController
 {
+	/*
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping(value = "/main.action", method = RequestMethod.GET)
-	public String main(Model model)
+	*/
+	
+	@RequestMapping(value = "/mainadmin.action", method = RequestMethod.GET)
+	public String mainadmin(Model model)
 	{
-		IMainDAO dao = sqlSession.getMapper(IMainDAO.class);
 		
-		model.addAttribute("noticeList", dao.noticeList());
-		model.addAttribute("localList", dao.localList());
-		model.addAttribute("checkList", dao.checkList());
+		return "WEB-INF/view/Main_admin.jsp";
+	}
+	
+	@RequestMapping(value = "/noticelist.action", method = RequestMethod.GET)
+	public String noticeList(Model model)
+	{
 		
-		return "WEB-INF/view/Main.jsp";
+		return "WEB-INF/view/NoticeList.jsp";
 	}
 }

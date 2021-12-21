@@ -41,11 +41,70 @@
 
 	$(document).ready(function()
 	{
+		
+		// 비밀번호 유효성 검사 (8~12자의 하나 이상의 문자와 숫자 및 특수문자를 포함)
+		$("#newPwd").on("change keyup paste", function()
+		{
+			var pw_RegExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/;
+			var pw = $("#newPwd").val();
+			
+			// value값이 없을경우
+			if ($("#newPwd").val() == "")
+			{
+				$("#pwErrMsg").html("");
+				return;
+			}
+			
+			if (!pw_RegExp.test(pw))
+			{
+				$("#pwErrMsg").html("8~12자의 하나 이상의 문자와 숫자 및 특수문자를 포함하여 입력하여 주세요");
+				$("#pwErrMsg").css({"color" : "red", "font-size" : "10px"});
+				return;
+			}
+			$("#pwErrMsg").html("");
+
+		});
+		
+		
+		// 비밀번호 확인
+		$("#confirmPwd").on("change keyup paste", function()
+		{
+			
+			if ($("#newPwd").val() != $("#confirmPwd").val() && $("#confirmPwd").val() != "")
+			{
+				$("#confirmPwdErrMsg").text("비밀번호가 일치하지 않습니다.");
+				$("#confirmPwdErrMsg").css({"color" : "red", "font-size" : "10px"});				
+			}
+			else if ($("#newPwd").val() == $("#confirmPwd").val())
+			{
+				$("#confirmPwdErrMsg").html("");
+			}
+		});	
+	
+		
+		// submit버튼 유효성 확인 
 		$("#submitBtn").click(function()
 		{
 					
 			$("#pwdResetForm").attr("action", "pwdupdate.action?userId=" + $("#userId").val()
 									+ "&newPwd=" + $("#newPwd").val());	
+			
+			
+			if ($("#newPwd").val() == "")
+			{
+				$("#pwErrMsg").text("비밀번호를 입력하여주세요.");
+				$("#pwErrMsg").css({"color" : "red", "font-size" : "12px"});
+				return false;
+			}
+			
+			if ($("#confirmPwd").val() == "")
+			{
+				$("#confirmPwdErrMsg").text("비밀번확인을 입력하여주세요.");		
+				$("#confirmPwdErrMsg").css({"color" : "red", "font-size" : "12px"});
+				return false;
+			}
+			
+			
 			
 			$("#pwdResetForm").submit();
 		
@@ -74,20 +133,20 @@
 		</div>
 		
 		<div class="form-label-group">
-			<input type="text" id="newPwd" class="form-control" required autofocus>
+			<input type="password" id="newPwd" class="form-control" maxlength="12">
 			<label for="newPwd">새 비밀번호</label>
+			<span id="pwErrMsg"></span>
 		</div>
 		<div class="form-label-group">
-			<input type="text" id="confirmPwd" class="form-control" required>
+			<input type="password" id="confirmPwd" class="form-control" maxlength="12">
 			<label for="confirmPwd">새 비밀번호 확인</label>
+			<span id="confirmPwdErrMsg"></span>
 		</div>
 		
 		<div class="text-center mb-4">
-			<p>8자 이상 16자 이하로 설정해주세요.</p>
-			<p>영문, 숫자, 특수문자를 함께 사용하면 보다 안전합니다.</p>
 		</div>
 
-		<button class="btn btn-lg btn-primary btn-block" type="button" id="submitBtn">확인</button>
+		<button class="btn btn-lg btn-primary btn-block" id="submitBtn">확인</button>
 		<input type="hidden" id="userId" value="${id }">
 	</form>
 	
