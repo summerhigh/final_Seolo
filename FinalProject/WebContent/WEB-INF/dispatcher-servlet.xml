@@ -166,7 +166,12 @@
    <!-- <bean name="/checksecondinsertform.action" class="com.seolo.check.CheckSecondInsertFormController">
    		<property name="dao" ref="checkDAO"></property>
    </bean> -->
-
    
+   <!-- 
+   다영/다정
+   <bean name="/mainadmin.action" class="com.seolo.controller.AdminController">
+		<property name="dao" ref=""></property>
+   </bean>
+    -->
    
 </beans>

@@ -84,14 +84,10 @@ String cp = request.getContextPath();
 							아이디</th>
 						<th class="sorting" tabindex="0" aria-controls="datatable"
 							rowspan="1" colspan="1"
-							aria-label="Status: activate to sort column ascending"
-							style="width: 137.312px;">닉네임</th>
-						<th class="sorting" tabindex="0" aria-controls="datatable"
-							rowspan="1" colspan="1"
 							aria-label="Type: activate to sort column ascending"
 							style="width: 180.292px;">이름</th>
 						<th class="sorting_disabled" rowspan="1" colspan="1"
-							aria-label="Email" style="width: 239.312px;">이메일</th>
+							aria-label="Email" style="width: 239.312px;">전화번호</th>
 						<th class="sorting" tabindex="0" aria-controls="datatable"
 							rowspan="1" colspan="1"
 							aria-label="Signed up: activate to sort column ascending"
@@ -118,9 +114,8 @@ String cp = request.getContextPath();
 									<span class="h5 text-hover-primary mb-0">qwerty12</span>
 								</div>
 						</a></td>
-						<td>superman</td>
 						<td>김길동</td>
-						<td>superman@example.com</td>
+						<td>010-1111-1111</td>
 						<td>2021/12/01</td>
 						<td>콘텐츠 내용 부족</td>
 						<td>67989</td>
@@ -134,9 +129,8 @@ String cp = request.getContextPath();
 									<span class="h5 text-hover-primary mb-0">ponq1321</span>
 								</div>
 						</a></td>
-						<td>batman</td>
 						<td>임하나</td>
-						<td>batman@example.com</td>
+						<td>010-2222-2222</td>
 						<td>2018/01/11</td>
 						<td>시스템 장애</td>
 						<td>67326</td>
@@ -148,9 +142,8 @@ String cp = request.getContextPath();
 									<span class="h5 text-hover-primary mb-0">wonni13</span>
 								</div>
 						</a></td>
-						<td>ironman</td>
 						<td>김미미</td>
-						<td>mimimi@example.com</td>
+						<td>010-3333-3333</td>
 						<td>2002/09/11</td>
 						<td>기타</td>
 						<td>55821</td>
@@ -162,9 +155,8 @@ String cp = request.getContextPath();
 									<span class="h5 text-hover-primary mb-0">Bigman77</span>
 								</div>
 						</a></td>
-						<td>Bigman</td>
 						<td>김큰손</td>
-						<td>bighand@example.com</td>
+						<td>010-4444-4444</td>
 						<td>2011/03/22</td>
 						<td>콘텐츠 내용 부족</td>
 						<td>85214</td>
@@ -176,9 +168,8 @@ String cp = request.getContextPath();
 									<span class="h5 text-hover-primary mb-0">Smallman33</span>
 								</div>
 						</a></td>
-						<td>Smallman</td>
 						<td>김작손</td>
-						<td>smallman@example.com</td>
+						<td>010-5555-5555</td>
 						<td>2009/10/12</td>
 						<td>개인정보 노출 우려</td>
 						<td>75470</td>
@@ -190,9 +181,8 @@ String cp = request.getContextPath();
 									<span class="h5 text-hover-primary mb-0">uniti88</span>
 								</div>
 						</a></td>
-						<td>happyman</td>
 						<td>이행복</td>
-						<td>happyman@example.com</td>
+						<td>010-6666-6666</td>
 						<td>2021/08/31</td>
 						<td>기타</td>
 						<td>37534</td>
@@ -204,9 +194,8 @@ String cp = request.getContextPath();
 									<span class="h5 text-hover-primary mb-0">hokkyi99</span>
 								</div>
 						</a></td>
-						<td>smileman</td>
 						<td>이웃음</td>
-						<td>smileman@example.com</td>
+						<td>010-7777-7777</td>
 						<td>2021/11/31</td>
 						<td>시스템 장애</td>
 						<td>31233</td>
@@ -218,9 +207,8 @@ String cp = request.getContextPath();
 									<span class="h5 text-hover-primary mb-0">dog56</span>
 								</div>
 						</a></td>
-						<td>dogman</td>
 						<td>이강쥐</td>
-						<td>dogman@example.com</td>
+						<td>010-8888-8888</td>
 						<td>2021/03/31</td>
 						<td>콘텐츠 내용 부족</td>
 						<td>11200</td>
@@ -232,9 +220,8 @@ String cp = request.getContextPath();
 									<span class="h5 text-hover-primary mb-0">cat56</span>
 								</div>
 						</a></td>
-						<td>catman</td>
 						<td>이고양</td>
-						<td>catman@example.com</td>
+						<td>010-9999-9999</td>
 						<td>2009/03/31</td>
 						<td>시스템 장애</td>
 						<td>11199</td>
@@ -246,9 +233,8 @@ String cp = request.getContextPath();
 									<span class="h5 text-hover-primary mb-0">cat56</span>
 								</div>
 						</a></td>
-						<td>catman</td>
 						<td>이고양</td>
-						<td>catman@example.com</td>
+						<td>010-1010-1010</td>
 						<td>2009/03/31</td>
 						<td>시스템 장애</td>
 						<td>11199</td>
