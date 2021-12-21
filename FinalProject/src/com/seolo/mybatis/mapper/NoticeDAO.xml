@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seolo.admin.INoticeDAO">
+
+	<select id="list" resultType="com.seolo.admin.NoticeDTO">
+		
+		SELECT NOTICE_NO, NOTICESORT_NO,
+		NOTICE_TITLE
+		, NOTICE_CONTENT, NOTICE_DATE
+		FROM VIEW_NOTICE
+		 
+		<!-- <![CDATA[            
+            SELECT NOTICE_NO, NOTICESORT_NAME, NOTICE_TITLE, NOTICE_DATE
+			FROM
+			(
+			    SELECT ROWNUM RNUM, DATA.*
+			    FROM
+			    (
+			        SELECT NOTICE_NO, NOTICE_TITLE, NOTICESORT_NAME, TO_CHAR(NOTICE_DATE, 'YYYY-MM-DD') AS NOTICE_DATE
+			        FROM VIEW_NOTICE
+			        ORDER BY NOTICE_NO DESC
+			    ) DATA
+			)
+			WHERE RNUM >= ? AND RNUM <= ?
+        ]]>     -->      
+	</select>
+
+	<insert id="add">
+		INSERT INTO NOTICE(NO_NO, AD_ID, NOS_NO, TITLE,
+		CONTENT, NODATE)
+		VALUES(NOTICESEQ.NEXTVAL, ???, ???, ???, ???, ???)
+	</insert>
+
+	<update id="modify">
+		UPDATE NOTICE
+		SET TITLE = ?
+		,CONTENT = ?
+		,NOS_NO = ?
+		WHERE NO_NO= ?
+	</update>
+
+	<delete id="remove">
+		DELETE
+		FROM NOTICE
+		WHERE NO_NO=?
+	</delete>
+	
+	<!--@@@ 분류 기능 -->
+
+</mapper>
