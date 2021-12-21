@@ -37,6 +37,13 @@ public class PersonalInsertFormController implements Controller
 	         return mav;
 	      }
 	      // 세션 처리-------------------------------------------------------------------------------
+	    
+	    // 약관동의 안하고 주소로 들어온사람 내쫓기
+	    if (request.getParameter("confirm") == null)
+		{
+	    	mav.setViewName("redirect:main.action");
+	        return mav;
+		}
 		
 		mav.setViewName("WEB-INF/view/CreateAccountInsert.jsp");
 		
