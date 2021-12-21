@@ -20,18 +20,19 @@ public class AdminController
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping(value = "/mainadmin.action", method = RequestMethod.POST)
-	public String main(Model model)
+	*/
+	
+	@RequestMapping(value = "/mainadmin.action", method = RequestMethod.GET)
+	public String mainadmin(Model model)
 	{
 		
 		return "WEB-INF/view/Main_admin.jsp";
 	}
-	*/
 	
-	@RequestMapping(value = "/mainadmin.action", method = RequestMethod.GET)
-	public String main(Model model)
+	@RequestMapping(value = "/noticelist.action", method = RequestMethod.GET)
+	public String noticeList(Model model)
 	{
 		
-		return "WEB-INF/view/Main_admin.jsp";
+		return "WEB-INF/view/NoticeList.jsp";
 	}
 }
