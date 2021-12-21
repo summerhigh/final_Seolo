@@ -13,7 +13,7 @@ public class ChecklistDTO
 	private String residenceName, dongName, guName;
 	
 	//-- 주요 속성
-	private String checkDate, title, roadAddr, wido, gyeongdo, good, bad, etc, place;
+	private String checkDate, title, roadAddr, good, bad, etc, place;
 	private int mart, laundry, hospital, food, culture, park, mWolse, deposit, mJeonse, mMaemae, time;
 	private ArrayList<String> stickerList;
 
@@ -111,22 +111,6 @@ public class ChecklistDTO
 	public void setRoadAddr(String roadAddr)
 	{
 		this.roadAddr = roadAddr;
-	}
-	public String getWido()
-	{
-		return wido;
-	}
-	public void setWido(String wido)
-	{
-		this.wido = wido;
-	}
-	public String getGyeongdo()
-	{
-		return gyeongdo;
-	}
-	public void setGyeongdo(String gyeongdo)
-	{
-		this.gyeongdo = gyeongdo;
 	}
 	public String getGood()
 	{

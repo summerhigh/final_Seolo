@@ -20,6 +20,110 @@
 	color: #FFA7A7;
 }
 </style>
+
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" 
+src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&libraries=services"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
+<script>
+
+	// 주소 검색
+    function execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+                var bcode = '';
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("address").value = addr;
+               	document.getElementById("bcode").value = data.bcode;
+            }
+        }).open();
+    }
+	
+	// 지도 출력
+	function searchMap()
+    {
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = {
+                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };  
+    
+        // 지도를 생성합니다    
+        var map = new kakao.maps.Map(mapContainer, mapOption); 
+    
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+       
+        var address = $("#address").val();
+        
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(address, function(result, status) {
+    
+            // 정상적으로 검색이 완료됐으면 
+             if (status === kakao.maps.services.Status.OK) {
+    
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    position: coords
+                });
+             
+                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                map.setCenter(coords);
+            } 
+        });    
+    }
+
+    
+    // 제이쿼리
+    $(document).ready(function()
+   {
+      
+      $("#check").click(function()
+      {
+         // alert("확인");
+         
+         var bcode = $("#bcode").val();
+         
+         // alert(bcode);
+         
+         $.post("ajax.action"
+              , {bcode:bcode}
+              , function(result)
+              {
+               $("#result").html(result)
+              }); 
+         
+         // alert($("#address").val());
+         
+         searchMap();
+         
+      }); 
+      
+   });
+</script>
+
+
 </head>
 <body>
 	<!-- 체크리스트 작성 뷰 페이지 -->
@@ -34,7 +138,7 @@
 		<div class="py-5 text-center">
 			<h1 style="margin-top: 50px;">체크리스트 작성</h1>
 			<br>
-			<p class="lead">(*) 표시가 있는 항목은 필수 입력사항입니다.</p>
+			<p class="lead"><span class="text-essential">(*)</span> 표시가 있는 항목은 필수 입력사항입니다.</p>
 			<p class="lead">도로명주소와 제목, 나의 출근시간, 비밀 코멘트는 타인에게 공개되지 않으니 자유롭게
 				작성해주세요.</p>
 			
@@ -66,7 +170,7 @@
 			<hr class="mb-4">
 
 			<div class="mb-3">
-				<label for="title">제목 <span class="text-essential">(*)</span></label>
+				<label for="title"><h4 class="mb-3">제목<span class="text-essential">(*)</span></h4></label>
 				<input type="text" class="form-control" id="title" name="title">
 				<div class="invalid-feedback">제목을 입력해주세요.</div>
 			</div>
@@ -78,106 +182,42 @@
 				<div class="col-md-4 order-md-2 mb-4">
 					
 					<h4 class="mb-3">지역분류</h4>
-					<!-- 주소 검색 버튼을 통해 주소를 검색해와서 구와 동을 삽입해줌. AJAX 필요 -->
-					<!-- <div class="row mb-3" style="align-items: center; display: flex; justify-content: center;">
-						<ul class="col list-group col-md-4 themed-grid-col">
-							<li class="list-group-item">
-								<input type="text" name="guName" id="guName" class="list-group-item" value="영등포구">
-							</li>
-						</ul>
-						<ul class="col list-group col-md-5 themed-grid-col"> 
-							<li class="list-group-item">
-								<input type="text" name="dongName" id="dongName" class="list-group-item" value="영등포동1가">
-							</li>
-						</ul>
-					</div> -->
-					
-					<!-- 일단은 직접 입력받는 것 마냥 진행해본다.. -->
-					<div class="row mb-3" style="align-items: center; display: flex; justify-content: center;">
-						<input type="text" name="guName" id="guName" class="list-group-item" value="영등포구">
-						<input type="text" name="dongName" id="dongName" class="list-group-item" value="영등포동1가">
+					<div class="row mb-3" style="justify-content: center;"  >
+						<div id="result">
+							<!-- ajax 뷰 자리 -->
+						</div>
 					</div>
-					
-					
 					
 					<hr class="mb-4">
+					
 					<h4 class="d-flex justify-content-between align-items-center mb-3">
-						<span class="mb-3">주요 출근시간</span>
+						<span class="mb-3">주소 위치확인</span>
 					</h4>
-					<ul class="list-group mb-3">
-						<li
-							class="list-group-item d-flex justify-content-between lh-condensed">
-							<div>
-								<h6 class="my-0">2호선 강남역 까지</h6>
-							</div> <span class="badge badge-secondary">15분</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between lh-condensed">
-							<div>
-								<h6 class="my-0">2호선 을지로입구역 까지</h6>
-							</div> <span class="badge badge-secondary">22분</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between lh-condensed">
-							<div>
-								<h6 class="my-0">9호선 여의도역 까지</h6>
-							</div> <span class="badge badge-secondary">35분</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between lh-condensed">
-							<div>
-								<h6 class="my-0">공항철도 홍대입구역 까지</h6>
-							</div> <span class="badge badge-secondary">14분</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between lh-condensed">
-							<div>
-								<h6 class="my-0">1호선 가산디지털단지역 까지</h6>
-							</div> <span class="badge badge-secondary">35분</span>
-						</li>
-						<li
-							class="list-group-item d-flex justify-content-between lh-condensed">
-							<div>
-								<h6 class="my-0">8호선 잠실역 까지</h6>
-							</div> <span class="badge badge-secondary">46분</span>
-						</li>
-					</ul>
-
-					<hr class="mb-4">
-					<h4 class="d-flex justify-content-between align-items-center mb-3">
-						<span class="mb-3">나의 출근시간</span>
-					</h4>
-
-					<div class="row">
-						<div class="col-10">
-							<input type="text" class="form-control" name="place"
-								placeholder="ex) 집에서부터 회사">
-						</div><span class="col">까지</span>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-5">
-							<input type="text" class="form-control" 
-							 name="time" placeholder="ex) 50">
-						</div><span class="col">분</span>
-					</div>
+					<!-- 지도 출력 -->
+					<div id="map" style="width:100%;height:500px;"></div>
+					
 
 				</div><!-- 본문 우측 영역 끝 -->
+
+
+
 
 				<!-- 본문 좌측 영역 -->
 				<div class="col-md-8 order-md-1">
 					<div class="mb-3">
-						<label for="roadaddr">주소 <span class="text-essential">(*)</span></label>
-						&nbsp; &nbsp;
-						<button type="button" class="btn btn-secondary btn-sm">주소	검색</button>
-						<!-- <div class="invalid-feedback">주소를 입력해주세요.</div><br> -->
-						<input type="text" class="form-control" id="roadAddr" name="roadAddr"
-							 placeholder="도로명주소를 입력해주세요.">
-						<!-- 일단 주소 직접 입력받는 것으로 간주하고 진행
-							 원래는 여기서 주소 검색 → 주소입력됨 → 구와 동이 각각 지역 분류에 들어감 인데
-							 일단은 다 따로 입력받는 것으로,,,
-						 -->
+						 
+						<h4 class="mb-3">주소<span class="text-essential">(*)</span></h4>
+						
+						<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" 
+						class="btn btn-secondary btn-sm"><br><br>
+						<input type="text" id="postcode" placeholder="우편번호" class="form-control" disabled="disabled">
+						<input type="text" id="address" placeholder="주소" class="form-control" disabled="disabled"><br>
+						<input type="button" id="check" value="확인" class="btn btn-secondary btn-sm"><!-- 동 코드 확인 후 ajax 처리되는 버튼 -->
+						확인 버튼을 클릭해주세요. <span class="text-essential">(*)</span><br><br>
+						
+						<input type="hidden" id="bcode" placeholder="동고유번호">
 					</div>
+
 
 					<hr class="mb-4">
 					<h4 class="mb-3">주거비</h4>
