@@ -44,41 +44,41 @@ public class ChecklistDAO implements IChecklistDAO
       cstmt.setString(3, dto.getTitle());
       cstmt.setString(4, dto.getRoadAddr());
       cstmt.setInt(5, dto.getDongNo());
-      cstmt.setString(6, dto.getWido());
-      cstmt.setString(7, dto.getGyeongdo());
+      // cstmt.setString(6, dto.getWido());
+      // cstmt.setString(7, dto.getGyeongdo());
      
-      cstmt.setString(8, dto.getGood());
-      cstmt.setString(9, dto.getBad());
-      cstmt.setString(10, dto.getEtc());
+      cstmt.setString(6, dto.getGood());
+      cstmt.setString(7, dto.getBad());
+      cstmt.setString(8, dto.getEtc());
       
-      cstmt.setString(11, dto.getSecret_co());
-      cstmt.setInt(12, dto.getMart());
-      cstmt.setInt(13, dto.getLaundry());
-      cstmt.setInt(14, dto.getHospital());
-      cstmt.setInt(15, dto.getFood());
-      cstmt.setInt(16, dto.getCulture());
-      cstmt.setInt(17, dto.getPark());
-      cstmt.setString(18, dto.getConv_co());
+      cstmt.setString(9, dto.getSecret_co());
+      cstmt.setInt(10, dto.getMart());
+      cstmt.setInt(11, dto.getLaundry());
+      cstmt.setInt(12, dto.getHospital());
+      cstmt.setInt(13, dto.getFood());
+      cstmt.setInt(14, dto.getCulture());
+      cstmt.setInt(15, dto.getPark());
+      cstmt.setString(16, dto.getConv_co());
 
-      cstmt.setInt(19, dto.getmWolse());
-      cstmt.setInt(20, dto.getDeposit());
-      cstmt.setInt(21, dto.getmJeonse());
-      cstmt.setInt(22, dto.getmMaemae());
+      cstmt.setInt(17, dto.getmWolse());
+      cstmt.setInt(18, dto.getDeposit());
+      cstmt.setInt(19, dto.getmJeonse());
+      cstmt.setInt(20, dto.getmMaemae());
       
-      cstmt.setString(23, dto.getPlace());
-      cstmt.setInt(24, dto.getTime());
+      cstmt.setString(21, dto.getPlace());
+      cstmt.setInt(22, dto.getTime());
       
-      cstmt.setString(25, dto.getPet_co());
-      cstmt.setInt(26, dto.getPet_scoreNo());
+      cstmt.setString(23, dto.getPet_co());
+      cstmt.setInt(24, dto.getPet_scoreNo());
       
-      cstmt.setString(27, dto.getSecurity_co());
-      cstmt.setInt(28, dto.getSecurity_scoreNo());
+      cstmt.setString(25, dto.getSecurity_co());
+      cstmt.setInt(26, dto.getSecurity_scoreNo());
 
-      cstmt.setString(29, dto.getTransport_co());
-      cstmt.setInt(30, dto.getTransport_scoreNo());
+      cstmt.setString(27, dto.getTransport_co());
+      cstmt.setInt(28, dto.getTransport_scoreNo());
       
-      cstmt.setString(31, dto.getHonjap_co());
-      cstmt.setInt(32, dto.getHonjap_scoreNo());
+      cstmt.setString(29, dto.getHonjap_co());
+      cstmt.setInt(30, dto.getHonjap_scoreNo());
 
       result = cstmt.executeUpdate();
 
@@ -107,41 +107,41 @@ public class ChecklistDAO implements IChecklistDAO
       cstmt.setString(3, dto.getTitle());
       cstmt.setString(4, dto.getRoadAddr());
       cstmt.setInt(5, dto.getDongNo());
-      cstmt.setString(6, dto.getWido());
-      cstmt.setString(7, dto.getGyeongdo());
+      // cstmt.setString(6, dto.getWido());		위도경도 빼기로... 
+      // cstmt.setString(7, dto.getGyeongdo());
      
-      cstmt.setString(8, dto.getGood());
-      cstmt.setString(9, dto.getBad());
-      cstmt.setString(10, dto.getEtc());
+      cstmt.setString(6, dto.getGood());
+      cstmt.setString(7, dto.getBad());
+      cstmt.setString(8, dto.getEtc());
       
-      cstmt.setString(11, dto.getSecret_co());
-      cstmt.setInt(12, dto.getMart());
-      cstmt.setInt(13, dto.getLaundry());
-      cstmt.setInt(14, dto.getHospital());
-      cstmt.setInt(15, dto.getFood());
-      cstmt.setInt(16, dto.getCulture());
-      cstmt.setInt(17, dto.getPark());
-      cstmt.setString(18, dto.getConv_co());
+      cstmt.setString(9, dto.getSecret_co());
+      cstmt.setInt(10, dto.getMart());
+      cstmt.setInt(11, dto.getLaundry());
+      cstmt.setInt(12, dto.getHospital());
+      cstmt.setInt(13, dto.getFood());
+      cstmt.setInt(14, dto.getCulture());
+      cstmt.setInt(15, dto.getPark());
+      cstmt.setString(16, dto.getConv_co());
 
-      cstmt.setInt(19, dto.getmWolse());
-      cstmt.setInt(20, dto.getDeposit());
-      cstmt.setInt(21, dto.getmJeonse());
-      cstmt.setInt(22, dto.getmMaemae());
+      cstmt.setInt(17, dto.getmWolse());
+      cstmt.setInt(18, dto.getDeposit());
+      cstmt.setInt(19, dto.getmJeonse());
+      cstmt.setInt(20, dto.getmMaemae());
       
-      cstmt.setString(23, dto.getPlace());
-      cstmt.setInt(24, dto.getTime());
+      cstmt.setString(21, dto.getPlace());
+      cstmt.setInt(22, dto.getTime());
       
-      cstmt.setString(25, dto.getPet_co());
-      cstmt.setInt(26, dto.getPet_scoreNo());
+      cstmt.setString(23, dto.getPet_co());
+      cstmt.setInt(24, dto.getPet_scoreNo());
       
-      cstmt.setString(27, dto.getSecurity_co());
-      cstmt.setInt(28, dto.getSecurity_scoreNo());
+      cstmt.setString(25, dto.getSecurity_co());
+      cstmt.setInt(26, dto.getSecurity_scoreNo());
 
-      cstmt.setString(29, dto.getTransport_co());
-      cstmt.setInt(30, dto.getTransport_scoreNo());
+      cstmt.setString(27, dto.getTransport_co());
+      cstmt.setInt(28, dto.getTransport_scoreNo());
       
-      cstmt.setString(31, dto.getHonjap_co());
-      cstmt.setInt(32, dto.getHonjap_scoreNo());
+      cstmt.setString(29, dto.getHonjap_co());
+      cstmt.setInt(30, dto.getHonjap_scoreNo());
 
       result = cstmt.executeUpdate();
 
@@ -180,7 +180,7 @@ public class ChecklistDAO implements IChecklistDAO
 
       ChecklistDTO result = new ChecklistDTO();
 
-      String sql = "SELECT CHECK_NO, AC_NO, RES_NO, CHECKDATE, TITLE" + ", ROADADDR, DONG_NO, WIDO, GYEONGDO"
+      String sql = "SELECT CHECK_NO, AC_NO, RES_NO, CHECKDATE, TITLE" + ", ROADADDR, DONG_NO"
             + " FROM CHECKLIST" + " WHERE CHECK_NO = ?";
 
       PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -196,8 +196,6 @@ public class ChecklistDAO implements IChecklistDAO
          result.setTitle(rs.getString("TITLE"));
          result.setRoadAddr(rs.getString("ROADADDR"));
          result.setDongNo(rs.getInt("DONG_NO"));
-         result.setWido(rs.getString("WIDO"));
-         result.setGyeongdo(rs.getString("GYEONGDO"));
       }
 
       rs.close();
@@ -286,9 +284,9 @@ public class ChecklistDAO implements IChecklistDAO
 
    // 점수리스트 가져오기(0.0 ~ 5.0)   // int를 String으로 변환했어.... 이케하는게 맞나
    @Override
-   public ArrayList<String> scoreList() throws SQLException
+   public ArrayList<ScoreDTO> scoreList() throws SQLException
    {
-      ArrayList<String> result = new ArrayList<String>();
+      ArrayList<ScoreDTO> result = new ArrayList<ScoreDTO>();
 
       Connection conn = dataSource.getConnection();
 
@@ -299,8 +297,16 @@ public class ChecklistDAO implements IChecklistDAO
       ResultSet rs = pstmt.executeQuery();
 
       while (rs.next())
-         result.add(Integer.toString(rs.getInt("SCORENAME")));
+      {
+    	  ScoreDTO dto = new ScoreDTO();
+    	  
+    	  dto.setScoreNo(rs.getInt("SCORENO"));
+    	  dto.setScoreName(rs.getString("SCORENAME"));
+    	  
+    	  result.add(dto);
       
+      }   
+        
       rs.close();
       pstmt.close();
       conn.close();
@@ -316,7 +322,7 @@ public class ChecklistDAO implements IChecklistDAO
 
       Connection conn = dataSource.getConnection();
 
-      String sql = "SELECT RESIDENCENO, RESIDENCENAME FROM RESIDENCE";
+      String sql = "SELECT RES_NO, RESIDENCENAME FROM RESIDENCE";
 
       PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -406,14 +412,15 @@ public class ChecklistDAO implements IChecklistDAO
       return result;
    }
    
-   // 추가 : dongName을 통해 dongNo 얻어내는 메소드..
+   // 추가 : dongName을 통해 dongNo 얻어내는 메소드..  -- 안쓴듯
+   @Override
    public int searchDong(String dongName) throws SQLException
    {
       int result = 0;
       
       Connection conn = dataSource.getConnection();
       
-      String sql = "SELECT DONGNO FROM DONG WHERE DONGNAME = ?";
+      String sql = "SELECT DONG_NO FROM DONG WHERE DONGNAME = ?";
       
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setString(1, dongName);
@@ -428,5 +435,116 @@ public class ChecklistDAO implements IChecklistDAO
       
       return result;
    }
+   
+
+	// 추가 정의!! 모든 동 번호을 가져오기  --안 쓴듯
+	@Override
+	public ArrayList<String> dongs() throws SQLException
+	{
+		ArrayList<String> result = new ArrayList<String>();
+
+		Connection conn = dataSource.getConnection();
+
+		String sql = "SELECT DONGNO FROM DONG";
+
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		ResultSet rs = pstmt.executeQuery();
+
+		while (rs.next())
+			result.add(rs.getString("DONGNO"));
+
+		rs.close();
+		pstmt.close();
+		conn.close();
+
+		return result;
+
+	}
+
+	// 추가정의!! 동번호가 있는지 확인하기 0이면 없고 1이면 있는거임
+	@Override
+	public int checkdong(String dongNo) throws SQLException
+	{
+		int result = 0;
+
+		Connection conn = dataSource.getConnection();
+
+		String sql = "SELECT COUNT(*) AS COUNT FROM DONG WHERE DONG_NO = ?";
+
+		// System.out.println("test3");
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		/*
+		 * System.out.println("------------------------"); System.out.println("1: " +
+		 * dongNo); System.out.println("2.5: " + Long.parseLong(dongNo));
+		 * System.out.println("2: " + Integer.parseInt(dongNo));
+		 * System.out.println("------------------------");
+		 * System.out.println("test3.5"); System.out.println(dongNo);
+		 * System.out.println(dongNo.getClass().getName());
+		 */
+
+		pstmt.setLong(1, Long.parseLong(dongNo));
+		// System.out.println("test4");
+
+		ResultSet rs = pstmt.executeQuery();
+		while (rs.next())
+			result = rs.getInt("COUNT");
+
+		rs.close();
+		pstmt.close();
+		conn.close();
+
+		return result;
+	}
+	
+	// 동 번호로 동 이름 가져오기
+	public String searchDongName(String dongNo) throws SQLException
+	{
+		String result = "";
+
+		Connection conn = dataSource.getConnection();
+
+		String sql = "SELECT DONGNAME FROM DONG WHERE DONG_NO = ?";
+
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setLong(1, Long.parseLong(dongNo));
+
+		ResultSet rs = pstmt.executeQuery();
+		while (rs.next())
+			result = rs.getString("DONGNAME");
+
+		rs.close();
+		pstmt.close();
+		conn.close();
+
+		return result;
+		
+	}
+	
+	// dongNo로 guName 알아내기
+	@Override
+	public String searchGuName(int dongNo) throws SQLException
+	{
+		String result = "";
+		
+		Connection conn = dataSource.getConnection();
+		
+		String sql = "SELECT GUNAME FROM GU WHERE GU_NO = (SELECT GU_NO FROM DONG WHERE DONG_NO = ?)";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, dongNo);
+		
+		ResultSet rs = pstmt.executeQuery();
+		while (rs.next())
+			result = rs.getString("GUNAME");
+
+		rs.close();
+		pstmt.close();
+		conn.close();
+		
+		return result;
+	}
+
 
 }
