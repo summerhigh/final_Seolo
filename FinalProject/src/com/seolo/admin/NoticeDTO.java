@@ -16,12 +16,16 @@ import java.util.Date;
 // title	제목
 // content	내용
 // nodate	작성일시	
+// name     공지사항 분류명 - 카테고리 출력용
 
 public class NoticeDTO
 {
 	private int no_no, nos_no;
 	private String ad_id, nos_name, title, content;
-	private Date nodate;
+	//private Date nodate;
+	private String nodate;
+	private String name;
+	
 	
 	// getter/setter 구성
 	public int getNo_no()
@@ -72,6 +76,8 @@ public class NoticeDTO
 	{
 		this.content = content;
 	}
+	
+	/*
 	public Date getNodate()
 	{
 		return nodate;
@@ -79,6 +85,25 @@ public class NoticeDTO
 	public void setNodate(Date nodate)
 	{
 		this.nodate = nodate;
+	}
+	*/
+	
+	public String getNodate()
+	{
+		return nodate;
+	}
+	public void setNodate(String nodate)
+	{
+		this.nodate = nodate;
+	}
+
+	public String getName()
+	{
+		return name;
+	}
+	public void setName(String name)
+	{
+		this.name = name;
 	}
 	
 	

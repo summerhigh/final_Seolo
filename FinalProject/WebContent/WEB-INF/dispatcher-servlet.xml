@@ -31,21 +31,20 @@
 	<!-- ==> 『SqlSessionFactoryBean』 등록 -->
 	<!-- ④ mybatis 등록 과정에서 생겨나는 추가 코드 -->
 	<!-- ※ mybatis를 사용하기 위한 환경 설정 추가 2 : mapperLocations -->
-	<!-- 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="localDataSource"></property>
 		<property name="mapperLocations" value="classpath:com/seolo/mybatis/mapper/*.xml"></property>
 	</bean>
-	 -->
+	
 	
 	<!-- ⑤ sqlSession 등록 과정에서 생겨나는 추가 코드 -->
 	<!-- ※ mybatis를 사용하기 위한 환경 설정 추가 3 : sqlSession -->
 	<!-- ==> 『SqlSessionTemplate』 등록 -->
-	<!-- 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
-	 -->
+	
+	
 	
 	<!-- dao 등록 -->
 	<bean id="personalDAO" class="com.seolo.personal.PersonalDAO">
@@ -54,9 +53,6 @@
    
 	<!-- 찬호 회원가입 아이디 비밀번호 찾기 관련 컨트롤러 등록//////////////////////////////////////////////////////////////// -->
 	
-	<!-- ★ 회원가입 약관 컨트롤러 등록 -->
-	<bean name="/createagreement.action" class="com.seolo.controller.CreateAgreementController">
-	</bean>
 
 	<!-- 회원가입폼 컨트롤러 등록 -->
 	<bean name="/personalinsertform.action" class="com.seolo.personal.PersonalInsertFormController">
@@ -67,17 +63,17 @@
 		<property name="dao" ref="personalDAO"></property>
 	</bean>
 	
-	<!-- 찬호 수정 : 회원가입 아이디 ajax -->
+	<!-- ★ 찬호 수정 : 회원가입 아이디 ajax -->
 	<bean name="/confirmId.action" class="com.seolo.personal.ConfirmIdController">
 		<property name="dao" ref="personalDAO"></property>
 	</bean>	
 	
-	<!-- 소연 수정 : 회원가입 닉네임 ajax -->
+	<!-- ★ 소연 수정 : 회원가입 닉네임 ajax -->
 	<bean name="/confirmnickname.action" class="com.seolo.personal.ConfirmNickController">
 		<property name="dao" ref="personalDAO"></property>
 	</bean>
 
-	<!-- 찬호 수정 : 회원가입 전화번호 ajax -->
+	<!-- ★ 찬호 수정 : 회원가입 전화번호 ajax -->
 	<bean name="/confirmtel.action" class="com.seolo.personal.ConfirmTelController">
 		<property name="dao" ref="personalDAO"></property>
 	</bean>
@@ -113,7 +109,7 @@
 		
 	<!-- ////////////////////////////////////////////////////////////////  회원가입 아이디 비밀번호 찾기 관련 컨트롤러 등록 -->
 	
-   <!-- 소연 : 탈퇴 -->
+   <!-- ★ 소연 : 탈퇴 -->
     <bean name="/withdrawalconfirm.action" class="com.seolo.personal.WithdrawalConfirmController">
         <property name="dao" ref="personalDAO"></property>
     </bean>
@@ -171,12 +167,9 @@
    		<property name="dao" ref="checkDAO"></property>
    </bean> -->
 
-   
    <bean name="/ajax.action" class="com.seolo.check.AddressAjaxController">
    		<property name="dao" ref="checkDAO"></property>
    </bean>
-   
-
    
    <!-- 
    다영/다정

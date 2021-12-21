@@ -46,7 +46,7 @@
     <div class="row">
     <div class="col-md-4">
         <h2>공지사항</h2><br>
-        <p><a class="btn btn-primary" href="<%=cp%>/NoticeList.jsp" role="button">조회하기 »</a></p>
+        <p><a class="btn btn-primary" href="noticelist.action" role="button">조회하기 »</a></p>
       </div>
       <div class="col-md-4">
         <h2>서비스 소개</h2><br>

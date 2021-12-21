@@ -30,12 +30,23 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
    
    <!-- 공지 분류 -->
    <ul class="nav nav-tabs page-header-tabs" id="categori" role="tablist">
-       <li class="nav-item">
+       <!-- <li class="nav-item">
          <a class="nav-link " href="">공지 사항</a>
-       </li>
+       </li> -->
+       <%-- 
+       <c:forEach var="list" items="${list }">
        <li class="nav-item">
-         <a class="nav-link " href="">점검 알림</a>
+         <a class="nav-link " href="">${list.nos_name}</a>
        </li>
+       </c:forEach>
+         --%>
+         
+       <c:forEach var="catelist" items="${catelist }">
+       <li class="nav-item">
+         <a class="nav-link " href="">${catelist.name }</a>
+       </li>
+       </c:forEach> 
+       
     </ul>
    
    
@@ -50,7 +61,19 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
                <th>날짜</th>
             </tr>
          </thead>
+ 
          <tbody>
+ 			<c:forEach var="list" items="${list }">
+            <tr>
+               <th scope="row">${list.no_no }</th>
+               <td>[${list.nos_name }]</td>
+               <td>${list.title }</td>
+               <td>관리자</td>
+               <td>${list.nodate }</td>
+            </tr>
+            </c:forEach>
+         </tbody>
+            <!-- 
             <tr>
                <th scope="row">35</th>
                <td>[공지사항]</td>
@@ -121,14 +144,14 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
                <td>관리자1</td>
                <td>2021-12-13</td>
             </tr>
-         </tbody>
+         </tbody> -->
       </table>
       <br>
       
       <!-- 글쓰기 버튼 -->
       <div class="d-flex justify-content-end">
          <!-- 이 글쓰기 버튼은 관리자에게만 나타나는 버튼! -->
-               <button type="submit" class="btn btn-primary">글쓰기</button>
+               <button type="button" class="btn btn-primary" onclick="location.href='writenotice.action'">글쓰기</button>
            </div>
       <br><br>
          
