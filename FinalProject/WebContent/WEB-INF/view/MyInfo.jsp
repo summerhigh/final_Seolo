@@ -82,27 +82,27 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 				  <tbody>
 				    <tr>
 				      <th scope="row" class="col-md-2 table-secondary">사용자 ID</th>
-				      <td class="col-md-5">Mark</td>
+				      <td class="col-md-5">${user.pe_Id }</td>
 				    </tr>
 				    <tr>
 				      <th scope="row" class="col-md-2 table-secondary">사용자 이름</th>
-				      <td>Jacob</td>
+				      <td>${user.name }</td>
 				    </tr>
 				    <tr>
 				      <th scope="row" class="col-md-2 table-secondary">닉네임</th>
-				      <td>Larry</td>
+				      <td>${user.nickName }</td>
 				    </tr>
 				    <tr>
 				      <th scope="row" class="col-md-2 table-secondary">휴대전화</th>
-				      <td>Larry</td>
+				      <td>${user.tel }</td>
 				    </tr>
 				    <tr>
 				      <th scope="row" class="col-md-2 table-secondary">이메일</th>
-				      <td>Larry</td>
+				      <td>${user.email }</td>
 				    </tr>
 				    <tr>
 				      <th scope="row" class="col-md-2 table-secondary">주소</th>
-				      <td>Larry</td>
+				      <td>${user.roadAddr } ${user.detailAddr }</td>
 				    </tr>
 				  </tbody>
 			</table>
