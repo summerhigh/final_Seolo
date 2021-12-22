@@ -26,7 +26,7 @@ public class CheckFirstInsertFormController implements Controller
 	{
 		ModelAndView mav = new ModelAndView();
 		
-		ArrayList<String> scores = new ArrayList<String>();
+		ArrayList<ScoreDTO> scores = new ArrayList<ScoreDTO>();
 		ArrayList<String> residences = new ArrayList<String>();
 		
 		try

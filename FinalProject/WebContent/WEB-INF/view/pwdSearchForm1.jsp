@@ -36,6 +36,52 @@
 
 <!-- Custom styles for this template -->
 <link href="<%=cp%>/css/floating-labels.css" rel="stylesheet">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	$(function()
+	{
+		$("#id").on("change keyup paste", function()
+		{
+			var RegExp = /^[a-zA-Z0-9]{4,12}$/; //id와 유효성 검사 정규식
+			var id = $("#id").val();			
+			
+			// value값이 없을경우
+			if ($("#id").val() == "")
+			{
+				$("#idErrMsg").html("");
+				return;
+			}
+			
+	        if(!RegExp.test(id)){ //아이디 유효성검사
+				$("#idErrMsg").html("4~12자의 영문 대소문자와 숫자로만 입력하여 주세요.");
+				$("#idErrMsg").css({"color" :"red", "font-size" : "small"});
+	            return;
+	        }
+	        $("#idErrMsg").html("");			
+		});
+		
+		$("#submitBtn").click(function()
+		{
+			 
+			if ($("#id").val() == "")
+			{
+				$("#idErrMsg").text("아디를 입력해주세요");
+				$("#idErrMsg").css({"color" :"red", "font-size" : "small"});
+				$("#id").focus();
+				return false;
+			}
+			
+			$("#pwdSearchForm").submit();
+		});
+		
+		
+		
+	});
+
+
+
+</script>
 
 </head>
 <body>
@@ -52,10 +98,11 @@
 		</div>
 		
 		<div class="form-label-group">
-			<input type="text" id="id" name="id" class="form-control" required autofocus>
+			<input type="text" id="id" name="id" class="form-control" maxlength="12">
 			<label for="id">아이디</label>
+			<span id="idErrMsg"></span>
 		</div>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">다음</button>
+		<button class="btn btn-lg btn-primary btn-block" id="submitBtn">다음</button>
 		
 		<div class="text-center mb-4">
 			<p class="mt-5 mb-3 text-muted">아이디가 기억나지 않는다면? <a href="idsearchform.action">아이디 찾기</a></p>

@@ -26,10 +26,141 @@ crossorigin="anonymous">
 	{
 		// 인증번호 발송 flag변수 선언
 		var flagIdn = false;
-		
 		// 아이디 중복 flag 변수 선언
-		
 		var idFlag = false;
+		
+		
+		
+		// 아이디 유효성검사 ID는 (4~12자의 영문 대소문자와 숫자로만 입력)
+		$("#id").on("change keyup paste", function()
+		{
+			var RegExp = /^[a-zA-Z0-9]{4,12}$/; //id와 유효성 검사 정규식
+			var id = $("#id").val();			
+			
+			// value값이 없을경우
+			if ($("#id").val() == "")
+			{
+				$("#idErrMsg").html("");
+				return;
+			}
+			
+	        if(!RegExp.test(id)){ //아이디 유효성검사
+				$("#idErrMsg").html("4~12자의 영문 대소문자와 숫자로만 입력하여 주세요.");
+				$("#idErrMsg").css("color", "red");
+	            return;
+	        }
+	        $("#idErrMsg").html("");
+		});
+		
+		// 이름 유효성 검사 (특수문자,영어,숫자는 사용할수 없음. 최소 2~10자 이상)
+		$("#name").on("change keyup paste", function()
+		{
+			var n_RegExp = /^[가-힣]{2,10}$/; //이름 유효성검사 정규식
+			var name = $("#name").val();	
+			
+			// value값이 없을경우
+			if ($("#name").val() == "")
+			{
+				$("#nameErrMsg").html("");
+				return;
+			}
+			
+	        if(!n_RegExp.test(name)){  //아이디 유효성검사
+				$("#nameErrMsg").html("2~10자의 한글만 입력하여주세요.");
+				$("#nameErrMsg").css("color", "red");
+	            return;
+	        }
+	        $("#nameErrMsg").html("");
+        
+		});
+		
+		// 닉네임 유효성 검사 (숫자, 영어, 한국어와 최소 2~10자 이상)
+		$("#nickName").on("change keyup paste", function()
+		{
+			var ni_RegExp = /^[가-힣a-zA-Z0-9._-]{2,10}\$/;
+			               // /^[가-힣a-zA-Z0-9._-] 언더스코어 뺌
+			var nickName = $("#nickName").val()
+			
+			// value값이 없을경우
+			if ($("#nickName").val() == "")
+			{
+				$("#nickErrMsg").html("");
+				return;
+			}
+			               
+			if (!ni_RegExp.test(nickName))
+			{
+				$("#nickErrMsg").html("2~10자의 숫자,영어,한국어로만 입력하여 주세요.");
+				$("#nickErrMsg").css("color", "red");
+				$("#nickOkMsg").html("");
+				return;
+			}
+			
+			$("#nickErrMsg").html("");
+			$("#nickOkMsg").html("");
+			
+			confirmNick();
+		});
+		
+		// 비밀번호 유효성 검사 (8~12자의 하나 이상의 문자와 숫자 및 특수문자를 포함)
+		$("#password").on("change keyup paste", function()
+		{
+			var pw_RegExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$/;
+			var pw = $("#password").val();
+			
+			// value값이 없을경우
+			if ($("#password").val() == "")
+			{
+				$("#pwErrMsg").html("");
+				return;
+			}
+			
+			if (!pw_RegExp.test(pw))
+			{
+				$("#pwErrMsg").html("8~12자의 하나 이상의 문자와 숫자 및 특수문자를 포함하여 입력하여 주세요");
+				$("#pwErrMsg").css("color", "red");
+				return;
+			}
+			$("#pwErrMsg").html("");
+
+		});
+		
+		// 이메일 유효성 검사 (이메일 형식)
+		$("#email").on("change keyup paste", function()
+		{		
+			var e_RegExp = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+			var email = $("#email").val();
+			
+			// value값이 없을경우
+			if ($("#email").val() == "")
+			{
+				$("#emailErrMsg").html("");
+				return;
+			}
+			
+			if (!e_RegExp.test(email))
+			{
+				$("#emailErrMsg").html("이메일 형식이 올바르지 않습니다.");
+				$("#emailErrMsg").css("color", "red");
+				return;
+			}
+			$("#emailErrMsg").html("");				
+			
+
+
+			
+		});
+		
+		// 전화번호 유효성 검사
+		$("#tel").on("change keyup paste", function()
+		{
+			$("#telErrMsg").html("");
+			//전화번호 중복확인
+			confirmTel();
+			
+		});
+	
+		
 		// 아이디 중복확인 ajax
 		$("#idCheckBtn").click(function()
 		{
@@ -50,17 +181,7 @@ crossorigin="anonymous">
 			
 		
 		});
-		
-		// 닉네임 중복확인 ajax
-		// $.post(요청 주소, 전송 데이터, 응답액션처리)
-		$("#nickName").on("change keyup paste", function()
-		{
-			$("#nickErrMsg").html("");
-			$("#nickOkMsg").html("");
 			
-			confirmNick();
-		});
-		
 		
 		// 인증번호 전송
 		$("#idnBtn").click(function()
@@ -93,6 +214,7 @@ crossorigin="anonymous">
 			}
 		});
 		
+
 		// 비밀번호 확인
 		$("#password2").on("change keyup paste", function()
 		{
@@ -106,22 +228,12 @@ crossorigin="anonymous">
 			}
 		})
 		
+		
+		
 		// submit 전 유효성검사 → submit
 		$("#submitBtn").click(function()
 		{
-					
-			//  전화번호 중복처리--------------------------
-			let result = confirmTel();
-			
-			if (!result)
-			{
-				$("#telErrMsg").html("이미 가입했거나, 현재 가입이 불가능한 번호입니다.");
-				$("#tel").focus();
-				return;
-			}
-			//--------------------------전화번호 중복처리
-			
-		
+
 			if ($("#nickErrMsg").text()!="" || $("#idnErrMsg").text()!="" || $("#pw2ErrMsg").text()!="" )
 			// ①닉네임 중복일 때, ②인증번호 입력 안했는데/잘못 입력했는데,  ③비밀번호 확인 제대로 입력 안했을 때
 			// 가입 못하게 막음
@@ -209,7 +321,7 @@ crossorigin="anonymous">
 		});
 		
 		
-		// 아이디 ajax
+		// 아이디 ajax함수
 		function confrimId()
 		{
 			$.post("confirmId.action", {id : $("#id").val() }, function(data)
@@ -223,55 +335,39 @@ crossorigin="anonymous">
 				}				
 				else
 				{
-					$("#idErrMsg").html("사용 가능한 아이디 입니다.");
+					$("#idErrMsg").html("사용 가능한 아이디입니다.");
 					$("#idErrMsg").css("color", "blue");
 				}
 				
 			});
 		}
 		
-		// 전화번호 ajax
+		// 전화번호 ajax함수
 		function confirmTel()
 		{
-			 
-			let idFlag = true;
+			tel = $("#tel").val();
+			tel = tel.replaceAll("-","");
 			
-			$.ajax({
-		        url : "confirmtel.action",
-		        type : 'POST',					
-		        async: false,
-		        data : {tel : $("#tel").val()},
-		        dataType : "json",
-		        success : function(data){
-		        	
-		        	let perResult = data.perResult;
-		        	let withResult = data.withResult;
-		        	
-		        	if (perResult == 1 || withResult == 1)
-					{
-		        		idFlag = false;
-		        		
-					}
-		        	
-		        }
+			$.post("confirmtel.action", {tel : tel}, function(data)
+			{
+				var result = data;
+				
+				if (result < 1)
+				{
+					$("#telErrMsg").html("가입이 가능한 번호입니다.");
+					$("#telErrMsg").css("color", "blue");
+				}
+				else
+				{
+					$("#telErrMsg").html("이미 가입했거나, 현재 가입이 불가능한 번호입니다.");
+					$("#telErrMsg").css("color", "red");					
+				}
+				
 			});
-			
-			return idFlag;
 		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		// 닉네임 ajax
+		// 닉네임 ajax함수
 		function confirmNick()
 		{
 			if ($("#nickName").val()=="")
@@ -299,26 +395,7 @@ crossorigin="anonymous">
 			});
 		}
 		
-		
-		
-		
-		
-		
-		
 	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -408,7 +485,7 @@ crossorigin="anonymous">
                  -->
                 <tr>
                   <th><span>아이디</span></th>
-                  <td><input type="text" class="send_number" placeholder="아이디를 입력하세요." id="id" name="id">
+                  <td><input type="text" class="send_number" placeholder="4~12자의 영문 대소문자와 숫자로만 입력해주세요." id="id" name="id" maxlength="12">
                       <button type="button" class="btn btn-secondary" id="idCheckBtn"><font size="1.5">아이디 중복확인</font>
                       </button>
                       <span id="idErrMsg" class="errMsg"></span>
@@ -416,7 +493,7 @@ crossorigin="anonymous">
                 </tr>
                 <tr>
                   <th><span>이름</span></th>
-                  <td><input type="text" id="name" name="name" class="name" placeholder="이름을 입력하세요."></td>
+                  <td><input type="text" id="name" name="name" class="name" placeholder="2~10자의 한글만 입력해주세요." maxlength="10"></td>
                 </tr>
                 <tr>
                 	<th></th>
@@ -426,7 +503,7 @@ crossorigin="anonymous">
                 <tr>
                   <th><span>닉네임</span></th>
                   <td>
-					<input type="text" class="nickName" placeholder="닉네임을 입력하세요." id="nickName" name="nickName">
+					<input type="text" class="nickName" placeholder="2~10자의 숫자,영어,한국어로만 입력해주세요." id="nickName" name="nickName" maxlength="10">
                   </td>
                 </tr>
                 <tr>
@@ -435,7 +512,7 @@ crossorigin="anonymous">
                 </tr>
                 <tr>
                   <th><span>비밀번호</span></th>
-                  <td><input type="password" id="password" name="password" class="password" placeholder="비밀번호를 입력하세요."></td>
+                  <td><input type="password" id="password" name="password" class="password" placeholder="8~12자의 하나 이상의 문자와 숫자 및 특수문자를 포함하여 입력해주세요." maxlength="12"></td>
                 </tr>
                 <tr>
                 	<th></th>
@@ -443,7 +520,7 @@ crossorigin="anonymous">
                 </tr>
                 <tr>
                   <th><span>번호확인</span></th>
-                  <td><input type="password" id="password2" class="password2" placeholder="비밀번호를 한번 더 입력해주세요."></td>
+                  <td><input type="password" id="password2" class="password2" placeholder="비밀번호를 한번 더 입력해주세요." maxlength="12"></td>
                 </tr>
                  <tr>
                 	<th></th>
@@ -460,8 +537,8 @@ crossorigin="anonymous">
                 </tr>  
                 <tr>
                   <th><span>휴대폰 번호</span></th>
-                  <td><input type="text" id="tel" name="tel" class="phone" placeholder="전화번호를 입력하세요."
-                  	  onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+                  <td><input type="text" id="tel" name="tel" class="phone" placeholder="- 없이 전화번호를 입력하세요." maxlength="11"
+                  onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
                   </td>
                 </tr>
                 <tr>

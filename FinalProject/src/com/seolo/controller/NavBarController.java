@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class NavBarController
 {
-	@RequestMapping(value = "/nav.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/nav.action", method = {RequestMethod.GET, RequestMethod.POST})
 	public String navBar(Model model)
 	{
 		

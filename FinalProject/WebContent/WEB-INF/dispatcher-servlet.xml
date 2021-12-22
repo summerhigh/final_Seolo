@@ -53,6 +53,9 @@
    
 	<!-- 찬호 회원가입 아이디 비밀번호 찾기 관련 컨트롤러 등록//////////////////////////////////////////////////////////////// -->
 	
+	<!-- ★ 회원가입 약관 컨트롤러 등록 -->
+	<bean name="/createagreement.action" class="com.seolo.controller.CreateAgreementController">
+	</bean>
 
 	<!-- 회원가입폼 컨트롤러 등록 -->
 	<bean name="/personalinsertform.action" class="com.seolo.personal.PersonalInsertFormController">
@@ -167,6 +170,15 @@
    		<property name="dao" ref="checkDAO"></property>
    </bean> -->
 
+   <bean name="/ajax.action" class="com.seolo.check.AddressAjaxController">
+   		<property name="dao" ref="checkDAO"></property>
+   </bean>
    
+   <!-- 
+   다영/다정
+   <bean name="/mainadmin.action" class="com.seolo.controller.AdminController">
+		<property name="dao" ref=""></property>
+   </bean>
+    -->
    
 </beans>
