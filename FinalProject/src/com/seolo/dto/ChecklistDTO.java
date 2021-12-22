@@ -1,4 +1,4 @@
-package com.seolo.check;
+package com.seolo.dto;
 
 import java.util.ArrayList;
 
@@ -13,14 +13,18 @@ public class ChecklistDTO
 	private String residenceName, dongName, guName;
 	
 	//-- 주요 속성
-	private String checkDate, title, roadAddr, good, bad, etc, place;
-	private int mart, laundry, hospital, food, culture, park, mWolse, deposit, mJeonse, mMaemae, time;
+	private String checkDate, title, roadAddr, good, bad, etc;
+	private int mart, laundry, hospital, food, culture, park, mWolse, deposit, mJeonse, mMaemae;
 	private ArrayList<String> stickerList;
 
 	//-- 점수: 반려동물, 치안, 대중교통, 교통혼잡도
 	private int pet_scoreNo, security_scoreNo, transport_scoreNo, honjap_scoreNo;
 	//-- 코멘트: 비밀, 생활편의시설, 반려동물, 치안, 대중교통, 교통혼잡도
 	private String secret_co, conv_co, pet_co, security_co, transport_co, honjap_co;
+	
+	
+	// 위도, 경도, 시간, 장소(나의 출근지까지의 시간) 빼버렸음.
+	// checkDate도 지워도 되는건가..? sysdate하면 될 거 같긴 한데 일단 냅둬보자..
 	
 	
 	// setter, getter 구성
@@ -136,14 +140,6 @@ public class ChecklistDTO
 	{
 		this.etc = etc;
 	}
-	public String getPlace()
-	{
-		return place;
-	}
-	public void setPlace(String place)
-	{
-		this.place = place;
-	}
 	public int getMart()
 	{
 		return mart;
@@ -223,14 +219,6 @@ public class ChecklistDTO
 	public void setmMaemae(int mMaemae)
 	{
 		this.mMaemae = mMaemae;
-	}
-	public int getTime()
-	{
-		return time;
-	}
-	public void setTime(int time)
-	{
-		this.time = time;
 	}
 	public ArrayList<String> getStickerList()
 	{
@@ -320,5 +308,7 @@ public class ChecklistDTO
 	{
 		this.honjap_co = honjap_co;
 	}
+	
+	
 
 }
