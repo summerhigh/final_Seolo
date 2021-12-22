@@ -5,9 +5,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 
 import javax.sql.DataSource;
+
+import com.seolo.dto.ChecklistDTO;
 
 public class ChecklistDAO implements IChecklistDAO
 {
@@ -33,52 +36,83 @@ public class ChecklistDAO implements IChecklistDAO
       // mwolse, deposit, mjeonse, mmaemae, place, time, p_comments, p_scoreno, se_comments, se_scoreno
       // t_comments, t_scoreno, h_comments, h_scoreno
 
-      String sql = "{call PRC_CHECKLIST_INSERT(?,?,SYSDATE,?,?,?,?,?,? ,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,? ,?,?,?,?)}";
+      String sql = "{call PRC_CHECKLIST_INSERT(?,SYSDATE,?,?,?,?,?,?,? ,?,?,?,?,?,?,?,?,?,?, ?,?,?,?,?,?,?,?,?,? ,?,?,?,?)}";
 
       CallableStatement cstmt = conn.prepareCall(sql);
 
       // cstmt.setInt(1, dto.getCheckNo()); 체크고유번호는 시퀀스
+      /*
+      if(dto.getAcNo() == null)
+    	  cstmt.setNull(1, Types.INTEGER);	
+      else
+    	  cstmt.setInt(1, dto.getAcNo());
+      
+      if(dto.getResNo() == null)
+    	  cstmt.setNull(2, Types.I);	
+      else
+    	  cstmt.setInt(2, dto.getResNo());
+      
+      if(dto.getTitle() == null)
+    	  cstmt.setNull(2, Types.S);	
+      else
+    	  cstmt.setString(2, dto.getTitle());
+      
+      if(dto.getRoadAddr() == null)
+    	  cstmt.setNull(2, Types.INTEGER);	
+      else
+    	  cstmt.setInt(2, dto.getRoadAddr());
+      
+      if(dto.getResNo() == null)
+    	  cstmt.setNull(2, Types.INTEGER);	
+      else
+    	  cstmt.setInt(2, dto.getResNo());*/
+      
+      /*
       cstmt.setInt(1, dto.getAcNo());
       cstmt.setInt(2, dto.getResNo());
       // cstmt.setString(3, dto.getCheckDate()); 작성일시도 sysdate하기로함
       cstmt.setString(3, dto.getTitle());
       cstmt.setString(4, dto.getRoadAddr());
       cstmt.setInt(5, dto.getDongNo());
-      // cstmt.setString(6, dto.getWido());
-      // cstmt.setString(7, dto.getGyeongdo());
+      
+      // 위도경도 나중에 지울거지만 일단 null로 넣어주기
+      cstmt.setString(6, dto.getWido());
+      cstmt.setString(7, dto.getGyeongdo());
      
-      cstmt.setString(6, dto.getGood());
-      cstmt.setString(7, dto.getBad());
-      cstmt.setString(8, dto.getEtc());
+      cstmt.setString(8, dto.getGood());
+      cstmt.setString(9, dto.getBad());
+      cstmt.setString(10, dto.getEtc());
       
-      cstmt.setString(9, dto.getSecret_co());
-      cstmt.setInt(10, dto.getMart());
-      cstmt.setInt(11, dto.getLaundry());
-      cstmt.setInt(12, dto.getHospital());
-      cstmt.setInt(13, dto.getFood());
-      cstmt.setInt(14, dto.getCulture());
-      cstmt.setInt(15, dto.getPark());
-      cstmt.setString(16, dto.getConv_co());
+      cstmt.setString(11, dto.getSecret_co());
+      cstmt.setInt(12, dto.getMart());
+      cstmt.setInt(13, dto.getLaundry());
+      cstmt.setInt(14, dto.getHospital());
+      cstmt.setInt(15, dto.getFood());
+      cstmt.setInt(16, dto.getCulture());
+      cstmt.setInt(17, dto.getPark());
+      cstmt.setString(18, dto.getConv_co());
 
-      cstmt.setInt(17, dto.getmWolse());
-      cstmt.setInt(18, dto.getDeposit());
-      cstmt.setInt(19, dto.getmJeonse());
-      cstmt.setInt(20, dto.getmMaemae());
+      cstmt.setInt(19, dto.getmWolse());
+      cstmt.setInt(20, dto.getDeposit());
+      cstmt.setInt(21, dto.getmJeonse());
+      cstmt.setInt(22, dto.getmMaemae());
       
-      cstmt.setString(21, dto.getPlace());
-      cstmt.setInt(22, dto.getTime());
+      // 나중에 지울거지만 일단은 null로 넣어주기
+      cstmt.setString(23, dto.getPlace());
+      cstmt.setInt(24, dto.getTime());
       
-      cstmt.setString(23, dto.getPet_co());
-      cstmt.setInt(24, dto.getPet_scoreNo());
+      cstmt.setString(25, dto.getPet_co());
+      cstmt.setInt(26, dto.getPet_scoreNo());
       
-      cstmt.setString(25, dto.getSecurity_co());
-      cstmt.setInt(26, dto.getSecurity_scoreNo());
+      cstmt.setString(27, dto.getSecurity_co());
+      cstmt.setInt(28, dto.getSecurity_scoreNo());
 
-      cstmt.setString(27, dto.getTransport_co());
-      cstmt.setInt(28, dto.getTransport_scoreNo());
+      cstmt.setString(29, dto.getTransport_co());
+      cstmt.setInt(30, dto.getTransport_scoreNo());
       
-      cstmt.setString(29, dto.getHonjap_co());
-      cstmt.setInt(30, dto.getHonjap_scoreNo());
+      cstmt.setString(31, dto.getHonjap_co());
+      cstmt.setInt(32, dto.getHonjap_scoreNo());
+      */
 
       result = cstmt.executeUpdate();
 

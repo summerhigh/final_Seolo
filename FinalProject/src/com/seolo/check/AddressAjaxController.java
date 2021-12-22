@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
+import com.seolo.idao.IChecklistDAO;
+
 public class AddressAjaxController implements Controller
 {
 	private IChecklistDAO dao;
