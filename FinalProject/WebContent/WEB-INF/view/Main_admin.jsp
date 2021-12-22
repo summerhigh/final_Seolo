@@ -63,11 +63,11 @@
 	<div class="row">
       <div class="col-md-4">
         <h2>회원 리스트</h2><br>
-        <p><a class="btn btn-secondary" href="<%=cp%>/AccountList.jsp" role="button">조회하기 »</a></p>
+        <p><a class="btn btn-secondary" href="accountlist.action" role="button">조회하기 »</a></p>
       </div>
       <div class="col-md-4">
         <h2>탈퇴회원 리스트</h2><br>
-        <p><a class="btn btn-secondary" href="<%=cp%>/WithdrawalAccountList.jsp" role="button">조회하기 »</a></p>
+        <p><a class="btn btn-secondary" href="withdrawalaccountlist.action" role="button">조회하기 »</a></p>
       </div>
       <div class="col-md-4">
         <h2>신고처리</h2><br>

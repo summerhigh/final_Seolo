@@ -55,22 +55,41 @@
 	<insert id="add">
 		INSERT INTO NOTICE(NO_NO, AD_ID, NOS_NO, TITLE, CONTENT, NODATE)
 		VALUES(NOTICESEQ.NEXTVAL, 'admin2', #{nos_no}, #{title}, #{content}, SYSDATE)
-	<!-- VALUES(NOTICESEQ.NEXTVAL, 관리자아이디, 카테고리넘버, #{title}, #{content}, SYSDATE) -->
-	<!-- @@@ 관리자 아이디를 세션으로 받아와서 넣는 법...!! -->
 	</insert>
-
+	
+	<!-- 게시물 조회 -->
+	<select id="view" resultType="com.seolo.admin.NoticeDTO">
+		SELECT NO_NO, TITLE, CONTENT, TO_CHAR(NODATE, 'YYYY-MM-DD') AS NODATE
+		FROM NOTICE
+		WHERE NO_NO = #{no_no}
+	</select>
+	
+	<!-- 게시물 수정 -->
+	<!-- 	
 	<update id="modify">
+		
 		UPDATE NOTICE
-		SET TITLE = ?
-		,CONTENT = ?
-		,NOS_NO = ?
-		WHERE NO_NO= ?
+		SET 
+		TITLE = #{title}
+		,CONTENT = #{content}
+		,NOS_NO = #{nos_no}
+		WHERE NO_NO=#{no_no}
 	</update>
-
+ 	-->
+ 	<update id="modify">
+ 		UPDATE NOTICE
+		SET 
+		TITLE = #{title}
+		,CONTENT = #{content}
+		,NOS_NO = #{nos_no}
+		WHERE NO_NO=#{no_no}
+ 	</update>
+ 
+ 
 	<delete id="remove">
 		DELETE
 		FROM NOTICE
-		WHERE NO_NO=?
+		WHERE NO_NO=#{no_no}
 	</delete>
 	
 	<!--@@@ 분류 기능 -->
