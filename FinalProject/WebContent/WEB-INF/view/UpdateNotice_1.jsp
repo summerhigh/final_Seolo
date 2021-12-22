@@ -17,16 +17,8 @@ String cp = request.getContextPath();
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
-<title>WriteNotice.jsp</title>
-<style>
-body {
-	padding-top: 70px;
-	padding-bottom: 30px;
-}
-</style>
+<title>UpdateNotice.jsp</title>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/jquery-ui.js"></script>
 
 <script type="text/javascript">
 	
@@ -37,31 +29,32 @@ body {
       $("#submitBtn").click(function()
 	{
     	 // 실행 확인
-    	 //alert("버튼이 클릭되었습니다.")
+    	 alert("버튼이 클릭되었습니다.")
+    	 alert($("title").val())
     	 
 		// 데이터 검사(누락된 입력값이 있는지 없는지에 대한 여부 확인)
-		if( $("#title").val()=="" || $("#content").val()=="" || $("#nos_no").val()=="-1")
+		if( $("#title").val()=="" || $("#content").val()=="" || $("#title").val()=="-1")
 		{
-			alert("필수 입력 항목이 누락되었습니다. 다시 입력해 주세요.");
+			//$("#err").html("필수 입력 항목이 누락되었습니다.");
+			//$("#err").css("display", "inline");
+			alert("필수 항목이 누락되었습니다.")
 			return;					//-- submit 액션 처리 중단
 		}
 		
 		// 폼 submit 액션 처리 수행
-		$("#noticeinsertform").submit();
-
+		$("#noticeUpdateForm").submit();
+		
 	});
       
    });
-
+   
+ //$("#cateSelect").val("${view.nos_no }").prop("selected", true);
    
 </script>
 
-
-
-</head>
-
 <body>
 	<!-- 메뉴 영역 -->
+	<!-- 커밋용 주석 -->
 	<div>
 		<c:import url="MenuNavbar_admin.jsp"></c:import>
 	</div>
@@ -70,21 +63,19 @@ body {
 	<br>
 	<br>
 	<article>
-	
 		<div class="container" role="main">
-			<h2>공지사항 작성</h2>
+			<h2>공지사항 수정</h2>
 			<br>
-			
-			<form name="noticeinsertform" id="noticeinsertform" role="form" method="post" action="noticeinsert.action">
+			<form action="noticeupdate.action" name="noticeUpdateForm" id="noticeUpdateForm" role="form" method="post" >
 				<div class="mb-3">
 					<label for="title">제목</label> <input type="text"
-						class="form-control" name="title" id="title"
-						placeholder="제목을 입력하세요">
+						class="form-control" name="title" id="title" value="${view.title }">
 				</div>
 
 				<div class="mb-3">
 					<label for="reg_id">분류</label> 
 					<select class="form-control" name="nos_no" id="nos_no">
+					<%-- 	<select class="form-control" name="nos_no" id="nos_no" value="${view.nos_no }"> --%>
 						<option value="-1">========</option>
 						<option value="1">공지사항</option>
 						<option value="2">점검알림</option>
@@ -94,21 +85,25 @@ body {
 				<div class="mb-3">
 					<label for="content">내용</label>
 					<textarea class="form-control" rows="13" name="content" id="content"
-						placeholder="내용을 입력하세요"></textarea>
+					> ${view.content }</textarea>
 				</div>
 			
 			<br>
 			<div align="right">
 				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 				<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button> -->
-				<!-- button이 폼 안에 들어가있어야 내용 보내기 가능! -->
-				<button type="button" class="btn btn-primary" id="submitBtn">등록하기</button>
-				<button type="button" class="btn btn-secondary" onclick="location.href='noticelist.action'">취소하기</button>
+				<button class="btn btn-primary" id="submitBtn" type="submit">수정하기</button>
+				<button class="btn btn-secondary" type="button" onclick="location.href='noticelist.action'">취소하기</button>
 			</div>
 			</form>
 		</div>
-
+			
 	</article>
+
+
+
 
 </body>
 </html>
+
+

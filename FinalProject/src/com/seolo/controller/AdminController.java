@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.seolo.admin.INoticeDAO;
 import com.seolo.admin.NoticeDTO;
@@ -83,5 +84,117 @@ public class AdminController
 		
 		return "redirect:noticelist.action";
 	}
+	
+	// 공지사항 게시물 조회
+	@RequestMapping(value = "/noticeview.action", method = RequestMethod.GET)
+	public String noticeView(@RequestParam("no_no") int no_no, Model model)
+	{
+		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
 
+		model.addAttribute("view", dao.view(no_no));
+
+		//@ 객체에 대한 주입
+		//@ 해당 메소드(count.list) 에 오버라이딩
+		
+		return "WEB-INF/view/NoticeSee.jsp";
+	}
+	
+	/*
+	@RequestMapping(value = "/memberupdate.action", method = RequestMethod.POST)
+	public String memberUpdate(MemberDTO m)
+	{
+		IMemberDAO dao = sqlSession.getMapper(IMemberDAO.class);
+		
+		dao.modify(m);
+		
+		return "redirect:memberlist.action";
+		//@ : 항상 붙여서 작성해주기!
+		
+	}
+	*/
+	// 공지사항 게시물 수정 폼
+	@RequestMapping(value = "/noticeupdateform.action", method = RequestMethod.GET)
+	public String noticeUpdateform(@RequestParam("no_no") int no_no, Model model)
+	{
+		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
+
+		model.addAttribute("view", dao.view(no_no));
+		
+		return "WEB-INF/view/UpdateNotice.jsp";
+	}
+	
+	
+	// 공지사항 게시물 수정
+	// 안댐! 확인해보기
+	/*
+	@RequestMapping(value = "/noticeupdate.action", method = RequestMethod.POST)
+	public String noticeUpdate(NoticeDTO n)
+	{
+		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
+		
+		dao.modify(n);
+		
+		//return "redirect:noticelist.action";
+		return "redirect:noticeview.action?no_no=" + n.getNo_no();
+
+	}
+	*/
+	
+	/*
+	@RequestMapping(value = "/noticeupdate.action", method = RequestMethod.POST)
+	public String noticeUpdate(NoticeDTO n)
+	{
+		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
+		
+		dao.modify(n);
+		
+		return "redirect:noticeview.action?no_no=" + n.getNo_no();
+	}
+	*/
+	
+	/*
+	@RequestMapping(value = "noticeupdate.action", method=RequestMethod.POST)
+	public String noticeUpdate(NoticeDTO n)
+	{
+		String result = "redirect:noticeview.action?no_no=";
+				
+		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
+		
+		dao.modify(n);
+		
+		int no_no = n.getNo_no();
+		
+		result += "16";
+		
+		return result;
+	}
+	//-->> 왜 안되는지 이유를 진짜 모르겠다 왜,,,,,,?????? 왜 값을 못받아오는것인가...? 왜일까,,,,?
+	*/
+	
+	
+	@RequestMapping(value = "/noticeupdate.action", method = RequestMethod.POST)
+	public String noticeUpdate(NoticeDTO n)
+	{
+		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
+		
+		dao.modify(n);
+		
+		return "redirect:noticeview.action?no_no=" + n.getNo_no();
+	}
+	// --> 와 왜 되는지 모르겠지만 된다...왜...? no_no번호를 히든으로 받아와서인지...???
+	
+	//@ 딜리트 됨!
+	// 공지사항 게시물 삭제
+	@RequestMapping(value = "/noticedelete.action", method = RequestMethod.GET)
+	public String noticeDelete(NoticeDTO n)
+	{
+		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
+		
+		dao.remove(n);
+		
+		return "redirect:noticelist.action";
+	}
+	
+
+	
 }

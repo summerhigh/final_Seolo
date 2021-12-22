@@ -67,84 +67,15 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
             <tr>
                <th scope="row">${list.no_no }</th>
                <td>[${list.nos_name }]</td>
-               <td>${list.title }</td>
+               <%-- <td>${list.title }</td> --%>
+               <%-- <td><a href="/notice/view?no_no=${list.no_no}">${list.title }</a></td> --%>
+               <td><a href="noticeview.action?no_no=${list.no_no}">${list.title }</a></td>
                <td>관리자</td>
                <td>${list.nodate }</td>
             </tr>
             </c:forEach>
          </tbody>
-            <!-- 
-            <tr>
-               <th scope="row">35</th>
-               <td>[공지사항]</td>
-               <td>2021년 12월 이벤트</td>
-               <td>관리자1</td>
-               <td>2021-12-13</td>
-            </tr>
-            <tr>
-               <th scope="row">34</th>
-               <td>[공지사항]</td>
-               <td>개인정보처리방침 변경 안내</td>
-               <td>관리자2</td>
-               <td>2021-11-22</td>
-            </tr>
-            <tr>
-               <th scope="row">33</th>
-               <td>[점검 알림]</td>
-               <td>2021-11-20 추가 점검 예정 알림</td>
-               <td>관리자1</td>
-               <td>2021-11-10</td>
-            </tr>
-            <tr>
-               <th scope="row">32</th>
-               <td>[점검 알림]</td>
-               <td>2021-09-20 점검 예정 알림</td>
-               <td>관리자1</td>
-               <td>2021-09-15</td>
-            </tr>
-            <tr>
-               <th scope="row">31</th>
-               <td>[점검 알림]</td>
-               <td>2021-11-20 추가 점검 예정 알림</td>
-               <td>관리자1</td>
-               <td>2021-11-10</td>
-            </tr>
-            <tr>
-               <th scope="row">30</th>
-               <td>[점검 알림]</td>
-               <td>2021-09-20 점검 예정 알림</td>
-               <td>관리자1</td>
-               <td>2021-09-15</td>
-            </tr>
-            <tr>
-               <th scope="row">29</th>
-               <td>[공지사항]</td>
-               <td>2021년 12월 이벤트</td>
-               <td>관리자1</td>
-               <td>2021-12-13</td>
-            </tr>
-            <tr>
-               <th scope="row">28</th>
-               <td>[공지사항]</td>
-               <td>개인정보처리방침 변경 안내</td>
-               <td>관리자2</td>
-               <td>2021-11-22</td>
-            </tr>
-            <tr>
-               <th scope="row">27</th>
-               <td>[점검 알림]</td>
-               <td>2021-09-20 점검 예정 알림</td>
-               <td>관리자1</td>
-               <td>2021-09-15</td>
-            </tr>
-            <tr>
-               <th scope="row">26</th>
-               <td>[공지사항]</td>
-               <td>2021년 12월 이벤트</td>
-               <td>관리자1</td>
-               <td>2021-12-13</td>
-            </tr>
-         </tbody> -->
+
       </table>
       <br>
       
