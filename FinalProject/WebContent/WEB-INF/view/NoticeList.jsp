@@ -30,12 +30,23 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
    
    <!-- 공지 분류 -->
    <ul class="nav nav-tabs page-header-tabs" id="categori" role="tablist">
-       <li class="nav-item">
+       <!-- <li class="nav-item">
          <a class="nav-link " href="">공지 사항</a>
-       </li>
+       </li> -->
+       <%-- 
+       <c:forEach var="list" items="${list }">
        <li class="nav-item">
-         <a class="nav-link " href="">점검 알림</a>
+         <a class="nav-link " href="">${list.nos_name}</a>
        </li>
+       </c:forEach>
+         --%>
+         
+       <c:forEach var="catelist" items="${catelist }">
+       <li class="nav-item">
+         <a class="nav-link " href="">${catelist.name }</a>
+       </li>
+       </c:forEach> 
+       
     </ul>
    
    
@@ -50,85 +61,28 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
                <th>날짜</th>
             </tr>
          </thead>
+ 
          <tbody>
+ 			<c:forEach var="list" items="${list }">
             <tr>
-               <th scope="row">35</th>
-               <td>[공지사항]</td>
-               <td>2021년 12월 이벤트</td>
-               <td>관리자1</td>
-               <td>2021-12-13</td>
+               <th scope="row">${list.no_no }</th>
+               <td>[${list.nos_name }]</td>
+               <%-- <td>${list.title }</td> --%>
+               <%-- <td><a href="/notice/view?no_no=${list.no_no}">${list.title }</a></td> --%>
+               <td><a href="noticeview.action?no_no=${list.no_no}">${list.title }</a></td>
+               <td>관리자</td>
+               <td>${list.nodate }</td>
             </tr>
-            <tr>
-               <th scope="row">34</th>
-               <td>[공지사항]</td>
-               <td>개인정보처리방침 변경 안내</td>
-               <td>관리자2</td>
-               <td>2021-11-22</td>
-            </tr>
-            <tr>
-               <th scope="row">33</th>
-               <td>[점검 알림]</td>
-               <td>2021-11-20 추가 점검 예정 알림</td>
-               <td>관리자1</td>
-               <td>2021-11-10</td>
-            </tr>
-            <tr>
-               <th scope="row">32</th>
-               <td>[점검 알림]</td>
-               <td>2021-09-20 점검 예정 알림</td>
-               <td>관리자1</td>
-               <td>2021-09-15</td>
-            </tr>
-            <tr>
-               <th scope="row">31</th>
-               <td>[점검 알림]</td>
-               <td>2021-11-20 추가 점검 예정 알림</td>
-               <td>관리자1</td>
-               <td>2021-11-10</td>
-            </tr>
-            <tr>
-               <th scope="row">30</th>
-               <td>[점검 알림]</td>
-               <td>2021-09-20 점검 예정 알림</td>
-               <td>관리자1</td>
-               <td>2021-09-15</td>
-            </tr>
-            <tr>
-               <th scope="row">29</th>
-               <td>[공지사항]</td>
-               <td>2021년 12월 이벤트</td>
-               <td>관리자1</td>
-               <td>2021-12-13</td>
-            </tr>
-            <tr>
-               <th scope="row">28</th>
-               <td>[공지사항]</td>
-               <td>개인정보처리방침 변경 안내</td>
-               <td>관리자2</td>
-               <td>2021-11-22</td>
-            </tr>
-            <tr>
-               <th scope="row">27</th>
-               <td>[점검 알림]</td>
-               <td>2021-09-20 점검 예정 알림</td>
-               <td>관리자1</td>
-               <td>2021-09-15</td>
-            </tr>
-            <tr>
-               <th scope="row">26</th>
-               <td>[공지사항]</td>
-               <td>2021년 12월 이벤트</td>
-               <td>관리자1</td>
-               <td>2021-12-13</td>
-            </tr>
+            </c:forEach>
          </tbody>
+
       </table>
       <br>
       
       <!-- 글쓰기 버튼 -->
       <div class="d-flex justify-content-end">
          <!-- 이 글쓰기 버튼은 관리자에게만 나타나는 버튼! -->
-               <button type="submit" class="btn btn-primary">글쓰기</button>
+               <button type="button" class="btn btn-primary" onclick="location.href='writenotice.action'">글쓰기</button>
            </div>
       <br><br>
          
