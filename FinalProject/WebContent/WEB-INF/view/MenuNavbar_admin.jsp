@@ -53,8 +53,8 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;회원조회</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="<%=cp%>/AccountList.jsp">회원 리스트</a>
-          <a class="dropdown-item" href="<%=cp%>/WithdrawalAccountList.jsp">탈퇴회원 리스트</a>
+          <a class="dropdown-item" href="accountlist.action">회원 리스트</a>
+          <a class="dropdown-item" href="withdrawalaccountlist.action">탈퇴회원 리스트</a>
         </div>
       </li>
       <li class="nav-item">

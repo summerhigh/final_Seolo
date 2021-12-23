@@ -25,6 +25,7 @@ body {
 }
 </style>
 
+
 <script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/jquery-ui.js"></script>
 
@@ -46,8 +47,13 @@ body {
 			return;					//-- submit 액션 처리 중단
 		}
 		
+    	 //alert($("#title").val() + $("#content").val() + $("#nos_no").val());
+    	 //-> 2021-12-23일 점검 예정을 알려드립니다.더욱 좋은 서비스를 제공드리기 위해 최선을 다하겠습니다.1
+    	 //-> 내용들 다 받아 옴... 근데 수정이 안됨.........
+    	 //-> 이제 수정 됨 진짜 이상하다...
+    	 
 		// 폼 submit 액션 처리 수행
-		$("#noticeinsertform").submit();
+		$("#noticeupdateform").submit();
 
 	});
       
@@ -55,7 +61,6 @@ body {
 
    
 </script>
-
 
 
 </head>
@@ -72,14 +77,15 @@ body {
 	<article>
 	
 		<div class="container" role="main">
-			<h2>공지사항 작성</h2>
+			<h2>공지사항 수정</h2>
 			<br>
 			
-			<form name="noticeinsertform" id="noticeinsertform" role="form" method="post" action="noticeinsert.action">
+			<form name="noticeupdateform" id="noticeupdateform" role="form" method="post" action="noticeupdate.action">
+				<input type="hidden" id="no_no" name="no_no" value="${view.no_no }"/>
 				<div class="mb-3">
 					<label for="title">제목</label> <input type="text"
 						class="form-control" name="title" id="title"
-						placeholder="제목을 입력하세요">
+						value="${view.title }">
 				</div>
 
 				<div class="mb-3">
@@ -94,7 +100,7 @@ body {
 				<div class="mb-3">
 					<label for="content">내용</label>
 					<textarea class="form-control" rows="13" name="content" id="content"
-						placeholder="내용을 입력하세요"></textarea>
+						>${view.content }</textarea>
 				</div>
 			
 			<br>
@@ -102,9 +108,11 @@ body {
 				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 				<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button> -->
 				<!-- button이 폼 안에 들어가있어야 내용 보내기 가능! -->
-				<button type="button" class="btn btn-primary" id="submitBtn">등록하기</button>
+				<%-- <button type="submit" class="btn btn-primary" value="${view.no_no }">수정하기</button> --%>
+				<button type="button" class="btn btn-primary" id="submitBtn"" value="${view.no_no }">수정하기</button>
 				<button type="button" class="btn btn-secondary" onclick="location.href='noticelist.action'">취소하기</button>
 			</div>
+			
 			</form>
 		</div>
 

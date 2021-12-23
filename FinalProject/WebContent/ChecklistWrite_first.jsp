@@ -171,7 +171,8 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 
 			<div class="mb-3">
 				<label for="title"><h4 class="mb-3">제목<span class="text-essential">(*)</span></h4></label>
-				<input type="text" class="form-control" id="title" name="title">
+				<input type="text" class="form-control" id="title" name="title"
+				 maxlength="25" placeholder=" 최대 25자까지 입력 가능" required="required">
 				<div class="invalid-feedback">제목을 입력해주세요.</div>
 			</div>
 
@@ -212,8 +213,10 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 						class="btn btn-secondary btn-sm"><br><br>
 						<input type="text" id="postcode" placeholder="우편번호" class="form-control" disabled="disabled">
 						<input type="text" id="address" placeholder="주소" class="form-control" disabled="disabled"><br>
-						<input type="button" id="check" value="확인" class="btn btn-secondary btn-sm"><!-- 동 코드 확인 후 ajax 처리되는 버튼 -->
-						확인 버튼을 클릭해주세요. <span class="text-essential">(*)</span><br><br>
+						
+						<!-- 동 코드 확인 후 ajax 처리되는 버튼 -->
+						<input type="button" id="check" value="위치확인" class="btn btn-secondary btn-sm">
+						&nbsp; 버튼을 클릭해주세요. <span class="text-essential">(*)</span><br><br>
 						
 						<input type="hidden" id="bcode" placeholder="동고유번호">
 					</div>
@@ -238,7 +241,7 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 						<div class="col-md-6 mb-3">
 							<label for="mjeonse">전세 보증금</label> 
 							<input type="text" class="form-control" id="mJeonse" name="mJeonse"
-							 placeholder="ex) 15000 (1억 5천)" value="" required="">
+							 placeholder="ex) 1억 5천 → 15000 으로 작성해주세요." value="" required="">
 						</div>
 					</div>
 
@@ -246,7 +249,7 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 						<div class="col-md-6 mb-3">
 							<label for="mmaemae">매매가</label> 
 							<input type="text" class="form-control" id="mMaemae" name="mMaemae"
-							 placeholder="ex) 25000 (2억 5천)" value="" required="">
+							 placeholder="ex) 2억 5천 → 25000으로 작성해주세요." value="" required="">
 						</div>
 					</div>
 
@@ -256,17 +259,15 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 						<div class="col-md-3 mb-3">
 							<label for="sec_score">점수</label> <select
 								class="custom-select d-block w-100" id="security_scoreNo" name="security_scoreNo" required="">
-								<%-- <c:forEach var="i" begin="1" end="11" step="1">
-									<option value="i">${(i-1)*0.5 }</option>
-								</c:forEach> --%>
+								<option value="-1"> -- 선택 --</option>
 								<c:forEach var="score" items="${scores }">
-							 		<option value="${score.scoreName }">${score.scoreName }</option>
+							 		<option value="${score.scoreNo }">${score.scoreName }</option>
 							 	</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-9 mb-3">
 							<textarea class="form-control" name="security_co" id="security_co"
-							 rows="3" placeholder="코멘트를 입력해주세요."></textarea>
+							 rows="3" placeholder="코멘트를 입력해주세요." maxlength="150"></textarea>
 						</div>
 					</div>
 
@@ -276,17 +277,15 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 						<div class="col-md-3 mb-3">
 							<label for="trans_score">점수</label> <select
 								class="custom-select d-block w-100" id="transport_scoreNo" name="transport_scoreNo" required="">
-								<%-- <c:forEach var="i" begin="1" end="11" step="1">
-									<option value="i">${(i-1)*0.5 }</option>
-								</c:forEach> --%>
+								<option value="-1"> -- 선택 --</option>
 								<c:forEach var="score" items="${scores }">
-							 		<option value="${score.scoreName }">${score.scoreName }</option>
+							 		<option value="${score.scoreNo }">${score.scoreName }</option>
 							 	</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-9 mb-3">
 							<textarea class="form-control" name="transport_co" id="transport_co"
-								rows="3" placeholder="코멘트를 입력해주세요"></textarea>
+								rows="3" placeholder="코멘트를 입력해주세요" maxlength="150"></textarea>
 						</div>
 					</div>
 
@@ -295,17 +294,15 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 						<div class="col-md-3 mb-3">
 							<label for="honjap_score">점수</label> <select
 								class="custom-select d-block w-100" id="honjap_scoreNo" name="honjap_scoreNo" required="">
-								<%-- <c:forEach var="i" begin="1" end="11" step="1">
-									<option value="i">${(i-1)*0.5 }</option>
-								</c:forEach> --%>
+								<option value="-1"> -- 선택 --</option>
 								<c:forEach var="score" items="${scores }">
-							 		<option value="${score.scoreName }">${score.scoreName }</option>
+							 		<option value="${score.scoreNo }">${score.scoreName }</option>
 							 	</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-9 mb-3">
 							<textarea class="form-control" name="honjap_co" id="honjap_co"
-								rows="3" placeholder="코멘트를 입력해주세요"></textarea>
+								rows="3" placeholder="코멘트를 입력해주세요" maxlength="150"></textarea>
 						</div>
 					</div>
 
@@ -337,7 +334,7 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 					</div>
 					<div class="row mb-3" style="align-items: center; display: flex; justify-content: center;">
 						<textarea class="form-control col list-group col-md-11 themed-grid-col" name="" id="conv_comments"
-								rows="3" placeholder="코멘트를 입력해주세요"></textarea>
+								rows="3" placeholder="코멘트를 입력해주세요" maxlength="150"></textarea>
 					</div>
 
 					<hr class="mb-4">
@@ -346,17 +343,15 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 						<div class="col-md-3 mb-3">
 							<label for="pet_score">점수</label> <select
 								class="custom-select d-block w-100" id="pet_scoreNo" name="pet_scoreNo" required="">
-								<%-- <c:forEach var="i" begin="1" end="11" step="1">
-									<option value="i">${(i-1)*0.5 }</option>
-								</c:forEach> --%>
+								<option value="-1"> -- 선택 --</option>
 								<c:forEach var="score" items="${scores }">
-							 		<option value="${score.scoreName }">${score.scoreName }</option>
+							 		<option value="${score.scoreNo }">${score.scoreName }</option>
 							 	</c:forEach>
 							</select>
 						</div>
 						<div class="col-md-9 mb-3">
 							<textarea class="form-control" name="pet_co" id="pet_co" 
-							rows="3" placeholder="코멘트를 입력해주세요"></textarea>
+							rows="3" placeholder="코멘트를 입력해주세요" maxlength="150"></textarea>
 						</div>
 					</div>
 				</div>
@@ -367,26 +362,36 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 			<div class="col-md-12 mb-3">
 				<label for="good">장점</label>
 				<textarea class="form-control" name="good" id="good" rows="3"
-					placeholder="코멘트를 입력해주세요"></textarea>
+					placeholder="코멘트를 입력해주세요" maxlength="150"></textarea>
 
 				<label for="bad">단점</label>
 				<textarea class="form-control" name="bad" id="bad" rows="3"
-					placeholder="코멘트를 입력해주세요"></textarea>
+					placeholder="코멘트를 입력해주세요" maxlength="150"></textarea>
 
 				<label for="etc">기타</label>
 				<textarea class="form-control" name="etc" id="etc" rows="3"
-					placeholder="코멘트를 입력해주세요"></textarea>
+					placeholder="코멘트를 입력해주세요" maxlength="150"></textarea>
 			</div>
 
 			<hr class="mb-4">
 			<h4 class="mb-3">비밀 코멘트</h4>
 			<div class="col-md-12 mb-3">
 				<textarea class="form-control" name="secret_co" id="secret_co" rows="3"
-					placeholder="코멘트를 입력해주세요"></textarea>
+					placeholder="코멘트를 입력해주세요" maxlength="150"></textarea>
 			</div>
 
 			<hr class="mb-4">
+			<!-- 필수 입력사항들이 빈칸이 아닌지 확인하기 -->
 			<button class="btn btn-primary btn-lg btn-block" type="submit" id="next" style="margin-bottom: 50px;">다음 페이지</button>
+			
+			<!-- 이 버튼이 클릭되면
+			 	 1. 인서트 컨트롤러가 인서트 시켜주기 + 체크 고유번호 가져다가 넘겨주기
+			 	 2. 인서트 컨트롤러가 추가항목 입력 폼 주소 요청하기
+			 	 3. 추가항목 입력폼 컨트롤러가 입력폼 불러주기
+			 	 4. 추가항목 입력 폼에서 입력 / 수정 / 삭제 가능 - 시간, 점수로 구분해서 -->
+			
+			
+			
 		</form>
 	</div>
 

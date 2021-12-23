@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seolo.idao.IWithdrawalAccountListDAO">
+	
+	<select id="withdrawallist" resultType="com.seolo.dto.WithdrawalAccountListDTO">
+		<![CDATA[
+		SELECT WITHDRAWAL_ID, WITHDRAWAL_NAME, WITHDRAWAL_DATE, REASON, WITHDRAWAL_NO
+		FROM
+		(
+		    SELECT ROWNUM RNUM, DATA.*
+		    FROM
+		    (   SELECT WITHDRAWAL_ID, WITHDRAWAL_NAME, TO_CHAR(WITHDRAWAL_DATE, 'YYYY-MM-DD') AS WITHDRAWAL_DATE, REASON, WITHDRAWAL_NO
+		        FROM VIEW_WITHDRAWAL
+		        ORDER BY WITHDRAWAL_NO DESC
+		    ) DATA
+		)
+		ORDER BY WITHDRAWAL_NO
+		]]>
+		<!-- WHERE RNUM >=1 AND RNUM <= 10 -->
+	</select>
+	
+	<select id="withdrawalcount" resultType="java.lang.Integer">
+		SELECT COUNT(WI_NO) AS COUNT
+		FROM WITHDRAWAL
+	</select>
+	
+</mapper>

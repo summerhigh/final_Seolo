@@ -41,7 +41,7 @@ String cp = request.getContextPath();
 			<div class="col-12 col-md">
 				<div class="d-flex justify-content-between align-items-center">
 					<!-- <h5 class="card-header-title">회원 리스트 (총 : xxx명)</h5> -->
-					<h5 class="card-header-title">(* 총 회원 : xxx명)</h5>
+					<h5 class="card-header-title">(총 회원 : ${count }명)</h5>
 				</div>
 			</div>
 
@@ -105,26 +105,29 @@ String cp = request.getContextPath();
 				</thead>
 				<tbody>
 
-
 					<!-- 한 페이지당 10개 계정 정보 조회 가능 -->
-					<tr role="row" class="odd">
+					<c:forEach var="list" items="${list }">
+					<tr role="row">
 						<td class="table-column-pr-0"></td>
 						<!-- * -->
 						<td class="table-column-pl-0"><a>
 								<div class="media-body">
-									<span class="h5 text-hover-primary mb-0">qwerty12</span>
+									<span class="h5 text-hover-primary mb-0">${list.pe_id }</span>
 								</div>
 						</a></td>
-						<td>superman</td>
-						<td>김길동</td>
-						<td>superman@example.com</td>
-						<td>2012/12/01</td>
-						<td>67989</td>
+						<td>${list.nickname }</td>
+						<td>${list.name }</td>
+						<td>${list.email }</td>
+						<td>${list.pedate }</td>
+						<td>${list.ac_no }</td>
 					</tr>
-
+					</c:forEach>
+					
+					
+<!-- 
 					<tr role="row" class="even">
 						<td class="table-column-pr-0"></td>
-						<!-- * -->
+						*
 						<td class="table-column-pl-0"><a>
 								<div class="media-body">
 									<span class="h5 text-hover-primary mb-0">ponq1321</span>
@@ -239,7 +242,7 @@ String cp = request.getContextPath();
 						<td>catman@example.com</td>
 						<td>2009/03/31</td>
 						<td>11199</td>
-					</tr>
+					</tr> -->
 					<!-- @@@ 프로필 조회 가능 버전
                 <tr role="row" class="even">
                   <td class="table-column-pr-0">
