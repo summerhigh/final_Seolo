@@ -201,7 +201,7 @@ public class PersonalDAO implements IPersonalDAO
       int result=0;
       
       Connection conn = dataSource.getConnection();
-      String sql="SELECT COUNT(*) FROM PERSONAL WHERE TEL=?";
+      String sql="SELECT TEL_COUNT(?) FROM DUAL";
       PreparedStatement pstmt = conn.prepareStatement(sql);
       pstmt.setString(1, tel);
       ResultSet rs = pstmt.executeQuery();

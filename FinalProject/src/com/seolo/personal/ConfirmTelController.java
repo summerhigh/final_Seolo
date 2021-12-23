@@ -35,16 +35,9 @@ public class ConfirmTelController implements Controller
 		
 		try
 		{
-			int perResult = dao.confirmTel(tel);
-			int withResult = dao.confirmTel2(tel);
-
-			StringBuffer sb = new StringBuffer();
+			int result = dao.confirmTel(tel);
 			
-			/* 따옴표 구성에 유의할 것~!!! */
-			sb.append("{\"perResult\":\"" + perResult + "\",");
-			sb.append("\"withResult\":\"" + withResult + "\"}");
-			mav.addObject("result", sb.toString());
-			
+			mav.addObject("result", result);
 			mav.setViewName("WEB-INF/view/AjaxTelSearch.jsp");
 		
 		} catch (Exception e)
