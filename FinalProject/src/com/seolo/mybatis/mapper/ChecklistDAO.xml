@@ -5,6 +5,10 @@
 <mapper namespace="com.seolo.idao.IChecklistDAO">
 	<!-- 해당 인터페이스(ISampleDAO)의 각각 메소드에 어떤 쿼리문(sql)을 매칭시켜줄지 -->
 
+<!-- 널로 구성되는 애는 '${tel}' 이걸로. 
+	숫자이면 홑따옴표만 없애기 -->
+	    
+
 	<!-- 기본적으로 입력받는 사항 -->	
 	<insert id="add">
 		INSERT INTO CHECKLIST(CHECK_NO, AC_NO, RES_NO, DONG_NO, CHECKDATE, TITLE, ROADADDR)
@@ -101,7 +105,6 @@
 		WHERE CHECK_NO = #{checkNo}
 	</update>
 	
-	
 	<select id="searchDong" resultType="java.lang.Integer">
 		SELECT DONG_NO FROM DONG WHERE DONGNAME = #{dongName}
 	</select>
@@ -132,13 +135,12 @@
 		SELECT CHECK_NO
 		FROM
 		(
-		    SELECT CHECK_NO, CHECKDATE, RANK() OVER(ORDER BY CHECKDATE DESC) "날짜빠른순"
+		    SELECT CHECK_NO, CHECKDATE, RANK() OVER(ORDER BY CHECKDATE DESC) AS FAST
 		    FROM CHECKLIST
-		    WHERE AC_NO = #{acNo}
+		    WHERE AC_NO=#{acNo}
 		)T
-		WHERE T.날짜빠른순 =1
+		WHERE T.FAST =1
 	</select>
-	
 </mapper>
 
 

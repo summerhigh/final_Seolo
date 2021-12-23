@@ -38,7 +38,15 @@ String cp = request.getContextPath();
 			<p class="lead">추가할 항목을 자유롭게 작성해주세요.</p>
 		</div>
 
-		<button type="button" class="btn btn-secondary">항목 추가하기</button>
+		<!-- SecondTimeInsertForm.jsp -->
+		<a href="secondtimeinsertform.action" role="button" class="btn btn-secondary" 
+		id="btnAdd" style="vertical-align: bottom;">시간 관련항목 추가하기</a>
+		
+		<!-- SecondScoreInsertForm.jsp -->
+		<a href="secondscoreinsertform.action" role="button" class="btn btn-secondary" 
+		id="btnAdd" style="vertical-align: bottom;">점수 관련항목 추가하기</a>
+		
+		
 
 		<br>
 		<br>

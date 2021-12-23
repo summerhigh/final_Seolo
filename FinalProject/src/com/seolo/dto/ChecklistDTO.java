@@ -9,25 +9,18 @@ public class ChecklistDTO
 	
 	// 주요 속성 구성
 	//-- 고유번호, 이름
-	private int checkNo, acNo, resNo, dongNo, guNo;
-	private String residenceName, dongName, guName;
+	private int checkNo, acNo, resNo, guNo;
+	private String residenceName, dongName, guName, dongNo;
 	
 	//-- 주요 속성
 	private String checkDate, title, roadAddr, good, bad, etc;
-	private int mart, laundry, hospital, food, culture, park, mWolse, deposit, mJeonse, mMaemae;
+	private String mart, laundry, hospital, food, culture, park, mWolse, deposit, mJeonse, mMaemae;
 	private ArrayList<String> stickerList;
 
 	//-- 점수: 반려동물, 치안, 대중교통, 교통혼잡도
 	private int pet_scoreNo, security_scoreNo, transport_scoreNo, honjap_scoreNo;
 	//-- 코멘트: 비밀, 생활편의시설, 반려동물, 치안, 대중교통, 교통혼잡도
 	private String secret_co, conv_co, pet_co, security_co, transport_co, honjap_co;
-	
-	
-	// 위도, 경도, 시간, 장소(나의 출근지까지의 시간) 빼버렸음.
-	// checkDate도 지워도 되는건가..? sysdate하면 될 거 같긴 한데 일단 냅둬보자..
-	
-	
-	// setter, getter 구성
 	public int getCheckNo()
 	{
 		return checkNo;
@@ -51,14 +44,6 @@ public class ChecklistDTO
 	public void setResNo(int resNo)
 	{
 		this.resNo = resNo;
-	}
-	public int getDongNo()
-	{
-		return dongNo;
-	}
-	public void setDongNo(int dongNo)
-	{
-		this.dongNo = dongNo;
 	}
 	public int getGuNo()
 	{
@@ -91,6 +76,14 @@ public class ChecklistDTO
 	public void setGuName(String guName)
 	{
 		this.guName = guName;
+	}
+	public String getDongNo()
+	{
+		return dongNo;
+	}
+	public void setDongNo(String dongNo)
+	{
+		this.dongNo = dongNo;
 	}
 	public String getCheckDate()
 	{
@@ -140,83 +133,83 @@ public class ChecklistDTO
 	{
 		this.etc = etc;
 	}
-	public int getMart()
+	public String getMart()
 	{
 		return mart;
 	}
-	public void setMart(int mart)
+	public void setMart(String mart)
 	{
 		this.mart = mart;
 	}
-	public int getLaundry()
+	public String getLaundry()
 	{
 		return laundry;
 	}
-	public void setLaundry(int laundry)
+	public void setLaundry(String laundry)
 	{
 		this.laundry = laundry;
 	}
-	public int getHospital()
+	public String getHospital()
 	{
 		return hospital;
 	}
-	public void setHospital(int hospital)
+	public void setHospital(String hospital)
 	{
 		this.hospital = hospital;
 	}
-	public int getFood()
+	public String getFood()
 	{
 		return food;
 	}
-	public void setFood(int food)
+	public void setFood(String food)
 	{
 		this.food = food;
 	}
-	public int getCulture()
+	public String getCulture()
 	{
 		return culture;
 	}
-	public void setCulture(int culture)
+	public void setCulture(String culture)
 	{
 		this.culture = culture;
 	}
-	public int getPark()
+	public String getPark()
 	{
 		return park;
 	}
-	public void setPark(int park)
+	public void setPark(String park)
 	{
 		this.park = park;
 	}
-	public int getmWolse()
+	public String getmWolse()
 	{
 		return mWolse;
 	}
-	public void setmWolse(int mWolse)
+	public void setmWolse(String mWolse)
 	{
 		this.mWolse = mWolse;
 	}
-	public int getDeposit()
+	public String getDeposit()
 	{
 		return deposit;
 	}
-	public void setDeposit(int deposit)
+	public void setDeposit(String deposit)
 	{
 		this.deposit = deposit;
 	}
-	public int getmJeonse()
+	public String getmJeonse()
 	{
 		return mJeonse;
 	}
-	public void setmJeonse(int mJeonse)
+	public void setmJeonse(String mJeonse)
 	{
 		this.mJeonse = mJeonse;
 	}
-	public int getmMaemae()
+	public String getmMaemae()
 	{
 		return mMaemae;
 	}
-	public void setmMaemae(int mMaemae)
+	public void setmMaemae(String mMaemae)
 	{
 		this.mMaemae = mMaemae;
 	}
@@ -308,6 +301,12 @@ public class ChecklistDTO
 	{
 		this.honjap_co = honjap_co;
 	}
+	
+	// 위도, 경도, 시간, 장소(나의 출근지까지의 시간) 빼버렸음.
+	// checkDate도 지워도 되는건가..? sysdate하면 될 거 같긴 한데 일단 냅둬보자..
+	
+	
+	// setter, getter 구성
 	
 	
 

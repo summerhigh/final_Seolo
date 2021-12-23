@@ -120,7 +120,7 @@ public class CheckFirstInsertController implements Controller
     	  dto.setGood(good);
     	  dto.setBad(bad);
     	  dto.setEtc(etc);
-    	  
+    	  /*
     	  dto.setSecret_co(secret_co);
     	  dto.setMart(mart);
     	  dto.setLaundry(laundry);
@@ -134,6 +134,7 @@ public class CheckFirstInsertController implements Controller
     	  dto.setDeposit(deposit);
     	  dto.setmJeonse(mJeonse);
     	  dto.setmMaemae(mMaemae);
+    	  */
     	  
     	  dto.setPet_co(pet_co);
     	  dto.setPet_scoreNo((int)pet_scoreNo);
