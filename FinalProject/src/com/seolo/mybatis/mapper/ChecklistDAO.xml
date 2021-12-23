@@ -128,7 +128,7 @@
 	
 	
 	<!-- 지금 입력하는 체크리스트 번호 알아내기.. 가장 최근에 인서트된 걸 찾는다. -->
-	<select id="searchCheckNo" resultType="java.long.Integer">
+	<select id="searchCheckNo" resultType="java.lang.Integer">
 		SELECT CHECK_NO
 		FROM
 		(
