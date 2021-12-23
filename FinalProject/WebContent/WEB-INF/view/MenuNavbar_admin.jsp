@@ -40,12 +40,12 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
   <div class="navbar-collapse offcanvas-collapse" id="Main">
     <ul class="navbar-nav mr-auto">
        <li class="nav-item">
-        <a class="nav-link" href="Main_admin.jsp">&nbsp;&nbsp;메인</a>
+        <a class="nav-link" href="mainadmin.action">&nbsp;&nbsp;메인</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;알림/공지</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="<%=cp%>/NoticeList.jsp">공지사항</a>
+          <a class="dropdown-item" href="noticelist.action">공지사항</a>
           <a class="dropdown-item" href="<%=cp%>/Introduction.jsp">서비스 소개</a>
           <a class="dropdown-item" href="<%=cp%>/FaqListNode.jsp">자주 묻는 질문</a>
         </div>
@@ -53,8 +53,8 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;회원조회</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="<%=cp%>/AccountList.jsp">회원 리스트</a>
-          <a class="dropdown-item" href="<%=cp%>/WithdrawalAccountList.jsp">탈퇴회원 리스트</a>
+          <a class="dropdown-item" href="accountlist.action">회원 리스트</a>
+          <a class="dropdown-item" href="withdrawalaccountlist.action">탈퇴회원 리스트</a>
         </div>
       </li>
       <li class="nav-item">

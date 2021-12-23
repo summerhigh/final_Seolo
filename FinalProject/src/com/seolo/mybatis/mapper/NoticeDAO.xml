@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seolo.admin.INoticeDAO">
+
+	<select id="list" resultType="com.seolo.admin.NoticeDTO">
+		<!-- 
+		SELECT NOTICE_NO, NOTICESORT_NAME,
+		NOTICE_TITLE, NOTICE_DATE
+		FROM VIEW_NOTICE
+		-->
+		  
+		<!-- <![CDATA[            
+            SELECT NOTICE_NO, NOTICESORT_NAME, NOTICE_TITLE, NOTICE_DATE
+			FROM
+			(
+			    SELECT ROWNUM RNUM, DATA.*
+			    FROM
+			    (
+			        SELECT NOTICE_NO, NOTICE_TITLE, NOTICESORT_NAME, TO_CHAR(NOTICE_DATE, 'YYYY-MM-DD') AS NOTICE_DATE
+			        FROM VIEW_NOTICE
+			        ORDER BY NOTICE_NO DESC
+			    ) DATA
+			)
+			WHERE RNUM >= ? AND RNUM <= ?
+        ]]>     -->      
+        
+        <![CDATA[
+		SELECT NO_NO, NOS_NAME, TITLE, NODATE
+		FROM
+		(
+		    SELECT ROWNUM RNUM, DATA.*
+		    FROM
+		    (
+		        SELECT NOTICE_NO "NO_NO", NOTICE_TITLE "TITLE", NOTICESORT_NAME "NOS_NAME", TO_CHAR(NOTICE_DATE, 'YYYY-MM-DD') AS NODATE
+		        FROM VIEW_NOTICE
+		        ORDER BY NOTICE_NO DESC
+		    ) DATA
+		)
+		]]>
+		 
+	<!-- WHERE RNUM >=1 AND RNUM <= 10 -->
+	<!-- 뷰 칼럼명 MainDTO 와 맞추기 -->
+
+	</select>
+		
+	<select id="catelist" resultType="com.seolo.admin.NoticeDTO">
+		SELECT NAME
+		FROM NOTICE_SORT
+	</select>
+	
+
+	<insert id="add">
+		INSERT INTO NOTICE(NO_NO, AD_ID, NOS_NO, TITLE, CONTENT, NODATE)
+		VALUES(NOTICESEQ.NEXTVAL, 'admin2', #{nos_no}, #{title}, #{content}, SYSDATE)
+	</insert>
+	
+	<!-- 게시물 조회 -->
+	<select id="view" resultType="com.seolo.admin.NoticeDTO">
+		SELECT NO_NO, TITLE, CONTENT, TO_CHAR(NODATE, 'YYYY-MM-DD') AS NODATE
+		FROM NOTICE
+		WHERE NO_NO = #{no_no}
+	</select>
+	
+	<!-- 게시물 수정 -->
+	<!-- 	
+	<update id="modify">
+		
+		UPDATE NOTICE
+		SET 
+		TITLE = #{title}
+		,CONTENT = #{content}
+		,NOS_NO = #{nos_no}
+		WHERE NO_NO=#{no_no}
+	</update>
+ 	-->
+ 	<update id="modify">
+ 		UPDATE NOTICE
+		SET 
+		TITLE = #{title}
+		,CONTENT = #{content}
+		,NOS_NO = #{nos_no}
+		WHERE NO_NO=#{no_no}
+ 	</update>
+ 
+ 
+	<delete id="remove">
+		DELETE
+		FROM NOTICE
+		WHERE NO_NO=#{no_no}
+	</delete>
+	
+	<!--@@@ 분류 기능 -->
+
+</mapper>

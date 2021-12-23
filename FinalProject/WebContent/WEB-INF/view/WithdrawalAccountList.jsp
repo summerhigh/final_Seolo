@@ -41,7 +41,7 @@ String cp = request.getContextPath();
 			<div class="col-12 col-md">
 				<div class="d-flex justify-content-between align-items-center">
 					<!-- <h5 class="card-header-title">회원 리스트 (총 : xxx명)</h5> -->
-					<h5 class="card-header-title">(총 탈퇴회원 : xxx명)</h5>
+					<h5 class="card-header-title">(총 탈퇴회원 : ${withdrawalcount }명)</h5>
 				</div>
 			</div>
 
@@ -86,8 +86,8 @@ String cp = request.getContextPath();
 							rowspan="1" colspan="1"
 							aria-label="Type: activate to sort column ascending"
 							style="width: 180.292px;">이름</th>
-						<th class="sorting_disabled" rowspan="1" colspan="1"
-							aria-label="Email" style="width: 239.312px;">전화번호</th>
+<!-- 						<th class="sorting_disabled" rowspan="1" colspan="1"
+							aria-label="Email" style="width: 239.312px;">전화번호</th> -->
 						<th class="sorting" tabindex="0" aria-controls="datatable"
 							rowspan="1" colspan="1"
 							aria-label="Signed up: activate to sort column ascending"
@@ -104,141 +104,24 @@ String cp = request.getContextPath();
 				</thead>
 				<tbody>
 
-
+					<!--WITHDRAWAL_ID, WITHDRAWAL_NAME, WITHDRAWAL_DATE, REASON, WITHDRAWAL_NO  -->
 					<!-- 한 페이지당 10개 계정 정보 조회 가능 -->
-					<tr role="row" class="odd">
+					<c:forEach var="withdrawallist" items="${withdrawallist }">
+					<tr role="row">
 						<td class="table-column-pr-0"></td>
 						<!-- * -->
 						<td class="table-column-pl-0"><a>
 								<div class="media-body">
-									<span class="h5 text-hover-primary mb-0">qwerty12</span>
+									<span class="h5 text-hover-primary mb-0">${withdrawallist.withdrawal_id }</span>
 								</div>
 						</a></td>
-						<td>김길동</td>
-						<td>010-1111-1111</td>
-						<td>2021/12/01</td>
-						<td>콘텐츠 내용 부족</td>
-						<td>67989</td>
+						<td>${withdrawallist.withdrawal_name }</td>
+						<td>${withdrawallist.withdrawal_date }</td>
+						<td>${withdrawallist.reason }</td>
+						<td>${withdrawallist.withdrawal_no }</td>
 					</tr>
+					</c:forEach>
 
-					<tr role="row" class="even">
-						<td class="table-column-pr-0"></td>
-						<!-- * -->
-						<td class="table-column-pl-0"><a>
-								<div class="media-body">
-									<span class="h5 text-hover-primary mb-0">ponq1321</span>
-								</div>
-						</a></td>
-						<td>임하나</td>
-						<td>010-2222-2222</td>
-						<td>2018/01/11</td>
-						<td>시스템 장애</td>
-						<td>67326</td>
-					</tr>
-					<tr role="row" class="odd">
-						<td class="table-column-pr-0"></td>
-						<td class="table-column-pl-0"><a>
-								<div class="media-body">
-									<span class="h5 text-hover-primary mb-0">wonni13</span>
-								</div>
-						</a></td>
-						<td>김미미</td>
-						<td>010-3333-3333</td>
-						<td>2002/09/11</td>
-						<td>기타</td>
-						<td>55821</td>
-					</tr>
-					<tr role="row" class="even">
-						<td class="table-column-pr-0"></td>
-						<td class="table-column-pl-0"><a>
-								<div class="media-body">
-									<span class="h5 text-hover-primary mb-0">Bigman77</span>
-								</div>
-						</a></td>
-						<td>김큰손</td>
-						<td>010-4444-4444</td>
-						<td>2011/03/22</td>
-						<td>콘텐츠 내용 부족</td>
-						<td>85214</td>
-					</tr>
-					<tr role="row" class="odd">
-						<td class="table-column-pr-0"></td>
-						<td class="table-column-pl-0"><a>
-								<div class="media-body">
-									<span class="h5 text-hover-primary mb-0">Smallman33</span>
-								</div>
-						</a></td>
-						<td>김작손</td>
-						<td>010-5555-5555</td>
-						<td>2009/10/12</td>
-						<td>개인정보 노출 우려</td>
-						<td>75470</td>
-					</tr>
-					<tr role="row" class="even">
-						<td class="table-column-pr-0"></td>
-						<td class="table-column-pl-0"><a>
-								<div class="media-body">
-									<span class="h5 text-hover-primary mb-0">uniti88</span>
-								</div>
-						</a></td>
-						<td>이행복</td>
-						<td>010-6666-6666</td>
-						<td>2021/08/31</td>
-						<td>기타</td>
-						<td>37534</td>
-					</tr>
-					<tr role="row" class="odd">
-						<td class="table-column-pr-0"></td>
-						<td class="table-column-pl-0"><a>
-								<div class="media-body">
-									<span class="h5 text-hover-primary mb-0">hokkyi99</span>
-								</div>
-						</a></td>
-						<td>이웃음</td>
-						<td>010-7777-7777</td>
-						<td>2021/11/31</td>
-						<td>시스템 장애</td>
-						<td>31233</td>
-					</tr>
-					<tr role="row" class="even">
-						<td class="table-column-pr-0"></td>
-						<td class="table-column-pl-0"><a>
-								<div class="media-body">
-									<span class="h5 text-hover-primary mb-0">dog56</span>
-								</div>
-						</a></td>
-						<td>이강쥐</td>
-						<td>010-8888-8888</td>
-						<td>2021/03/31</td>
-						<td>콘텐츠 내용 부족</td>
-						<td>11200</td>
-					</tr>
-					<tr role="row" class="odd">
-						<td class="table-column-pr-0"></td>
-						<td class="table-column-pl-0"><a>
-								<div class="media-body">
-									<span class="h5 text-hover-primary mb-0">cat56</span>
-								</div>
-						</a></td>
-						<td>이고양</td>
-						<td>010-9999-9999</td>
-						<td>2009/03/31</td>
-						<td>시스템 장애</td>
-						<td>11199</td>
-					</tr>
-					<tr role="row" class="even">
-						<td class="table-column-pr-0"></td>
-						<td class="table-column-pl-0"><a>
-								<div class="media-body">
-									<span class="h5 text-hover-primary mb-0">cat56</span>
-								</div>
-						</a></td>
-						<td>이고양</td>
-						<td>010-1010-1010</td>
-						<td>2009/03/31</td>
-						<td>시스템 장애</td>
-						<td>11199</td>
-					</tr>
 					<!-- @@@ 프로필 조회 가능 버전
                 <tr role="row" class="even">
                   <td class="table-column-pr-0">

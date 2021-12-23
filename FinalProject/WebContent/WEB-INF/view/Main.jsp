@@ -133,21 +133,13 @@
 			<div class="row featurette">
 				<table class="table col-md-11 mx-auto">
 				  <tbody>
-				    <tr>
-				      <th scope="row" class="col-md-1">1</th>
-				      <td class="col-md-8">공지제목</td>
-				      <td class="col-md-2">2021-12-21</td>
-				    </tr>
-				    <tr>
-				      <th scope="row">2</th>
-				      <td>공지제목</td>
-				      <td>2021-12-21</td>
-				    </tr>
-				    <tr>
-				      <th scope="row">3</th>
-				      <td>공지제목</td>
-				      <td>2021-12-20</td>
-				    </tr>
+				  	<c:forEach var="notice" items="${noticeList }">
+				  		<tr>
+					      <th scope="row" class="col-md-1">${notice.num }</th>
+					      <td class="col-md-8"><a href="xxx.action?no_no=${notice.no_no }">${notice.title }</a></td>
+					      <td class="col-md-2">${notice.nodate }</td>
+					    </tr>
+				  	</c:forEach>
 				  </tbody>
 				</table>
 			</div>
@@ -176,43 +168,19 @@
 					<table class="table table-striped">
 					  <thead>
 					    <tr>
-					      <th scope="col">#</th>
-					      <th scope="col">First</th>
-					      <th scope="col">Last</th>
-					      <th scope="col">Handle</th>
+					      <th scope="col">순위</th>
+					      <th scope="col">구</th>
+					      <th scope="col">동</th>
 					    </tr>
 					  </thead>
 					  <tbody>
-					    <tr>
-					      <th scope="row">1</th>
-					      <td>Mark</td>
-					      <td>Otto</td>
-					      <td>@mdo</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">2</th>
-					      <td>Jacob</td>
-					      <td>Thornton</td>
-					      <td>@fat</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">3</th>
-					      <td>Larry</td>
-					      <td>the Bird</td>
-					      <td>@twitter</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">3</th>
-					      <td>Larry</td>
-					      <td>the Bird</td>
-					      <td>@twitter</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">3</th>
-					      <td>Larry</td>
-					      <td>the Bird</td>
-					      <td>@twitter</td>
-					    </tr>
+					  	<c:forEach var="local" items="${localList }">
+					  		<tr onclick="location.href='xxx.action?dongNo=${local.dongNo}'">
+						      <th scope="row">${local.rank }</th>
+						      <td>${local.guName }</td>
+						      <td>${local.dongName }</td>
+						    </tr>
+					  	</c:forEach>
 					  </tbody>
 					</table>
 				</div>
@@ -222,43 +190,21 @@
 					<table class="table table-striped">
 					  <thead>
 					    <tr>
-					      <th scope="col">#</th>
-					      <th scope="col">First</th>
-					      <th scope="col">Last</th>
-					      <th scope="col">Handle</th>
+					      <th scope="col">순위</th>
+					      <th scope="col">구</th>
+					      <th scope="col">동</th>
+					      <th scope="col">&nbsp;</th>
 					    </tr>
 					  </thead>
 					  <tbody>
-					    <tr>
-					      <th scope="row">1</th>
-					      <td>Mark</td>
-					      <td>Otto</td>
-					      <td>@mdo</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">2</th>
-					      <td>Jacob</td>
-					      <td>Thornton</td>
-					      <td>@fat</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">3</th>
-					      <td>Larry</td>
-					      <td>the Bird</td>
-					      <td>@twitter</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">3</th>
-					      <td>Larry</td>
-					      <td>the Bird</td>
-					      <td>@twitter</td>
-					    </tr>
-					    <tr>
-					      <th scope="row">3</th>
-					      <td>Larry</td>
-					      <td>the Bird</td>
-					      <td>@twitter</td>
-					    </tr>
+						  <c:forEach var="check" items="${checkList }">
+						  	<tr onclick="location.href='xxx.action?check_No=${check.check_no}'">
+						      <th scope="row">${check.rank }</th>
+						      <td>${check.guName }</td>
+						      <td>${check.dongName }</td>
+						      <td>의 체크리스트</td>
+						    </tr>
+						  </c:forEach>
 					  </tbody>
 					</table>
 				</div>

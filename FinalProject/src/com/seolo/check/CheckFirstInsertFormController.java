@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
+import com.seolo.dto.ScoreDTO;
+import com.seolo.idao.IChecklistDAO;
+
 public class CheckFirstInsertFormController implements Controller
 {
 	private IChecklistDAO dao;
@@ -26,7 +29,7 @@ public class CheckFirstInsertFormController implements Controller
 	{
 		ModelAndView mav = new ModelAndView();
 		
-		ArrayList<String> scores = new ArrayList<String>();
+		ArrayList<ScoreDTO> scores = new ArrayList<ScoreDTO>();
 		ArrayList<String> residences = new ArrayList<String>();
 		
 		try

@@ -33,7 +33,8 @@ String cp = request.getContextPath();
 			<div class="row gx-4 gx-lg-5 align-items-center">
 				<div class="col-md-6">
 					<img class="card-img-top mb-5 mb-md-0"
-						src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="...">
+						src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbOGRoC%2Fbtrops663eP%2FM81FWcPmrZe4IZ1AKK39d0%2Fimg.jpg" alt="...">
+						<!-- src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..."> -->
 						<!-- 나중에 서로 손 잡고있는 사진 등으로 교체하기! 600x700  -->
 				</div>
 				<div class="col-md-6" style="align-content: flex-start;">

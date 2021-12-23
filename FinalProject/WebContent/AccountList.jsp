@@ -41,7 +41,7 @@ String cp = request.getContextPath();
 			<div class="col-12 col-md">
 				<div class="d-flex justify-content-between align-items-center">
 					<!-- <h5 class="card-header-title">회원 리스트 (총 : xxx명)</h5> -->
-					<h5 class="card-header-title">(총 회원 : xxx명)</h5>
+					<h5 class="card-header-title">(* 총 회원 : xxx명)</h5>
 				</div>
 			</div>
 

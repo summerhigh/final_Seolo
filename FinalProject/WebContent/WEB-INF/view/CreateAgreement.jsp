@@ -8,10 +8,62 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CreateAccountYakgwanView.jsp</title>
+<title>CreateAgreement.jsp</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 crossorigin="anonymous">
+<style type="text/css">
+	#errmsg {color: red; font-size: small;}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	
+	$(function()
+	{
+		$("#checkAll").click(function()
+		{
+			if ($("#checkAll").is(":checked"))
+			{
+				$("#gridCheck1").prop("checked", true);
+				$("#gridCheck2").prop("checked", true);
+				$("#gridCheck3").prop("checked", true);
+				$("#gridCheck4").prop("checked", true);
+			}
+			else
+			{
+				$("#gridCheck1").prop("checked", false);
+				$("#gridCheck2").prop("checked", false);
+				$("#gridCheck3").prop("checked", false);
+				$("#gridCheck4").prop("checked", false);
+			}
+			
+
+		});
+		
+		$(".form-check-input").change(function()
+		{
+			if (!$("#gridCheck1").is(":checked") || !$("#gridCheck2").is(":checked") || !$("#gridCheck3").is(":checked") || !$("#gridCheck4").is(":checked"))
+			{
+				$("#checkAll").prop("checked", false);
+			}
+	    });
+		
+		$("#submitBtn").click(function()
+		{
+			if (!$("#gridCheck1").is(":checked") || !$("#gridCheck2").is(":checked") || !$("#gridCheck3").is(":checked"))
+			{
+				$("#errMsg").html("필수 동의항목에 동의하시면 가입이 진행됩니다.");
+				return;
+			}
+			else
+			{
+				$("#agreeForm").submit();
+			}
+		});
+		
+	});
+	
+</script>
 </head>
 <body>
 
@@ -26,7 +78,6 @@ crossorigin="anonymous">
 	<!-- 콘텐츠 영역 -->
 	<div id="content" style="text-align: center;">
 	
-	<form action="">
 	<br><br><br><br>
 	<h1>회원 약관 동의</h1>
 	<hr>
@@ -38,7 +89,7 @@ crossorigin="anonymous">
 		<br><br>
 		
 		<!-- @ 이용약관 1 -->
-		<textarea readonly="readonly" name="text1" id="text1" rows="5" cols="66">
+		<textarea class="form-control col-md-6 mx-auto" readonly="readonly" id="text1" rows="5" cols="">
 제 1 조 (목적)
 이 약관은 네이버 주식회사 ("회사" 또는 "네이버")가 제공하는 네이버 및 네이버 관련 제반 서비스의 
 이용과 관련하여 회사와 회원과의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.
@@ -70,7 +121,7 @@ crossorigin="anonymous">
    
    		<!--@ 이용약관 2  -->
    		<br><br>
-		<textarea readonly="readonly" name="text2" id="text2" rows="5" cols="66">
+		<textarea class="form-control col-md-6 mx-auto" readonly="readonly" id="text2" rows="5" cols="">
 정보통신망법 규정에 따라 네이버에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
 
 
@@ -89,7 +140,7 @@ crossorigin="anonymous">
 		
 		<!--@ 이용약관 3  -->
    		<br><br>
-		<textarea readonly="readonly" name="text3" id="text3" rows="5" cols="66">
+		<textarea class="form-control col-md-6 mx-auto" readonly="readonly" id="text3" rows="5" cols="">
 위치정보 이용약관에 동의하시면, 위치를 활용한 광고 정보 수신 등을 포함하는 네이버 위치기반 서비스를 이용할 수 있습니다.
 
 제 1 조 (목적)
@@ -108,7 +159,7 @@ crossorigin="anonymous">
    		
    		<!--@ 이용약관 4  -->
    		<br><br>
-		<textarea readonly="readonly" name="text4" id="text4" rows="5" cols="66">
+		<textarea class="form-control col-md-6 mx-auto" readonly="readonly" id="text4" rows="5" cols="">
 네이버에서 제공하는 이벤트/혜택 등 다양한 정보를 휴대전화(네이버앱 알림 또는 문자), 이메일로 받아보실 수 있습니다. 일부 서비스(별도 회원 체계로 운영하거나 네이버 가입 이후 추가 가입하여 이용하는 서비스 등)의 경우, 개별 서비스에 대해 별도 수신 동의를 받을 수 있으며, 이때에도 수신 동의에 대해 별도로 안내하고 동의를 받습니다.
 		</textarea>
 		
@@ -119,12 +170,17 @@ crossorigin="anonymous">
         </label>
 		
 		<br><br>
-		<button type="submit" class="btn btn-secondary">취소하기</button>
-		<button type="submit" class="btn btn-primary">확인하기</button>
+		<span id="errMsg" style="color: red;"></span>
 		<br><br>
+		<form action="personalinsertform.action" method="post" id="agreeForm">
+			<input type="hidden" name="confirm" value="1">
+			<button type="button" class="btn btn-secondary" onclick="history.back()">취소하기</button>
+			<button type="button" class="btn btn-primary" id="submitBtn">확인하기</button>
 		</form>
+		
+		<br><br>
 		</div>
-			
+		
 		
 </div>
 
