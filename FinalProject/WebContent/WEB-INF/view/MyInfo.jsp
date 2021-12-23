@@ -35,7 +35,7 @@ crossorigin="anonymous">
 			
 			$("#pwdUpdateBtn").click(function()
 			{
-				alert("비번");
+				$(location).attr("href", "pwdchangeform.action");
 			});
 			
 		});
