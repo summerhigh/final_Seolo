@@ -34,7 +34,7 @@ String cp = request.getContextPath();
 
 
 		<div class="py-5 text-center">
-			<h2 style="margin-top: 50px;">체크리스트 추가항목 작성</h2>
+			<h1 style="margin-top: 50px; font-weight: bold;">체크리스트 추가항목 작성</h1>
 			<p class="lead">추가할 항목을 자유롭게 작성해주세요.</p>
 		</div>
 
