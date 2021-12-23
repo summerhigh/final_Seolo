@@ -12,7 +12,20 @@
 	
 	<update id="update">
 		UPDATE PERSONAL
-		SET NICKNAME=#{nickName}, EMAIL=#{email}, ROADADDR=#{roadAddr}, DETAILADDR={detailAddr}
-		WHERE PE_ID=#{pe_Id};
+		SET NICKNAME=#{nickName}, EMAIL=#{email}, ROADADDR=#{roadAddr}, DETAILADDR=#{detailAddr}
+		WHERE PE_ID=#{pe_Id}
 	</update>
+
+   <select id="confirmPwd" parameterType="com.seolo.personal.PersonalDTO" resultType="java.lang.Integer">
+      SELECT COUNT(*)
+      FROM PERSONAL
+      WHERE PE_ID=#{pe_Id} AND PW=#{pw}
+   </select>
+   
+   <update id="updatePwd" parameterType="com.seolo.personal.PersonalDTO">
+      UPDATE PERSONAL
+      SET PW=#{pw}
+      WHERE PE_ID=#{pe_Id}
+   </update>
+   	
 </mapper>

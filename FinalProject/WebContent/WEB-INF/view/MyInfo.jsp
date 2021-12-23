@@ -7,109 +7,159 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-<meta name="generator" content="Hugo 0.88.1">
-<title>MyInfo.jsp</title>
-<!-- Bootstrap core CSS -->
-<link href="<%=cp%>/css/bootstrap.min.css" rel="stylesheet">
-
-<style>
-.bd-placeholder-img {
-	font-size: 1.125rem;
-	text-anchor: middle;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-@media ( min-width : 768px) {
-	.bd-placeholder-img-lg {
-		font-size: 3.5rem;
-	}
-}
-</style>
-
-<!-- Custom styles for this template -->
-<link href="<%=cp %>/css/starter-template.css" rel="stylesheet">
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
-
-<script type="text/javascript">
+<meta charset="UTF-8">
+<title>Myinfo.jsp</title>
+<link rel="stylesheet" href="<%=cp %>/css/CreateAccountInsert.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+crossorigin="anonymous">
+<style type="text/css">
+	p { font-size: small; color: red; }
+	.errMsg { font-size: small; color: red; }
+	.okMsg { font-size: small; color: blue; }
 	
-	$(function()
-	{
-		$("#updateBtn").click(function()
+	input { pointer-events: none; }
+
+</style>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+
+
+		$(function()
 		{
-			alert("수정");
+			$("#updateBtn").click(function()
+			{
+				$(location).attr("href", "myinfoupdateform.action?pe_id=" + $(this).val());
+			});
+			
+			$("#pwdUpdateBtn").click(function()
+			{
+				alert("비번");
+			});
+			
 		});
-		
-		$("#pwdUpdateBtn").click(function()
-		{
-			alert("비번");
-		});
-		
-	});
 	
 </script>
 
+
+
 </head>
 <body>
+
+	<!-- 메뉴 영역 -->
 	<div>
-		<c:import url="/nav.action"></c:import>
+	<c:import url="/nav.action"></c:import>
 	</div>
-	<div class="contaner">
-		<div class="starter-template">
-			<h1>내 정보 수정</h1>
-		</div>
-		
-		<hr style="width: 60%;">
-		
-		<div class="starter-template">
-			<!-- 프로필사진 업로드구역 -->
-			<div class="col-md-4 mx-auto">
-				<img src="<%=cp %>/images/profile.jpg">
+
+	<!-- 콘텐츠 영역 -->
+	<div class="wrap wd668">
+	<!-- <div class="container" style="width:50%; text-align: left;"> -->
+        <div class="form_txtInput">
+        <br>
+          <h2 class="sub_tit_txt">내 정보 수정</h2>
+          <hr>
+		<!-- 프로필사진 업로드구역 -->
+		<div class="col-md-4 mx-auto">
+			<img src="<%=cp %>/images/profile.jpg" width="250px"><br><br>
+			<div style="text-align: center;">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<button type="button" class="btn btn-primary">사진 바꾸기</button>
 			</div>
-			
-			<hr class="col-md-7 mx-auto" style="margin: 50px 0;">
-			
-			<table class="table col-md-7 mx-auto">
-				  <tbody>
-				    <tr>
-				      <th scope="row" class="col-md-2 table-secondary">사용자 ID</th>
-				      <td class="col-md-5">${user.pe_Id }</td>
-				    </tr>
-				    <tr>
-				      <th scope="row" class="col-md-2 table-secondary">사용자 이름</th>
-				      <td>${user.name }</td>
-				    </tr>
-				    <tr>
-				      <th scope="row" class="col-md-2 table-secondary">닉네임</th>
-				      <td>${user.nickName }</td>
-				    </tr>
-				    <tr>
-				      <th scope="row" class="col-md-2 table-secondary">휴대전화</th>
-				      <td>${user.tel }</td>
-				    </tr>
-				    <tr>
-				      <th scope="row" class="col-md-2 table-secondary">이메일</th>
-				      <td>${user.email }</td>
-				    </tr>
-				    <tr>
-				      <th scope="row" class="col-md-2 table-secondary">주소</th>
-				      <td>${user.roadAddr } ${user.detailAddr }</td>
-				    </tr>
-				  </tbody>
-			</table>
-			<br>
-			<button type="button" class="btn btn-primary" id="updateBtn">수정하기</button>
-			<button type="button" class="btn btn-primary" id="pwdUpdateBtn">비밀번호 변경하기</button>
 		</div>
-	</div>
+          
+          
+          <div class="join_form">
+          <form action="" method="post" id="personalInsertForm">
+            <table>
+              <colgroup>
+                <col width="30%"/>
+                <col width="auto"/>
+              </colgroup>
+              <tbody>
+                <tr>
+                  <th>아이디</th>
+                  <td><input type="text" class="send_number" id="id" name="id" maxlength="12"
+                  style="width: 550px; background-color: #e9ecef;" value="${user.pe_Id }" readonly="readonly">
+                      <span id="idErrMsg" class="errMsg"></span>
+                  </td>
+                </tr>
+                <tr>
+                  <th>이름</th>
+                  <td><input type="text" id="name" name="name" class="name"maxlength="10" value="${user.name }" readonly="readonly"
+                  style="background-color: #e9ecef;"></td>
+                </tr>
+                <tr>
+                	<th></th>
+                	<td><span id="nameErrMsg" class="errMsg"></span></td>
+                </tr>
+                <!-- ★ 소연 수정 -->
+                <tr>
+                  <th>닉네임</th>
+                  <td>
+					<input type="text" class="nickName" id="nickName" name="nickName" maxlength="10" value="${user.nickName }" readonly="readonly"
+					style="background-color: #e9ecef;">
+                  </td>
+                </tr>
+                <tr>
+                	<th></th>
+                	<td><span id="nickErrMsg" class="errMsg"></span><span id="nickOkMsg" class="okMsg"></span></td>
+                </tr>
+                <tr class="email">
+                  <th>이메일</th>
+                  <td>
+                    <input type="text" id="email" name="email" class="email" value="${user.email }" readonly="readonly"
+                    style="background-color: #e9ecef;">
+                  </td>
+                <tr>
+                	<th></th>
+                	<td><span id="emailErrMsg" class="errMsg"></span></td>
+                </tr>  
+                <tr>
+                  <th>휴대전화</th>
+                  <td><input type="text" id="tel" name="tel" class="phone" maxlength="11"
+                  value="${user.tel }" readonly="readonly" style="background-color: #e9ecef;">
+                  </td>
+                </tr>
+                <tr>
+                	<th></th>
+                	<td><!-- <p>이미 가입했거나, 현재 가입이 불가능한 번호입니다.</p> -->
+						<span id="telErrMsg" class="errMsg"></span></td>
+                </tr>
+                <tr>
+                	<th></th>
+                	<td><span id="idnErrMsg" class="errMsg"></span><span id="idnOkMsg" class="okMsg"></span></td>
+                </tr>
+                <tr>
+                  <th>주소</th>
+                  <td>					
+					<input type="text" id="roadAddr" name="roadAddr" readonly="readonly"
+					value="${user.roadAddr } ${user.detailAddr }" style="background-color: #e9ecef;"><br>
+				  </td>
+                </tr>
+                <tr>
+                	<th></th>
+                	<td><span id="addrErrMsg" class="errMsg"></span></td>
+                </tr>  
+                <tr>
+              </tbody>
+            </table>
+            </form>
+           
+          </div><!-- join_form E  -->
+          <div class="text-center">
+          	<span id="flagMsg" class="errMsg"></span>
+          </div>
+          <div class="btn_wrap">
+			<button type="button" class="btn btn-primary" id="updateBtn"
+			style="font-size: 13px;" value="${user.pe_Id }">수정하기</button>&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn btn-primary" id="pwdUpdateBtn"
+			style="font-size: 13px;">비밀번호 변경</button>
+          </div>
+          <br>
+        </div> <!-- form_txtInput E -->
+      </div><!-- content E-->
+    </div> <!-- container E -->
+
 </body>
 </html>
