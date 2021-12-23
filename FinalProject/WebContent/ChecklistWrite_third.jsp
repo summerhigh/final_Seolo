@@ -32,7 +32,10 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 <main role="main" class="container">
   
 	<div class="card mb-4 shadow-sm">
-		<div class="card-header"><h4 class="my-0 font-weight-normal">스티커를 추가하시겠습니까?</h4></div>
+		<div class="card-header">
+			<h2 class="my-0 font-weight-bold" style="text-align: center;">이 체크리스트에 스티커를 추가하시겠습니까?</h2><br>
+			<p class="lead" style="text-align: center;">'나의 체크리스트'에서 같은 스티커를 붙여둔 체크리스트끼리 모아서 확인할 수 있습니다.</p>
+		</div>
       
       	<!-- 1. 내가 이전에 작성했었던 스티커들을 가져와서 버튼의 value로 가져오기.. 가능한..? 
       			버튼 말고 해결할 방법이.. a태그..?

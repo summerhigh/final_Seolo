@@ -1,3 +1,4 @@
+/*
 package com.seolo.check;
 
 import java.sql.Connection;
@@ -288,4 +289,4 @@ public class PlusDAO implements IPlusDAO
 		return result;
 	}
 
-}
+}*/

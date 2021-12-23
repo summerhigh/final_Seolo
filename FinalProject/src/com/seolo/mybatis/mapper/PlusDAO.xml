@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.seolo.idao.IMainDAO">
+	
+	<!-- 입력 - 코멘트 추가입력 -->
+	<insert id="addTime">
+		INSERT INTO PLUS_TIME(PTIME_NO, CHECK_NO, TITLE, TIME)
+		VALUES(PLSTIMESEQ.NEXTVAL, #{checkNo}, #{timeTitle}, #{time})
+	</insert>
+	
+		
+	<insert id="addScore">
+		INSERT INTO PLUS_SCORE((PSCORE_NO, CHECK_NO, TITLE, SCORENO)
+		VALUES(PLSSCORESEQ.NEXTVAL, #{checkNo}, #{scoreTitle}, #{scoreNo})		
+	</insert>
+	
+	
+	
+	
+	<!-- 수정 - 코멘트 추가 수정 -->
+	<update id="modifyTime">
+		UPDATE PLUS_TIME 
+		SET TITLE=#{timeTitle}, TIME=#{time} 
+		WHERE PTIME_NO=#{plusTimeNo}
+	</update>
+	
+	<update id="modifyTimeco">
+		UPDATE PLUS_TIME
+		SET COMMENTS = #{timeComments}
+		WHERE PTIME_NO = #{plusTimeNo}
+	</update>
+	
+	<update id="modifyScore">
+		UPDATE PLUS_SCORE
+		SET TITLE=#{scoreTitle}, SCORENO = #{scoreNo}
+		WHERE PSCORE_NO = #{plusScoreNo}	
+	</update>
+	
+	<update id="modifyScoreco">
+		UPDATE PLUS_SCORE
+		SET COMMENTS = #{scoreComments}
+		WHERE PSCORE_NO = #{plusScoreNo}	
+	</update>
+	
+	
+	
+	<!-- 삭제 -->
+	<delete id="removeTime">
+		DELETE
+		FROM PLUS_TIME
+		WHERE PTIME_NO = #{plusTimeNo}
+	</delete>
+	
+	<delete id="removeScore">
+		DELETE
+		FROM PLUS_SCORE
+		WHERE PSCORE_NO = #{plusScoreNo}
+	</delete>
+	
+	
+	
+	<!-- 추가고유번호로 추가항목 내용 찾기 -->
+	<select id="searchTime" resultType="com.seolo.dto.PlusDTO">
+		SELECT PTIME_NO, CHECK_NO, TITLE, COMMENTS, TIME 
+		FROM PLUS_TIME WHERE PTIME_NO= #{plusTimeNo}
+	</select>
+	
+	<select id="searchScore" resultType="com.seolo.dto.PlusDTO">
+		SELECT PSCORE_NO, CHECK_NO, TITLE, COMMENTS, SCORENO 
+		FROM PLUS_SCORE WHERE PSCORE_NO= #{plusScoreNo}
+	</select>
+	
+	
+	
+	<!-- 지금 입력하는 체크리스트 번호 알아내기.. 가장 최근에 인서트된 걸 찾는다. -->
+	<select id="searchCheckNo" resultType="java.lang.Integer">
+		SELECT CHECK_NO
+		FROM
+		(
+		    SELECT CHECK_NO, CHECKDATE, RANK() OVER(ORDER BY CHECKDATE DESC) AS FAST
+		    FROM CHECKLIST
+		    WHERE AC_NO=#{acNo}
+		)T
+		WHERE T.FAST =1
+	</select>
+	
+	
+	<!-- 위에서 알아낸 체크번호로 가장 최근에 쓴 추가고유번호 알아내기 -->
+	<select id="searchPlusTimeNo" resultType="java.lang.Integer">
+		SELECT MAX(PTIME_NO)
+		FROM PLUS_TIME 
+		WHERE CHECK_NO = (SELECT CHECK_NO 
+						  FROM CHECKLIST 
+						  WHERE CHECK_NO = #{checkNo})
+	</select>
+	
+	<select id="searchPlusScoreNo" resultType="java.lang.Integer">
+		SELECT MAX(PSCORE_NO)
+		FROM PLUS_SCORE 
+		WHERE CHECK_NO = (SELECT CHECK_NO 
+						  FROM CHECKLIST 
+						  WHERE CHECK_NO = #{checkNo})
+	</select>
+	
+</mapper>

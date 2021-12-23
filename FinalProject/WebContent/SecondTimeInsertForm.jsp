@@ -19,6 +19,31 @@
 		color: #FFA7A7;
 	}
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function()
+	{
+		$("#next").click(function()
+		{
+			// alert("확인");
+			
+			if($("#title").val()=="" || $("#time").val()=="")
+			{
+				alert("제목과 시간은 필수 입력사항입니다.");
+			}
+			
+			// alert(typeof $("#time").val()); String
+			if(parseInt($("#time").val())>999 || parseInt($("#time").val())<0)
+			{
+				alert("시간은 0 ~ 999분 범위 내에서 작성해주세요.");
+			}
+			
+		});
+		
+	});
+
+</script>
 
 </head>
 <body>
@@ -33,7 +58,7 @@
 	<div class="container">
 
 		<div class="py-5 text-center">
-			<h2 style="margin-top: 50px;">체크리스트 추가항목 작성</h2>
+			<h2 style="margin-top: 50px;" style="font-weight: bold;">체크리스트 추가항목 작성</h2>
 			<p class="lead">추가할 항목을 자유롭게 작성해주세요.</p>
 		</div>
 
@@ -43,25 +68,26 @@
 
 			<div class="container">
 				<div class="mb-3">
-					<label for="title">추가항목 제목</label> <input type="text"
-						class="form-control" id="title"
-						placeholder="ex) 고척돔까지 걸리는 시간" required="">
-					<div class="invalid-feedback">필수 입력 사항입니다.</div>
+					<label for="title" style="font-weight: bold;">추가항목 제목</label> 
+					<input type="text" class="form-control" id="timeTitle" name="timeTitle"
+					 placeholder="ex) 고척돔까지 걸리는 시간" required="required">
 				</div>
 				<div class="mb-3">
-					<label for="comments">코멘트</label> <input type="text"
-						class="form-control" id="comments" placeholder="ex) 산책로로 걸어서 갔을 때"
-						required="">
+					<label for="comments" style="font-weight: bold;">코멘트</label> 
+					<input type="text" class="form-control" id="timeComments" name="timeComments" 
+					 placeholder="ex) 산책로로 걸어서 갔을 때" >
 				</div>
 				<div class="mb-3">
-					<label for="time">시간</label> <input type="text"
-						class="form-control" id="time" placeholder="ex) 분 단위, 숫자만 입력.  ex) 30분 → 30"
-						required="">
-					<div class="invalid-feedback">필수 입력 사항입니다.</div>
+					<label for="time" style="font-weight: bold;">시간</label> 
+					<input type="text" class="form-control" id="time" name="time" 
+					 placeholder="ex) 분 단위, 숫자만 입력.  ex) 30분 → 30" required="required"
+					 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 				</div>
+				<br>
+				
 			<!-- 완료버튼 클릭시 인서트되고 ChecklistWrite_second.jsp 로 리다이렉트 되어 항목 추가된 것 확인 가능 -->
-			<button class="btn btn-primary btn-lg btn-block" type="submit"
-				id="next" style="margin-bottom: 50px;">입력 완료</button>
+			<button class="btn btn-secondary btn-lg btn-block" type="button"
+			 id="next" name="next" style="margin-bottom: 50px;">입력 완료</button>
 			
 			</div>
 		</form>
