@@ -48,6 +48,7 @@ public class AdminController
 		return "WEB-INF/view/NoticeList.jsp";
 	}
 	
+	// 생성하는 생성폼페이지로 보내기
 	@RequestMapping(value = "/writenotice.action", method = RequestMethod.GET)
 	public String writeNotice(Model model)
 	{
@@ -170,7 +171,6 @@ public class AdminController
 	}
 	//-->> 왜 안되는지 이유를 진짜 모르겠다 왜,,,,,,?????? 왜 값을 못받아오는것인가...? 왜일까,,,,?
 	*/
-	
 	
 	@RequestMapping(value = "/noticeupdate.action", method = RequestMethod.POST)
 	public String noticeUpdate(NoticeDTO n)

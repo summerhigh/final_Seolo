@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seolo.idao.IFaqviewDAO">
+
+	<select id="list" resultType="com.seolo.dto.FaqviewDTO">   
+        SELECT FAQ_NO, FAQSORT_NO, FAQSORT_NAME, FAQ_TITLE, FAQ_CONTENT
+		FROM VIEW_FAQ
+		ORDER BY FAQ_NO
+	</select>
+	
+	<select id="view" resultType="com.seolo.dto.FaqviewDTO">   
+    	SELECT FAQ_NO, FAQSORT_NO, FAQSORT_NAME, FAQ_TITLE, FAQ_CONTENT
+		FROM VIEW_FAQ
+		WHERE FAQ_NO = #{faq_no}
+	</select>
+	
+</mapper>

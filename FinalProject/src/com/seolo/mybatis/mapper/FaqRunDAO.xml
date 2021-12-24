@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.seolo.idao.IFaqRunDAO">
+ 
+ <!-- 생성 / 수정/ 삭제 -->
+ 
+ <!-- 생성 -> VALUES 뒤에는 DTO 꺼 갖다 써야되니까~ -->
+ <insert id="add">
+ 	INSERT INTO FAQ(FAQ_NO, AD_ID, QS_NO, TITLE, CONTENT)
+	VALUES(FAQESEQ.NEXTVAL, 'admin2', #{qs_no}, #{title}, #{content})
+ </insert>
+ 
+
+ 
+ </mapper>

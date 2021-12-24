@@ -32,7 +32,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-  <a class="navbar-brand mr-auto mr-lg-0 font-weight-bold" href="main.action" >서로</a>
+  <a class="navbar-brand mr-auto mr-lg-0 font-weight-bold" href="mainadmin.action" >서로</a>
   <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -47,7 +47,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
         <div class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" href="noticelist.action">공지사항</a>
           <a class="dropdown-item" href="<%=cp%>/Introduction.jsp">서비스 소개</a>
-          <a class="dropdown-item" href="<%=cp%>/FaqListNode.jsp">자주 묻는 질문</a>
+          <a class="dropdown-item" href="faqlist.action">자주 묻는 질문</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -58,7 +58,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%=cp%>/ReportCheck.jsp">&nbsp;&nbsp;신고처리</a>
+        <a class="nav-link" href="reportlist.action">&nbsp;&nbsp;신고처리</a>
       </li>
     </ul>
     
