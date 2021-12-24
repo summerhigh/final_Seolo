@@ -30,7 +30,7 @@ crossorigin="anonymous">
 		{
 			$("#updateBtn").click(function()
 			{
-				$(location).attr("href", "myinfoupdateform.action?pe_id=" + $(this).val());
+				$(location).attr("href", "infoupdateconfirmform.action");
 			});
 			
 			$("#pwdUpdateBtn").click(function()
@@ -57,7 +57,7 @@ crossorigin="anonymous">
 	<!-- <div class="container" style="width:50%; text-align: left;"> -->
         <div class="form_txtInput">
         <br>
-          <h2 class="sub_tit_txt">내 정보 수정</h2>
+          <h2 class="sub_tit_txt">내 정보 조회</h2>
           <hr>
 		<!-- 프로필사진 업로드구역 -->
 		<div class="col-md-4 mx-auto">
@@ -67,7 +67,8 @@ crossorigin="anonymous">
 				<button type="button" class="btn btn-primary">사진 바꾸기</button>
 			</div>
 		</div>
-          
+        
+        <hr style="margin: 30px 0;">
           
           <div class="join_form">
           <form action="" method="post" id="personalInsertForm">
@@ -152,7 +153,7 @@ crossorigin="anonymous">
           </div>
           <div class="btn_wrap">
 			<button type="button" class="btn btn-primary" id="updateBtn"
-			style="font-size: 13px;" value="${user.pe_Id }">수정하기</button>&nbsp;&nbsp;&nbsp;
+			style="font-size: 13px;">수정하기</button>&nbsp;&nbsp;&nbsp;
 			<button type="button" class="btn btn-primary" id="pwdUpdateBtn"
 			style="font-size: 13px;">비밀번호 변경</button>
           </div>

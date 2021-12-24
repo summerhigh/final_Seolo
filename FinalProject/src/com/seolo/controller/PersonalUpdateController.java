@@ -41,8 +41,61 @@ public class PersonalUpdateController
 		return "WEB-INF/view/MyInfo.jsp";
 	}
 	
+	// ★ 소연 수정
+	@RequestMapping(value = "/infoupdateconfirmform.action", method = RequestMethod.GET)
+	public String updateConfirmform(Model model, HttpSession session, HttpServletRequest request)
+	{
+		IUpdateDAO dao = sqlSession.getMapper(IUpdateDAO.class);
+		
+		if (session.getAttribute("userLogin")==null)	// 로그인 안하면 차단
+		{
+			return "redirect:main.action";
+		}
+		else
+		{
+			String errMsg = null;
+	        errMsg = request.getParameter("errMsg");
+	        if (errMsg != null)   // 기존 비밀번호 다르게 입력한 사람들에게 에러메세지
+	           model.addAttribute("errMsg", errMsg);
+	        
+		}
+		
+		return "WEB-INF/view/UpdateConfirm.jsp";
+	}
+	
+	// ★
+	@RequestMapping(value = "/infoupdateconfirm.action", method = RequestMethod.POST)
+	public String updateConfirm(Model model, HttpSession session, HttpServletRequest request)
+	{
+		IUpdateDAO dao = sqlSession.getMapper(IUpdateDAO.class);
+		
+		if (session.getAttribute("userLogin")==null)	// 로그인 안하면 차단
+		{
+			return "redirect:main.action";
+		}
+		else
+		{
+			PersonalDTO user = new PersonalDTO();
+			user.setPe_Id(request.getParameter("id"));
+			user.setPw(request.getParameter("pwd"));
+			
+			int count = dao.confirmPwd(user);
+			if (count!=1)
+			{
+				model.addAttribute("errMsg", "err");
+				return "redirect:infoupdateconfirmform.action";
+			}
+			else
+			{
+				return "redirect:myinfoupdateform.action";
+			}
+	        
+		}
+		
+	}
+	
 	@RequestMapping(value = "/myinfoupdateform.action", method = RequestMethod.GET)
-	public String updateForm(Model model, HttpSession session, @RequestParam("pe_id")String id)
+	public String updateForm(Model model, HttpSession session)
 	{
 		IUpdateDAO dao = sqlSession.getMapper(IUpdateDAO.class);
 		
@@ -54,6 +107,7 @@ public class PersonalUpdateController
 			//String updateId = id;
 			// PersonalDTO user = dao.searchId(id);
 			//model.addAttribute("updateId", updateId);
+			String id = ((PersonalDTO)session.getAttribute("userLogin")).getPe_Id();
 		
 			model.addAttribute("user", dao.searchId(id));
 			

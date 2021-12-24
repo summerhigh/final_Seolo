@@ -133,8 +133,10 @@ crossorigin="anonymous">
          telFlag1 = false;
       });
       
-      $("#nickCheckBtn").click(function()
+      $("#phoneCheckBtn").click(function()
       {
+    	  
+    	 $("#telErrMsg").html("");
          telFlag1 = true;
          
          var tel = $("#tel").val();
@@ -162,6 +164,7 @@ crossorigin="anonymous">
          if (name=="" || !n_RegExp.test(name))   // 이름 1, 2번
          {
             $("#flagMsg").html("이름을 2~10자의 한글로 입력해 주세요.");
+            $("#name").focus();
             return;
          }
          
@@ -170,6 +173,7 @@ crossorigin="anonymous">
          if (pw=="" || !pw_RegExp.test(pw))   // 비밀번호 1, 2번
          {
             $("#flagMsg").html("비밀번호는 8~12자의 하나 이상의 문자와 숫자 및 특수문자를 포함하여 입력해 주세요.");
+            $("#password").focus();
             return;
          }
          
@@ -177,6 +181,7 @@ crossorigin="anonymous">
          if (pw != $("#password2").val())
          {
             $("#flagMsg").html("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+            $("#password2").focus();
             return;
          }
          
@@ -185,6 +190,7 @@ crossorigin="anonymous">
          if (email=="" || !e_RegExp.test(email))   // 이메일 1, 2번
          {
             $("#flagMsg").html("이메일을 바른 형식으로 입력해 주세요.");
+            $("#email").focus();
             return;
          }
          
@@ -192,6 +198,7 @@ crossorigin="anonymous">
          if ($("#roadAddr").val()=="" || $("#detailAddr").val()=="")
          {
             $("#flagMsg").html("우편번호 찾기를 통해 주소를 입력해 주세요. (상세주소 포함)");
+            $("#roadAddr").focus();
             return;
          }
          
@@ -566,15 +573,18 @@ crossorigin="anonymous">
          {
             var result = data;
             
-            if (result < 1)
+            if (result == 1)
             {
-               $("#telErrMsg").html("가입이 가능한 번호입니다.");
-               $("#telErrMsg").css("color", "blue");
+               $("#telErrMsg").text("이미 가입했거나, 현재 가입이 불가능한 번호입니다.");
+               $("#telErrMsg").css("color", "red");
+               telFlag2 = false;
+               
             }
             else
             {
-               $("#telErrMsg").html("이미 가입했거나, 현재 가입이 불가능한 번호입니다.");
-               $("#telErrMsg").css("color", "red");               
+                $("#telErrMsg").text("가입이 가능한 번호입니다.");
+                $("#telErrMsg").css("color", "blue");    
+                telFlag2 = true;
             }
             
          });
