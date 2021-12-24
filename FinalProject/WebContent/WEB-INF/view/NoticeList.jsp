@@ -58,7 +58,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
                <th>공지 분류</th>
                <th style="text-align: center;">제목</th>
                <th>작성자</th>
-               <th>날짜</th>
+               <th>&nbsp;&nbsp;작성일시</th>
             </tr>
          </thead>
  
