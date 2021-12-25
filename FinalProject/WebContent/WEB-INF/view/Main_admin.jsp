@@ -54,7 +54,7 @@
       </div>
       <div class="col-md-4">
         <h2>자주 묻는 질문</h2><br>
-        <p><a class="btn btn-primary" href="<%=cp%>/FaqListNode.jsp" role="button">조회하기 »</a></p>
+        <p><a class="btn btn-primary" href="faqlist.action" role="button">조회하기 »</a></p>
       </div>
     </div>
 
