@@ -22,9 +22,7 @@ public interface INoticeDAO
 	public NoticeDTO view(int num);
 
 	// 게시물 수정 
-	//public int modify(NoticeDTO n);
 	public int modify(NoticeDTO n);
-	
 	
 	// 게시물 삭제
 	public int remove(NoticeDTO n);

@@ -75,7 +75,7 @@ body {
 				</div>
 
 				<div class="mb-3">
-					<label for="reg_id">분류</label> 
+					<label for="qs_no">분류</label> 
 					<select class="form-control" name="qs_no" id="qs_no">
 						<option value="-1">========</option>
 						<option value="1">체크리스트</option>
@@ -97,7 +97,7 @@ body {
 				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 				<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button> -->
 				<button class="btn btn-primary" type="submit" id="submitBtn">등록하기</button>
-				<button class="btn btn-primary" type="submit" onclick="location.href='faqlist.action'">취소하기</button>
+				<button class="btn btn-secondary" type="submit" onclick="location.href='faqlist.action'">취소하기</button>
 			</div>
 
 		</div>

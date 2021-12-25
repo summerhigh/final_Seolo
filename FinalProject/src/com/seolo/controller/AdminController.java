@@ -1,6 +1,6 @@
 /*==========================
    AdminController.java
-   - 사용자 정의 컨트롤러
+   - 공지사항 컨트롤러
 ==========================*/
 
 package com.seolo.controller;
@@ -34,6 +34,7 @@ public class AdminController
 		return "WEB-INF/view/Main_admin.jsp";
 	}
 	
+	// 공지사항 게시판 조회
 	@RequestMapping(value = "/noticelist.action", method = RequestMethod.GET)
 	public String noticeList(Model model)
 	{
@@ -41,14 +42,11 @@ public class AdminController
 
 		model.addAttribute("list", dao.list());
 		model.addAttribute("catelist", dao.catelist());
-
-		//@ 객체에 대한 주입
-		//@ 해당 메소드(count.list) 에 오버라이딩
 		
 		return "WEB-INF/view/NoticeList.jsp";
 	}
 	
-	// 생성하는 생성폼페이지로 보내기
+	// 공지사항 게시물 작성 폼으로 이동
 	@RequestMapping(value = "/writenotice.action", method = RequestMethod.GET)
 	public String writeNotice(Model model)
 	{
@@ -57,14 +55,16 @@ public class AdminController
 		return "WEB-INF/view/WriteNotice.jsp";
 	}
 
+	// 공지사항 게시물 작성
+	// (+) 로그인 세션 작성 후, 관리자 아이디 받아와서 INSERT에 넣어주는 기능 필요
 	@RequestMapping(value = "/noticeinsert.action", method = RequestMethod.POST)
 	public String noticeInsert(NoticeDTO n)
 	{
 		
 		// AC_NO, 관리자 아이디 받아와서 테이블에 insert 해줘야 함!
 		
-	      // 체크 고유번호는 시퀀스를 통해 알아서 입력
-	      // AC_NO를 세션속성으로 받아온다.
+	    // 체크 고유번호는 시퀀스를 통해 알아서 입력
+	    // AC_NO를 세션속성으로 받아온다.
 		/*
 	      HttpSession session = request.getSession();
 	      PersonalDTO user = (PersonalDTO)session.getAttribute("userLogin");
@@ -93,27 +93,11 @@ public class AdminController
 		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
 
 		model.addAttribute("view", dao.view(no_no));
-
-		//@ 객체에 대한 주입
-		//@ 해당 메소드(count.list) 에 오버라이딩
 		
 		return "WEB-INF/view/NoticeSee.jsp";
 	}
 	
-	/*
-	@RequestMapping(value = "/memberupdate.action", method = RequestMethod.POST)
-	public String memberUpdate(MemberDTO m)
-	{
-		IMemberDAO dao = sqlSession.getMapper(IMemberDAO.class);
-		
-		dao.modify(m);
-		
-		return "redirect:memberlist.action";
-		//@ : 항상 붙여서 작성해주기!
-		
-	}
-	*/
-	// 공지사항 게시물 수정 폼
+	// 공지사항 게시물 수정 폼으로 이동
 	@RequestMapping(value = "/noticeupdateform.action", method = RequestMethod.GET)
 	public String noticeUpdateform(@RequestParam("no_no") int no_no, Model model)
 	{
@@ -124,10 +108,8 @@ public class AdminController
 		return "WEB-INF/view/UpdateNotice.jsp";
 	}
 	
-	
 	// 공지사항 게시물 수정
-	// 안댐! 확인해보기
-	/*
+	// 다수의 오류 과정 생겼으나 해결! no_no 번호를 jsp 부분에서 히든으로 넣어서 받아옴
 	@RequestMapping(value = "/noticeupdate.action", method = RequestMethod.POST)
 	public String noticeUpdate(NoticeDTO n)
 	{
@@ -135,55 +117,9 @@ public class AdminController
 		
 		dao.modify(n);
 		
-		//return "redirect:noticelist.action";
 		return "redirect:noticeview.action?no_no=" + n.getNo_no();
+	}
 
-	}
-	*/
-	
-	/*
-	@RequestMapping(value = "/noticeupdate.action", method = RequestMethod.POST)
-	public String noticeUpdate(NoticeDTO n)
-	{
-		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
-		
-		dao.modify(n);
-		
-		return "redirect:noticeview.action?no_no=" + n.getNo_no();
-	}
-	*/
-	
-	/*
-	@RequestMapping(value = "noticeupdate.action", method=RequestMethod.POST)
-	public String noticeUpdate(NoticeDTO n)
-	{
-		String result = "redirect:noticeview.action?no_no=";
-				
-		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
-		
-		dao.modify(n);
-		
-		int no_no = n.getNo_no();
-		
-		result += "16";
-		
-		return result;
-	}
-	//-->> 왜 안되는지 이유를 진짜 모르겠다 왜,,,,,,?????? 왜 값을 못받아오는것인가...? 왜일까,,,,?
-	*/
-	
-	@RequestMapping(value = "/noticeupdate.action", method = RequestMethod.POST)
-	public String noticeUpdate(NoticeDTO n)
-	{
-		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
-		
-		dao.modify(n);
-		
-		return "redirect:noticeview.action?no_no=" + n.getNo_no();
-	}
-	// --> 와 왜 되는지 모르겠지만 된다...왜...? no_no번호를 히든으로 받아와서인지...???
-	
-	//@ 딜리트 됨!
 	// 공지사항 게시물 삭제
 	@RequestMapping(value = "/noticedelete.action", method = RequestMethod.GET)
 	public String noticeDelete(NoticeDTO n)
@@ -194,7 +130,5 @@ public class AdminController
 		
 		return "redirect:noticelist.action";
 	}
-	
-
 	
 }

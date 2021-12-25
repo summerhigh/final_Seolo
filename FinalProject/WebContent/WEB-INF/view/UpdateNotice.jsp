@@ -89,7 +89,7 @@ body {
 				</div>
 
 				<div class="mb-3">
-					<label for="reg_id">분류</label> 
+					<label for="nos_no">분류</label> 
 					<select class="form-control" name="nos_no" id="nos_no">
 						<option value="-1">========</option>
 						<option value="1">공지사항</option>

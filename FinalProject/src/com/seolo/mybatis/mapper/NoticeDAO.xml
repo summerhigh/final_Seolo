@@ -5,6 +5,8 @@
 
 <mapper namespace="com.seolo.admin.INoticeDAO">
 
+	<!-- 게시물 조회 -->
+	<!-- 페이징 기능 구현 시 추후 수정 필요할 수도... -->
 	<select id="list" resultType="com.seolo.admin.NoticeDTO">
 		<!-- 
 		SELECT NOTICE_NO, NOTICESORT_NAME,
@@ -46,12 +48,13 @@
 
 	</select>
 		
+	<!-- 카테고리 조회 -->
 	<select id="catelist" resultType="com.seolo.admin.NoticeDTO">
 		SELECT NAME
 		FROM NOTICE_SORT
 	</select>
 	
-
+	<!-- 게시물 추가 -->
 	<insert id="add">
 		INSERT INTO NOTICE(NO_NO, AD_ID, NOS_NO, TITLE, CONTENT, NODATE)
 		VALUES(NOTICESEQ.NEXTVAL, 'admin2', #{nos_no}, #{title}, #{content}, SYSDATE)
@@ -65,17 +68,6 @@
 	</select>
 	
 	<!-- 게시물 수정 -->
-	<!-- 	
-	<update id="modify">
-		
-		UPDATE NOTICE
-		SET 
-		TITLE = #{title}
-		,CONTENT = #{content}
-		,NOS_NO = #{nos_no}
-		WHERE NO_NO=#{no_no}
-	</update>
- 	-->
  	<update id="modify">
  		UPDATE NOTICE
 		SET 
@@ -84,7 +76,6 @@
 		,NOS_NO = #{nos_no}
 		WHERE NO_NO=#{no_no}
  	</update>
- 
  
 	<delete id="remove">
 		DELETE
