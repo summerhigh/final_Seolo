@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seolo.idao.IReadDAO">
+	
+	<select id="read" resultType="com.seolo.dto.ChecklistDTO">
+		SELECT CHECKNO, ACNO, RESNO, CHECKDATE, TITLE, ROADADDR, GUNO, GUNAME, DONGNO, DONGNAME
+		    , MWOLSE, DEPOSIT, MJEONSE, MMAEMAE, PET_SCORENO, PET_CO, SECURITY_SCORENO, SECURITY_CO
+		    , TRANSPORT_SCORENO, TRANSPORT_CO, HONJAP_SCORENO, HONJAP_CO
+		    , MART, LAUNDRY, HOSPITAL, FOOD, CULTURE, PARK, CONV_CO, GOOD, BAD, ETC, SECRET_CO
+		FROM VIEW_READCHECK
+		WHERE CHECKNO=#{checkNo}
+	</select>
+
+	<select id="scoreList" resultType="com.seolo.dto.ScoreDTO">		<!-- 결과 타입을 맞게 했는지 모르겠네 -->
+		SELECT SCORENO, SCORENAME
+		FROM SCORE
+	</select>
+	
+	<select id="isBookMark" resultType="com.seolo.dto.BookmarkDTO">
+		SELECT CH_B_NO AS CHBNO, CHECK_NO AS CHECKNO, TITLE AS TITLE, AC_NO AS ACNO, TO_CHAR(MARKDATE, 'YYYY-MM-DD') AS MARKDATE
+		FROM CHECK_BOOKMARK
+		WHERE AC_NO=#{acNo} AND CHECK_NO=#{checkNo}
+	</select>
+	
+	<select id="listTime" resultType="com.seolo.dto.PlusDTO">
+		SELECT PTIME_NO AS PLUSTIMENO, TITLE AS TIMETITLE, COMMENTS AS TIMECOMMENTS, TIME AS TIME
+		FROM PLUS_TIME
+		WHERE CHECK_NO=#{checkNo}
+	</select>
+	
+	<select id="listScore" resultType="com.seolo.dto.PlusDTO">
+		SELECT PSCORE_NO AS PLUSSCORENO, TITLE AS SCORETITLE, COMMENTS AS SCORECOMMENTS, SCORENO AS SCORENO
+		FROM PLUS_SCORE
+		WHERE CHECK_NO=#{checkNo}
+	</select>
+	
+	<select id="listBookmarkSticker" resultType="java.lang.String">
+		SELECT CONTENT
+		FROM
+		(
+		    SELECT C.CH_TAG_NO AS CHTAGNO, C.CH_B_NO AS CHBNO, S.CONTENT AS CONTENT
+		    FROM CHECKTAG C, STICKER S
+		    WHERE C.CSTICKER_NO=S.CSTICKER_NO(+)
+		    ORDER BY CHTAGNO
+		)
+		WHERE CHBNO=#{chbNo}
+	</select>
+	
+	<select id="listWriterSticker" resultType="java.lang.String">
+		SELECT CONTENT
+		FROM
+		(
+		    SELECT M.MC_TAG_NO AS MCTAGNO, M.CHECK_NO AS CHECKNO, CONTENT AS CONTENT
+		    FROM MYCHECKTAG M, STICKER S
+		    WHERE M.CSTICKER_NO=S.CSTICKER_NO(+)
+		    ORDER BY MCTAGNO
+		)
+		WHERE CHECKNO=#{checkNo}
+	</select>
+	
+</mapper>
