@@ -32,6 +32,19 @@
 		font-size: 3.5rem;
 	}
 }
+
+.bg { 
+	background-color:rgba(0, 0, 0, 0.5); /*살짝 투명한 검정으로 배경색*/ 
+	width:100%; 
+	height:100%; 
+	position: absolute; /*다른 요소들 위로 겹쳐질 수 있게함*/  
+}
+
+.bg img{
+	margin-top: -15%;
+	filter: brightness(50%);
+}
+
 </style>
 
 <!-- Custom styles for this template -->
@@ -50,11 +63,14 @@
 			</ol>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
+					<div class="bg col-md-12">
+						<img src="<%=cp %>/images/mainseoul.jpg" class="d-block w-100">
+					</div>
 					<svg class="bd-placeholder-img" width="100%" height="100%"
 						xmlns="http://www.w3.org/2000/svg" role="img" aria-label=" :  "
 						preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title> </title><rect width="100%" height="100%" fill="#777" />
-						<text x="50%" y="50%" fill="#777" dy=".3em"> </text></svg>
+						<title> </title><rect width="100%" height="100%" fill="#FFFFFF" />
+						<text x="50%" y="50%" fill="#FFFFFF" dy=".3em"> </text></svg>
 
 					<div class="container">
 						<div class="carousel-caption text-left">
@@ -68,11 +84,14 @@
 					</div>
 				</div>
 				<div class="carousel-item">
+					<div class="bg col-md-12">
+						<img src="<%=cp %>/images/room.jpg" class="d-block w-100">
+					</div>
 					<svg class="bd-placeholder-img" width="100%" height="100%"
 						xmlns="http://www.w3.org/2000/svg" role="img" aria-label=" :  "
 						preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title> </title><rect width="100%" height="100%" fill="#777" />
-						<text x="50%" y="50%" fill="#777" dy=".3em"> </text></svg>
+						<title> </title><rect width="100%" height="100%" fill="#FFFFFF" />
+						<text x="50%" y="50%" fill="#FFFFFF" dy=".3em"> </text></svg>
 
 					<div class="container">
 						<div class="carousel-caption">
@@ -86,11 +105,14 @@
 					</div>
 				</div>
 				<div class="carousel-item">
+					<div class="bg col-md-12">
+						<img src="<%=cp %>/images/river.jpeg" class="d-block w-100">
+					</div>
 					<svg class="bd-placeholder-img" width="100%" height="100%"
 						xmlns="http://www.w3.org/2000/svg" role="img" aria-label=" :  "
 						preserveAspectRatio="xMidYMid slice" focusable="false">
-						<title> </title><rect width="100%" height="100%" fill="#777" />
-						<text x="50%" y="50%" fill="#777" dy=".3em"> </text></svg>
+						<title> </title><rect width="100%" height="100%" fill="#FFFFFF" />
+						<text x="50%" y="50%" fill="#FFFFFF" dy=".3em"> </text></svg>
 
 					<div class="container">
 						<div class="carousel-caption text-right">
@@ -198,7 +220,7 @@
 					  </thead>
 					  <tbody>
 						  <c:forEach var="check" items="${checkList }">
-						  	<tr onclick="location.href='xxx.action?check_No=${check.check_no}'">
+						  	<tr onclick="location.href='readcheck.action?checkNo=${check.check_no}'">
 						      <th scope="row">${check.rank }</th>
 						      <td>${check.guName }</td>
 						      <td>${check.dongName }</td>
