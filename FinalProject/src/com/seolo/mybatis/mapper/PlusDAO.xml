@@ -2,20 +2,26 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="com.seolo.idao.IMainDAO">
+<mapper namespace="com.seolo.idao.IPlusDAO">
 	
 	<!-- 입력 - 코멘트 추가입력 -->
 	<insert id="addTime">
 		INSERT INTO PLUS_TIME(PTIME_NO, CHECK_NO, TITLE, TIME)
 		VALUES(PLSTIMESEQ.NEXTVAL, #{checkNo}, #{timeTitle}, #{time})
 	</insert>
-	
+	<insert id="addTimeco">
+		INSERT INTO PLUS_TIME(PTIME_NO, CHECK_NO, TITLE, COMMENTS, TIME)
+		VALUES(PLSTIMESEQ.NEXTVAL, #{checkNo}, #{timeTitle}, #{timeComments}, #{time})
+	</insert>
 		
 	<insert id="addScore">
-		INSERT INTO PLUS_SCORE((PSCORE_NO, CHECK_NO, TITLE, SCORENO)
+		INSERT INTO PLUS_SCORE(PSCORE_NO, CHECK_NO, TITLE, SCORENO)
 		VALUES(PLSSCORESEQ.NEXTVAL, #{checkNo}, #{scoreTitle}, #{scoreNo})		
 	</insert>
-	
+	<insert id="addScoreco">
+		INSERT INTO PLUS_SCORE(PSCORE_NO, CHECK_NO, TITLE, COMMENTS, SCORENO)
+		VALUES(PLSSCORESEQ.NEXTVAL, #{checkNo}, #{scoreTitle}, #{scoreComments}, #{scoreNo})		
+	</insert>	
 	
 	
 	
@@ -28,10 +34,10 @@
 	
 	<update id="modifyTimeco">
 		UPDATE PLUS_TIME
-		SET COMMENTS = #{timeComments}
+		SET TITLE=#{timeTitle}, TIME=#{time}, COMMENTS = #{timeComments}
 		WHERE PTIME_NO = #{plusTimeNo}
 	</update>
-	
+	 
 	<update id="modifyScore">
 		UPDATE PLUS_SCORE
 		SET TITLE=#{scoreTitle}, SCORENO = #{scoreNo}
@@ -40,10 +46,10 @@
 	
 	<update id="modifyScoreco">
 		UPDATE PLUS_SCORE
-		SET COMMENTS = #{scoreComments}
+		SET TITLE=#{scoreTitle}, SCORENO = #{scoreNo}, COMMENTS = #{scoreComments}
 		WHERE PSCORE_NO = #{plusScoreNo}	
 	</update>
-	
+	 
 	
 	
 	<!-- 삭제 -->
@@ -60,8 +66,8 @@
 	</delete>
 	
 	
-	
-	<!-- 추가고유번호로 추가항목 내용 찾기 -->
+	<!-- 
+	 추가고유번호로 추가항목 내용 찾기 
 	<select id="searchTime" resultType="com.seolo.dto.PlusDTO">
 		SELECT PTIME_NO, CHECK_NO, TITLE, COMMENTS, TIME 
 		FROM PLUS_TIME WHERE PTIME_NO= #{plusTimeNo}
@@ -71,7 +77,7 @@
 		SELECT PSCORE_NO, CHECK_NO, TITLE, COMMENTS, SCORENO 
 		FROM PLUS_SCORE WHERE PSCORE_NO= #{plusScoreNo}
 	</select>
-	
+	 -->
 	
 	
 	<!-- 지금 입력하는 체크리스트 번호 알아내기.. 가장 최근에 인서트된 걸 찾는다. -->
@@ -104,4 +110,49 @@
 						  WHERE CHECK_NO = #{checkNo})
 	</select>
 	
+
+	<!-- 시간 추가 리스트 -->
+	<select id="timeList" resultType="com.seolo.dto.PlusDTO">
+		SELECT PTIME_NO AS plusTimeNo, CHECK_NO AS checkNo, TITLE AS timeTitle, COMMENTS AS timeComments, TIME AS time
+		FROM PLUS_TIME
+		WHERE CHECK_NO = #{checkNo}
+		ORDER BY PTIME_NO DESC
+	</select>
+	
+	<!-- 점수 추가 리스트 -->
+	<select id="scoreList" resultType="com.seolo.dto.PlusDTO">
+		SELECT PSCORE_NO AS plusScoreNo, CHECK_NO AS checkNo, TITLE AS scoreTitle
+			 , COMMENTS AS scoreComments, (to_number(SCORENO)-1)*0.5 AS scoreNo
+		FROM PLUS_SCORE
+		WHERE CHECK_NO = #{checkNo}
+		ORDER BY PSCORE_NO DESC
+	</select>	
+		
+		
+	<!-- 해당 번호로 시간추가항목 가져오기 -->
+	<select id="plusTime" resultType="com.seolo.dto.PlusDTO">
+		SELECT PTIME_NO AS plusTimeNo, TITLE AS timeTitle
+			 , COMMENTS AS timeComments, TIME AS time
+		FROM PLUS_TIME
+		WHERE PTIME_NO = #{plusTimeNo}
+	</select>
+	
+	<!-- 해당 번호로 점수추가항목 가져오기 -->
+	<select id="plusScore" resultType="com.seolo.dto.PlusDTO">
+		SELECT PSCORE_NO AS plusScoreNo, TITLE AS scoreTitle
+			 , COMMENTS AS scoreComments, SCORENO AS scoreNo
+		FROM PLUS_SCORE
+		WHERE PSCORE_NO = #{plusScoreNo}
+	</select>
+
+	<!-- 점수 리스트 가져오기 -->
+	<select id="scores" resultType="com.seolo.dto.ScoreDTO">		
+		SELECT SCORENO, SCORENAME FROM SCORE
+	</select>
 </mapper>
+
+
+
+
+
+

@@ -8,7 +8,7 @@ String cp = request.getContextPath();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SecondScoreInsertForm.jsp</title>
+<title>SecondScoreUpdateForm.jsp</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
@@ -53,8 +53,7 @@ String cp = request.getContextPath();
 	<div class="container">
 
 		<div class="py-5 text-center">
-			<h2 style="margin-top: 50px;" style="font-weight: bold;">체크리스트 추가항목 작성</h2>
-			<p class="lead">추가할 항목을 자유롭게 작성해주세요.</p>
+			<h2 style="margin-top: 50px;" style="font-weight: bold;">체크리스트 추가항목 수정</h2>
 		</div>
 
 
@@ -64,27 +63,27 @@ String cp = request.getContextPath();
 				<div class="mb-3">
 					<label for="scoreTitle" style="font-weight: bold;">추가항목 제목</label> 
 					<input type="text" class="form-control" id="scoreTitle" name="scoreTitle" 
-					 placeholder="ex) 주변 도서관" required="required">
+					 value="${score.scoreTitle }">
 				</div>
 				<div class="mb-3">
 					<label for="scoreComments" style="font-weight: bold;">코멘트</label> 
 					<input type="text" class="form-control" id="scoreComments" name="scoreComments" 
-					 placeholder="ex) 근처에 신축 도서관 있음">
+					 value=${score.scoreComments }>
 				</div>
 				<div class="mb-3">
 					<label for="scoreNo" style="font-weight: bold;">점수</label> 
-					<select class="custom-select d-block w-100" id="scoreNo" name="scoreNo" required="required">
-						<c:forEach var="score" items="${scores }">
-							<option value="${score.scoreNo }">${score.scoreName }</option>
+					<select class="custom-select d-block w-100" id="scoreNo" name="scoreNo">
+						<c:forEach var="sc" items="${scores }">
+							<option value="${sc.scoreNo }">${sc.scoreName }</option>
 						</c:forEach>
 					</select>
 				</div>
 				<br>
-				<input type="hidden" id="checkNo" name="checkNo" placeholder="체크리스트고유번호">
+				<!-- 확인끝나면 다시 hidden으로 변경하기 -->
+				<input type="hidden" id="plusScoreNo" name="plusScoreNo" value="${plusScoreNo }" placeholder="점수추가항목고유번호">
 				
-				<!-- 완료버튼 클릭시 인서트되고 ChecklistWrite_second.jsp 로 리다이렉트 되어 항목 추가된 것 확인 가능 -->
 				<button class="btn btn-secondary btn-lg btn-block" type="button"
-				id="next" name="next" style="margin-bottom: 50px;">입력 완료</button>
+				id="next" name="next" style="margin-bottom: 50px;">수정 완료</button>
 
 			</div>
 		</form>

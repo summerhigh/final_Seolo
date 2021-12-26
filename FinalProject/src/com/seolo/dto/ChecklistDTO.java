@@ -5,21 +5,21 @@ import java.util.ArrayList;
 public class ChecklistDTO
 {
 	//○ CheckListDTO 자료형 클래스
-	//-- '나의 체크리스트' 게시글에 관한 작업(등록, 수정, 삭제...) 시 사용 
+	// '나의 체크리스트' 게시글에 관한 작업(등록, 수정, 삭제...) 시 사용 
 	
 	// 주요 속성 구성
-	//-- 고유번호, 이름
+	// 고유번호, 이름
 	private int checkNo, acNo, resNo, guNo;
 	private String residenceName, dongName, guName, dongNo;
 	
-	//-- 주요 속성
+	// 주요 속성
 	private String checkDate, title, roadAddr, good, bad, etc;
 	private String mart, laundry, hospital, food, culture, park, mWolse, deposit, mJeonse, mMaemae;
 	private ArrayList<String> stickerList;
 
-	//-- 점수: 반려동물, 치안, 대중교통, 교통혼잡도
+	// 점수: 반려동물, 치안, 대중교통, 교통혼잡도
 	private int pet_scoreNo, security_scoreNo, transport_scoreNo, honjap_scoreNo;
-	//-- 코멘트: 비밀, 생활편의시설, 반려동물, 치안, 대중교통, 교통혼잡도
+	// 코멘트: 비밀, 생활편의시설, 반려동물, 치안, 대중교통, 교통혼잡도
 	private String secret_co, conv_co, pet_co, security_co, transport_co, honjap_co;
 	public int getCheckNo()
 	{

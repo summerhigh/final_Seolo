@@ -3,22 +3,14 @@ package com.seolo.dto;
 public class PlusDTO
 {
 	//○ PlusDTO 자료형 클래스
-	//-- '나의 체크리스트' 게시글의 추가항목에 관한 작업(등록, 수정, 삭제...) 시 사용 
+	// '나의 체크리스트' 게시글의 추가항목에 관한 작업(등록, 수정, 삭제...) 시 사용 
 	
 	// 주요 속성 구성
 	// 추가항목 고유번호, 체크고유번호, 계정번호, 제목, 코멘트, 시간, 점수
-	private int checkNo, acNo, plusTimeNo, plusScoreNo;
-	private String timeTitle, scoreTitle, timeComments, scoreComments, scoreNo, time;
+	private int acNo, plusTimeNo, plusScoreNo;
+	private String checkNo, timeTitle, scoreTitle, timeComments, scoreComments, scoreNo, time;	// scoreName,
 	
 	// getter / setter 구성
-	public int getCheckNo()
-	{
-		return checkNo;
-	}
-	public void setCheckNo(int checkNo)
-	{
-		this.checkNo = checkNo;
-	}
 	public int getAcNo()
 	{
 		return acNo;
@@ -42,6 +34,14 @@ public class PlusDTO
 	public void setPlusScoreNo(int plusScoreNo)
 	{
 		this.plusScoreNo = plusScoreNo;
+	}
+	public String getCheckNo()
+	{
+		return checkNo;
+	}
+	public void setCheckNo(String checkNo)
+	{
+		this.checkNo = checkNo;
 	}
 	public String getTimeTitle()
 	{
@@ -91,8 +91,16 @@ public class PlusDTO
 	{
 		this.time = time;
 	}
-	
-	
+	/*
+	public String getScoreName()
+	{
+		return scoreName;
+	}
+	public void setScoreName(String scoreName)
+	{
+		this.scoreName = scoreName;
+	}*/
+
 	
 	
 }

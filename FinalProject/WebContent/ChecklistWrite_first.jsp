@@ -132,7 +132,6 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 		$("#next").click(function()
 		{
 			// alert("확인");
-			
 			// 필수 입력 사항이 비어있을 경우
 			if($("#title").val()=="" || $("#bcode").val()=="")
 			{
@@ -208,15 +207,27 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 			}
 			
 			// 생활편의시설 모두 선택하도록 하기
+			/*
 			if($('input[name=mart]:checked').val()!="" || $('input[name=laundry]:checked').val() !=""
-					 || $('input[name=hospital]:checked').val() !="" || $('input[name=food]:checked').val() !=""
-					 || $('input[name=culture]:checked').val()!="" || $('input[name=park]:checked').val()!="")
+				  || $('input[name=hospital]:checked').val() !="" || $('input[name=food]:checked').val() !=""
+				  || $('input[name=culture]:checked').val()!="" || $('input[name=park]:checked').val()!="")
 			{
+				
+				얘가 있으면 아예 이 조건문이 작동을 안 함..
+				if($('input[name=mart]:checked').val()!="" && $('input[name=laundry]:checked').val() !=""
+					&& $('input[name=hospital]:checked').val() !="" && $('input[name=food]:checked').val() !=""
+					&& $('input[name=culture]:checked').val()!="" && $('input[name=park]:checked').val()!="")
+				{
+					return;
+				}
+		
+				
 				alert("생활편의시설 항목의 유무를 모두 선택해주세요.");
 				$("#mart1").focus();
 				return;
 				
 			}
+			*/
 			
 			// 생활편의시설 부분이 잘 안돼....
 			// 라디오버튼 6개는 하나도 선택되지 않던지, 모두 선택되던지 해야함.
@@ -287,17 +298,17 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 			</h4>
 			<div class="d-block my-3">
 				<div class="custom-control custom-radio">
-					<input id="resNo1" name="resNo" type="radio" value=0
+					<input id="resNo1" name="resNo" type="radio" value=1
 						class="custom-control-input" checked="checked"> 
 						<label class="custom-control-label" for="resNo1">거주</label>
 				</div>
 				<div class="custom-control custom-radio">
-					<input id="resNo2" name="resNo" type="radio" value=1
+					<input id="resNo2" name="resNo" type="radio" value=2
 						class="custom-control-input" > <label
 						class="custom-control-label" for="resNo2">거주예정</label>
 				</div>
 				<div class="custom-control custom-radio">
-					<input id="resNo3" name="resNo" type="radio" value=2
+					<input id="resNo3" name="resNo" type="radio" value=3
 						class="custom-control-input" > <label
 						class="custom-control-label" for="resNo3">비거주</label>
 				</div>
