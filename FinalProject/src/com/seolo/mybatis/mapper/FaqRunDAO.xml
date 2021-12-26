@@ -13,6 +13,18 @@
 	VALUES(FAQESEQ.NEXTVAL, 'admin2', #{qs_no}, #{title}, #{content})
  </insert>
  
-
+ <update id="modify">
+ 	UPDATE FAQ
+	SET QS_NO = #{qs_no}
+    , TITLE = #{title}
+    , CONTENT = #{content}
+	WHERE FAQ_NO = #{faq_no}
+ </update>
+ 
+ <delete id="remove">
+ 	DELETE
+	FROM FAQ
+	WHERE FAQ_NO = #{faq_no}
+ </delete>
  
  </mapper>

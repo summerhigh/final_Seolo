@@ -42,7 +42,7 @@ String cp = request.getContextPath();
 		</div>
 		<br> <br>
 
-
+		
 		<!-- 질문 분류 -->
 		<ul class="nav nav-tabs page-header-tabs" id="categori" role="tablist">
 			<li class="nav-item"><a class="nav-link" href="">승인</a></li>
@@ -50,6 +50,7 @@ String cp = request.getContextPath();
 			<li class="nav-item"><a class="nav-link " href="">허위신고</a></li>
 			<li class="nav-item"><a class="nav-link " href="">미해결</a></li>
 		</ul>
+		
 
 		<div class="table-responsive">
 			<table class="card-text table table-striped">
@@ -88,33 +89,32 @@ String cp = request.getContextPath();
 			<!-- 페이징 처리 부분 -->
 			<div class="dataTables_paginate paging_simple_numbers"
 				style="text-align: center;"datatable_paginate">
-				<ul id="datatable_pagination"
-					class="pagination datatable-custom-pagination justify-content-center">
-					<!-- prev 부분도 필요할까봐 넣어둠!
-				<li class="paginate_item page-item disabled">
-					<a class="paginate_button previous page-link" aria-controls="datatable" data-dt-idx="0" tabindex="0" id="datatable_previous">
-					<span aria-hidden="true">Prev</span></a>
-				</li> -->
-					<li class="paginate_item page-item disabled">
-               			<a class="paginate_button previous page-link" aria-controls="datatable" data-dt-idx="0" tabindex="0" id="datatable_previous">
-               			<span aria-hidden="true">Prev</span></a></li>
-					<li class="paginate_item page-item active"><a
-						class="paginate_button page-link" aria-controls="datatable"
-						data-dt-idx="1" tabindex="0">1</a></li>
-					<li class="paginate_item page-item"><a
-						class="paginate_button page-link" aria-controls="datatable"
-						data-dt-idx="2" tabindex="0">2</a></li>
-					<li class="paginate_item page-item"><a
-						class="paginate_button page-link" aria-controls="datatable"
-						data-dt-idx="2" tabindex="0">3</a></li>
-					<li class="paginate_item page-item"><a
-						class="paginate_button page-link" aria-controls="datatable"
-						data-dt-idx="2" tabindex="0">4</a></li>
-					<li class="paginate_item page-item"><a
-						class="paginate_button next page-link" aria-controls="datatable"
-						data-dt-idx="3" tabindex="0" id="datatable_next"> <span
-							aria-hidden="true">Next</span></a></li>
-				</ul>
+				<ul id="datatable_pagination" class="pagination datatable-custom-pagination justify-content-center">
+		            <!-- prev 부분도 필요할까봐 넣어둠! -->
+		            <li class="paginate_item page-item disabled">
+		               <a class="paginate_button previous page-link" aria-controls="datatable" data-dt-idx="0" tabindex="0" id="datatable_previous">
+		               <span aria-hidden="true">Prev</span></a>
+		            </li>
+		            <li class="paginate_item page-item active">
+		               <a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a>
+		            <!-- </li>
+		            <li class="paginate_item page-item">
+		               <a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="2" tabindex="0">2</a>
+		            </li>
+		            <li class="paginate_item page-item">
+		               <a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="2" tabindex="0">3</a>
+		            </li>
+		            <li class="paginate_item page-item">
+		               <a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="2" tabindex="0">4</a>
+		            </li> 
+		            <li class="paginate_item page-item">
+		               <a class="paginate_button next page-link" aria-controls="datatable" data-dt-idx="3" tabindex="0" id="datatable_next">
+		               <span aria-hidden="true">Next</span></a> -->
+			        <li class="paginate_item page-item disabled">
+			        <a class="paginate_button next page-link" aria-controls="datatable" data-dt-idx="3" tabindex="0" id="datatable_next">
+			        <span aria-hidden="true">Next</span></a>
+		            </li>
+		         </ul>
 			</div>
 		</div>
 	</div>
