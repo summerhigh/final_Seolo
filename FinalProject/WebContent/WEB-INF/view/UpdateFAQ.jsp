@@ -27,6 +27,39 @@ body {
 	padding-bottom: 30px;
 }
 </style>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/js/jquery-ui.js"></script>
+
+<script type="text/javascript">
+	
+   //$();        // jquery();
+   $(document).ready(function()
+   {
+      // 버튼이 클릭되었을 때 수행해야 할 코드 처리
+      $("#submitBtn").click(function()
+	{
+    	 // 실행 확인
+    	 //alert("버튼이 클릭되었습니다.")
+    	 
+    	 
+		// 데이터 검사(누락된 입력값이 있는지 없는지에 대한 여부 확인)
+		if( $("#title").val()=="" || $("#content").val()=="" || $("#qs_no").val()=="-1")
+		{
+			alert("필수 입력 항목이 누락되었습니다. 다시 입력해 주세요.");
+			return;					//-- submit 액션 처리 중단
+		}
+    	 
+		// 폼 submit 액션 처리 수행
+		$("#faqupdateform").submit();
+		
+	});
+      
+   });
+
+   
+</script>
 </head>
 
 <body>
@@ -42,8 +75,9 @@ body {
 		<div class="container" role="main">
 			<h2>자주 묻는 질문</h2>
 			<br>
-			<form name="form" id="form" role="form" method="post"
-				action="${pageContext.request.contextPath}/board/saveBoard">
+			<form name="faqupdateform" id="faqupdateform" role="form" method="post"
+				action="faqupdate.action">
+				<input type="hidden" id="faq_no" name="faq_no" value="${view.faq_no }"/>
 				<div class="mb-3">
 					<label for="title">제목</label> <input type="text"
 						class="form-control" name="title" id="title" value="${view.faq_title }"
@@ -51,12 +85,13 @@ body {
 				</div>
 
 				<div class="mb-3">
-					<label for="reg_id">분류</label> <select class="form-control">
-						<option>========</option>
-						<option>회원 관리</option>
-						<option>체크리스트</option>
-						<option>공동구매</option>
-						<option>기타</option>
+					<label for="qs_no">분류</label> 
+					<select class="form-control" name="qs_no" id="qs_no">
+						<option value="-1">========</option>
+						<option value="1">체크리스트</option>
+						<option value="3">회원 관리</option>
+						<option value="4">기타</option>
+					</select>
 					</select>
 				</div>
 
@@ -72,8 +107,8 @@ body {
 			<div align="right">
 				<!-- <button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 				<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button> -->
-				<button class="btn btn-primary" type="submit">수정하기</button>
-				<button class="btn btn-primary" type="submit">취소하기</button>
+				<button type="button" class="btn btn-primary" id="submitBtn" value="${view.faq_no }">수정하기</button>
+				<button type="button" class="btn btn-secondary" onclick="location.href='faqlist.action'">취소하기</button>
 			</div>
 
 		</div>

@@ -80,18 +80,7 @@ public class FaqController
 		return "redirect:faqlist.action";
 	}
 	
-	// 자주 묻는 게시판 수정 페이지로 보내기
-	/*
-	@RequestMapping(value = "/noticeupdateform.action", method = RequestMethod.GET)
-	public String noticeUpdateform(@RequestParam("no_no") int no_no, Model model)
-	{
-		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
-
-		model.addAttribute("view", dao.view(no_no));
-		
-		return "WEB-INF/view/UpdateNotice.jsp";
-	}
-	*/
+	// 자주 묻는 질문 게시판 수정 페이지로 보내기
 	@RequestMapping(value = "/faqupdateform.action", method = RequestMethod.GET)
 	public String faqUpdateform(@RequestParam("faq_no") int faq_no, Model model)
 	{
@@ -102,6 +91,28 @@ public class FaqController
 		return "WEB-INF/view/UpdateFAQ.jsp";
 	}
 	
+	// 자주 묻는 질문 게시물 수정하기
+	@RequestMapping(value = "/faqupdate.action", method = RequestMethod.POST)
+	public String faqUpdate(FaqRunDTO n)
+	{
+		IFaqRunDAO dao = sqlSession.getMapper(IFaqRunDAO.class);
+		
+		dao.modify(n);
+		
+		return "redirect:faqlist.action";
+	}
+	
+	
+	// 자주 묻는 질문 게시물 삭제하기
+	@RequestMapping(value = "/faqdelete.action", method = RequestMethod.GET)
+	public String faqDelete(FaqRunDTO n)
+	{
+		IFaqRunDAO dao = sqlSession.getMapper(IFaqRunDAO.class);
+		
+		dao.remove(n);
+		
+		return "redirect:faqlist.action";
+	}
 	
 }
 

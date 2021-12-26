@@ -46,7 +46,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;알림/공지</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" href="noticelist.action">공지사항</a>
-          <a class="dropdown-item" href="<%=cp%>/Introduction.jsp">서비스 소개</a>
+          <a class="dropdown-item" href="introduction.action">서비스 소개</a>
           <a class="dropdown-item" href="faqlist.action">자주 묻는 질문</a>
         </div>
       </li>

@@ -28,27 +28,20 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
    <div class="page-header"><h1 class="page-heading">공지사항</h1></div>
    <br><br>
    
+   
    <!-- 공지 분류 -->
    <ul class="nav nav-tabs page-header-tabs" id="categori" role="tablist">
        <!-- <li class="nav-item">
          <a class="nav-link " href="">공지 사항</a>
        </li> -->
-       <%-- 
-       <c:forEach var="list" items="${list }">
-       <li class="nav-item">
-         <a class="nav-link " href="">${list.nos_name}</a>
-       </li>
-       </c:forEach>
-         --%>
          
        <c:forEach var="catelist" items="${catelist }">
        <li class="nav-item">
          <a class="nav-link " href="">${catelist.name }</a>
        </li>
        </c:forEach> 
-       
     </ul>
-   
+    
    
    <div class="table-responsive">
       <table class="card-text table table-striped">
@@ -97,7 +90,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
             </li>
             <li class="paginate_item page-item active">
                <a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a>
-            </li>
+            <!-- </li>
             <li class="paginate_item page-item">
                <a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="2" tabindex="0">2</a>
             </li>
@@ -106,10 +99,13 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
             </li>
             <li class="paginate_item page-item">
                <a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="2" tabindex="0">4</a>
-            </li>
+            </li> 
             <li class="paginate_item page-item">
                <a class="paginate_button next page-link" aria-controls="datatable" data-dt-idx="3" tabindex="0" id="datatable_next">
-               <span aria-hidden="true">Next</span></a>
+               <span aria-hidden="true">Next</span></a> -->
+	        <li class="paginate_item page-item disabled">
+	        <a class="paginate_button next page-link" aria-controls="datatable" data-dt-idx="3" tabindex="0" id="datatable_next">
+	        <span aria-hidden="true">Next</span></a>
             </li>
          </ul>
       </div>
