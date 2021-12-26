@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.seolo.dto.BookmarkDTO;
 import com.seolo.dto.ChecklistDTO;
+import com.seolo.dto.LocalDTO;
 import com.seolo.dto.PlusDTO;
 import com.seolo.idao.IReadDAO;
 import com.seolo.personal.PersonalDTO;
@@ -119,5 +120,50 @@ public class ChecklistReadController
 			
 			return "WEB-INF/view/ReadChecklist.jsp";
 		}
+		
+	}
+	
+	@RequestMapping(value = "/readlocal.action", method = RequestMethod.GET)
+	public String readLocal(Model model, HttpSession session, HttpServletRequest request)
+	{
+		IReadDAO dao = sqlSession.getMapper(IReadDAO.class);
+		
+		String dongNo = request.getParameter("dongNo");
+		if (dongNo == null)
+		{
+			return "redirect:main.action";	// 개별 지역정보 조회페이지는 지역번호가 없으면 조회 불가
+		}
+		
+		LocalDTO localList = null;		
+		localList = dao.readLocal(dongNo);
+		if (localList==null)	// 존재하지 않는 지역번호를 조회하려고 하면
+		{
+			return "redirect:main.action";
+		}
+		else
+		{
+			// 로그인 했는지?
+			if (session.getAttribute("userLogin")!=null)
+			{
+				
+				/*
+				// 북마크 추가했는지? 확인하기
+				if (condition)
+				{
+					model.addAttribute("user", "bookmarker");
+				}
+				else
+				{
+					model.addAttribute("user", "viewer");
+				}
+				*/
+			}
+			
+			
+			model.addAttribute("localList", localList);
+			
+			return "WEB-INF/view/ReadLocal.jsp";
+		}
+	
 	}
 }

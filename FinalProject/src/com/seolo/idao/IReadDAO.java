@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.seolo.dto.BookmarkDTO;
 import com.seolo.dto.ChecklistDTO;
+import com.seolo.dto.LocalDTO;
 import com.seolo.dto.PlusDTO;
 import com.seolo.dto.ScoreDTO;
 
@@ -22,4 +23,6 @@ public interface IReadDAO
 	public ArrayList<String> listBookmarkSticker(int chbNo);
 	
 	public ArrayList<String> listWriterSticker(int checkNo);
+	
+	public LocalDTO readLocal(String dongNo);
 }
