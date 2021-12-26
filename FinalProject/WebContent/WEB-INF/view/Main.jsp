@@ -197,7 +197,7 @@
 					  </thead>
 					  <tbody>
 					  	<c:forEach var="local" items="${localList }">
-					  		<tr onclick="location.href='xxx.action?dongNo=${local.dongNo}'">
+					  		<tr onclick="location.href='readlocal.action?dongNo=${local.dongNo}'">
 						      <th scope="row">${local.rank }</th>
 						      <td>${local.guName }</td>
 						      <td>${local.dongName }</td>
