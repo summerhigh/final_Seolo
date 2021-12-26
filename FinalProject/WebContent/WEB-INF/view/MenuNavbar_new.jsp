@@ -53,7 +53,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-expanded="false">&nbsp;&nbsp;체크리스트</a>
         <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="<%=cp%>/MyChecklists.jsp">나의 체크리스트</a>
+          <a class="dropdown-item" href="<%=cp%>/mychecklistform.action">나의 체크리스트</a>
           <a class="dropdown-item" href="<%=cp%>/searchRegion_gu.jsp">지역 정보</a>
         </div>
       </li>
@@ -81,7 +81,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
          <c:when test="${!empty userLogin}">
             <ul class="navbar-nav mr-auto navbar-right navbar-nav my-2 my-md-0 mr-md-3">
               <li class="nav-item">
-              <a class="nav-link" href="#">마이페이지</a>
+              <a class="nav-link" href="myinfo.action">마이페이지</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="logout.action" onclick="return confirm('로그아웃 하시겠습니까?');">&nbsp;&nbsp;로그아웃</a>

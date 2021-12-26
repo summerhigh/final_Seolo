@@ -16,6 +16,8 @@ public interface IReadDAO
 
 	public BookmarkDTO isBookMark(BookmarkDTO dto);
 	
+	public BookmarkDTO isLocalBookMark(BookmarkDTO dto);
+	
 	public ArrayList<PlusDTO> listTime(int checkNo);
 	
 	public ArrayList<PlusDTO> listScore(int checkNo);
@@ -25,4 +27,6 @@ public interface IReadDAO
 	public ArrayList<String> listWriterSticker(int checkNo);
 	
 	public LocalDTO readLocal(String dongNo);
+	
+	public ArrayList<String> listLocalBookmarkSticker(int lobNo);
 }

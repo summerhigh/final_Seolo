@@ -145,18 +145,26 @@ public class ChecklistReadController
 			// 로그인 했는지?
 			if (session.getAttribute("userLogin")!=null)
 			{
+				String acNo = ((PersonalDTO)session.getAttribute("userLogin")).getAc_No();	// 로그인한 사람의 acNo
+				BookmarkDTO bookMark = dao.isLocalBookMark(new BookmarkDTO(acNo, dongNo));
 				
-				/*
 				// 북마크 추가했는지? 확인하기
-				if (condition)
+				if (bookMark!=null)	// 북마크 했음
 				{
 					model.addAttribute("user", "bookmarker");
+					model.addAttribute("bookMark", bookMark);
+					
+					// 스티커 리스트
+					ArrayList<String> stickerList = dao.listLocalBookmarkSticker(bookMark.getLobNo());
+					if (stickerList!=null)
+						model.addAttribute("stickerList", stickerList);
+					
 				}
-				else
+				else // 북마크 안했음
 				{
 					model.addAttribute("user", "viewer");
 				}
-				*/
+				
 			}
 			
 			
