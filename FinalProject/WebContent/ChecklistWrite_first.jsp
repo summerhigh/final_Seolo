@@ -206,62 +206,60 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 				}
 			}
 			
-			// 생활편의시설 모두 선택하도록 하기
-			/*
-			if($('input[name=mart]:checked').val()!="" || $('input[name=laundry]:checked').val() !=""
-				  || $('input[name=hospital]:checked').val() !="" || $('input[name=food]:checked').val() !=""
-				  || $('input[name=culture]:checked').val()!="" || $('input[name=park]:checked').val()!="")
+			
+			
+		 // 생활편의시설 모두 선택하도록 하기
+         
+         // 1. 전부 체크했을 경우 → submit 가능
+         // 2. 하나도 체크하지 않았을 경우 → submit 가능
+         // 3. 몇개만 체크했을 경우 → submit 막기
+         
+         if ($('input:radio[name=mart]').is(':checked') && $('input:radio[name=laundry]').is(':checked')
+               && $('input:radio[name=hospital]').is(':checked') && $('input:radio[name=food]').is(':checked')
+               && $('input:radio[name=culture]').is(':checked') && $('input:radio[name=park]').is(':checked'))
+         {
+            // alert("통과");   // 아무것도 없어도 제출 가능... 
+         }
+         else if (!$('input:radio[name=mart]').is(':checked') && !$('input:radio[name=laundry]').is(':checked')
+               && !$('input:radio[name=hospital]').is(':checked') && !$('input:radio[name=food]').is(':checked')
+               && !$('input:radio[name=culture]').is(':checked') && !$('input:radio[name=park]').is(':checked')) 
+         {
+            // alert("ㅇㅋ");   // 아무것도 없어도  제출 가능... 
+         }
+         else
+         {
+            alert("생활편의시설은 6가지 항목을 전부 체크해주셔야 합니다");
+            return;
+         }
+         
+         
+         if ($("textarea#conv_co").val() != "")
+         {
+            if ( !($('input:radio[name=mart]').is(':checked') && $('input:radio[name=laundry]').is(':checked')
+                  && $('input:radio[name=hospital]').is(':checked') && $('input:radio[name=food]').is(':checked')
+                  && $('input:radio[name=culture]').is(':checked') && $('input:radio[name=park]').is(':checked')) )
+            {
+               alert("생활편의시설 코멘트를 작성하시려면 항목의 유무를 모두 선택해주세요.");
+               $("#mart1").focus();
+               return;
+            }
+            
+         }			
+			
+			
+		// 이렇게 세 개를 같이 할 수밖에 없었음.. 장점, 단점, 기타 모두 입력해야 함
+		if($("textarea#good").val()!="" || $("textarea#bad").val()!="" || $("textarea#etc").val()!="")
+		{
+			if($("textarea#good").val()=="" || $("textarea#bad").val()=="" || $("textarea#etc").val()=="")
 			{
-				
-				얘가 있으면 아예 이 조건문이 작동을 안 함..
-				if($('input[name=mart]:checked').val()!="" && $('input[name=laundry]:checked').val() !=""
-					&& $('input[name=hospital]:checked').val() !="" && $('input[name=food]:checked').val() !=""
-					&& $('input[name=culture]:checked').val()!="" && $('input[name=park]:checked').val()!="")
-				{
-					return;
-				}
-		
-				
-				alert("생활편의시설 항목의 유무를 모두 선택해주세요.");
-				$("#mart1").focus();
+				alert("코멘트의 세 항목을 모두 입력해주세요");
+				$("textarea#good").focus();
 				return;
-				
-			}
-			*/
-			
-			// 생활편의시설 부분이 잘 안돼....
-			// 라디오버튼 6개는 하나도 선택되지 않던지, 모두 선택되던지 해야함.
-			// 그래서 하나라도 선택이 되어 있으면 마저 선택하라고 할거임
-			// 근데 다 채워져있으면??? 오케이 합격 이라고 어케 하지??
-			
-			
-			
-			if ($("textarea#conv_co").val() != "")
-			{
-				alert("생활편의시설 코멘트를 작성하시려면 항목의 유무를 모두 선택해주세요.");
-				$("#mart1").focus();
-				
 			}
 			
-			
-			// alert(typeof $('input[name=mart]:checked').val());
-			// alert($('input[name=mart]:checked').val());
-			
-			
-			
-			// 이렇게 세 개를 같이 할 수밖에 없었음.. 장점, 단점, 기타 모두 입력해야 함
-			if($("textarea#good").val()!="" || $("textarea#bad").val()!="" || $("textarea#etc").val()!="")
-			{
-				if($("textarea#good").val()=="" || $("textarea#bad").val()=="" || $("textarea#etc").val()=="")
-				{
-					alert("코멘트의 세 항목을 모두 입력해주세요");
-					$("textarea#good").focus();
-					return;
-				}
-				
-			}
-			
-			$("#checkFirst").submit();
+		}
+		
+		$("#checkFirst").submit();
 			
 			
 		});

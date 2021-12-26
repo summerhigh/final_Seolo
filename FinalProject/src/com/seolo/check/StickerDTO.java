@@ -2,7 +2,7 @@ package com.seolo.check;
 
 public class StickerDTO
 {
-	private int stickerNo;
+	private int stickerNo, checkNo, acNo;		// checkNo, acNo 입력 3번 페이지 때문에 추가
 	private String content;
 
 	public int getStickerNo()
@@ -21,5 +21,22 @@ public class StickerDTO
 	{
 		this.content = content;
 	}
+	public int getCheckNo()
+	{
+		return checkNo;
+	}
+	public void setCheckNo(int checkNo)
+	{
+		this.checkNo = checkNo;
+	}
+	public int getAcNo()
+	{
+		return acNo;
+	}
+	public void setAcNo(int acNo)
+	{
+		this.acNo = acNo;
+	}
+	
 
 }

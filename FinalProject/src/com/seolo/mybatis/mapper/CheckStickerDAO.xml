@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.seolo.idao.ICheckStickerDAO">
+
+	<!-- 해당 계정이 가진 스티커 목록 가져오기 -->
+	<select id="stickerList" resultType="com.seolo.check.StickerDTO">   
+		SELECT S.CSTICKER_NO AS stickerNo, S.CONTENT AS content
+		 FROM  ( SELECT CSTICKER_NO
+		         FROM VIEW_ALLSTICKER 
+		         WHERE AC_NO = #{acNo}
+		         GROUP BY CSTICKER_NO) T
+		 LEFT JOIN STICKER S
+		 ON T.CSTICKER_NO = S.CSTICKER_NO
+	</select>
+	
+	
+	<!-- 계정이 가지고 있던 스티커를 해당 체크리스트에 붙이기 -->
+	<insert id="putSticker">
+		INSERT INTO MYCHECKTAG(MC_TAG_NO, CHECK_NO, CSTICKER_NO)
+		VALUES(MYTAGSEQ.NEXTVAL, #{checkNo}, #{stickerNo})	
+	</insert>
+		
+	<!-- 지금 계정번호에서 가장 최근에 쓴 체크리스트 고유번호 가져오기 -->
+	<select id="searchCheckNo" resultType="java.lang.Integer">
+		SELECT CHECK_NO AS checkNo
+		FROM
+		(
+		    SELECT CHECK_NO, CHECKDATE, RANK() OVER(ORDER BY CHECKDATE DESC) AS FAST
+		    FROM CHECKLIST
+		    WHERE AC_NO=#{acNo}
+		)T
+		WHERE T.FAST =1
+	</select>
+	
+	<!-- 해당 체크리스트에 붙은 스티커 목록 가져오기 -->
+	<select id="thisCheck" resultType="com.seolo.check.StickerDTO">
+		SELECT M.MC_TAG_NO AS stickerNo, S.CONTENT AS content
+		FROM MYCHECKTAG M, STICKER S 
+		WHERE M.CSTICKER_NO(+) = S.CSTICKER_NO 
+		 AND CHECK_NO=#{checkNo }	
+	</select>
+	
+	<!-- 이 계정의 스티커 목록에 새 스티커 추가하기 -->
+	<insert id="addSticker">
+		INSERT INTO STICKER(CSTICKER_NO, CONTENT, AC_NO)
+		VALUES(CSTICKERSEQ.NEXTVAL, #{content}, #{acNo})	
+	</insert>
+	
+	<!-- 지금 계정번호에서 가장 최근에 추가한 스티커 고유번호 가져오기 -->
+	<select id="searchStickerNo"  resultType="java.lang.Integer">
+		SELECT T.CSTICKER_NO AS stickerNo
+		FROM
+		(
+		    SELECT CSTICKER_NO, RANK() OVER(ORDER BY CSTICKER_NO DESC) AS FAST
+		    FROM STICKER
+		    WHERE AC_NO= #{acNo}
+		) T
+		WHERE T.FAST=1	
+	</select>
+	
+</mapper>
