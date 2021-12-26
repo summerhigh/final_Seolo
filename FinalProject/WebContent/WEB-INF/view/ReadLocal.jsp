@@ -55,12 +55,12 @@
 						</div>
 					</div>
 					
-					
-					<!-- 북마크 추가 -->
-					<button class="btn btn-primary" style="width: 100%;">북마크 추가하기</button>
-					
-					<!-- 북마크 삭제 -->
-					<button class="btn btn-secondary" style="width: 100%;">북마크 삭제하기</button>
+					<c:if test="${user eq 'bookmarker' }">
+						<button class="btn btn-secondary" style="width: 100%;">북마크 삭제하기</button>
+					</c:if>
+					<c:if test="${user eq 'viewer' }">
+						<button class="btn btn-primary" style="width: 100%;">북마크 추가하기</button>
+					</c:if>
 
 				</div><!-- 본문 우측 영역 끝 -->
 			
@@ -198,7 +198,7 @@
 
 	<div class="container" style="margin-top: 50px;">
 	<hr class="mb-4">
-		<c:if test="${(user eq 'writer') or (user eq 'bookmarker') }">
+		<c:if test="${user eq 'bookmarker' }">
 		<div class="card mb-4 shadow-sm" style="margin-top: 50px;">
 			<div class="card-header"><h4 class="my-0 font-weight-normal">스티커</h4></div>
 	      

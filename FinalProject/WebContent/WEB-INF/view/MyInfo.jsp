@@ -38,6 +38,11 @@ crossorigin="anonymous">
 				$(location).attr("href", "pwdchangeform.action");
 			});
 			
+			$("#withdrawalBtn").click(function()
+			{
+				$(location).attr("href", "withdrawalconfirm.action");
+			});
+			
 		});
 	
 </script>
@@ -152,10 +157,9 @@ crossorigin="anonymous">
           	<span id="flagMsg" class="errMsg"></span>
           </div>
           <div class="btn_wrap">
-			<button type="button" class="btn btn-primary" id="updateBtn"
-			style="font-size: 13px;">수정하기</button>&nbsp;&nbsp;&nbsp;
-			<button type="button" class="btn btn-primary" id="pwdUpdateBtn"
-			style="font-size: 13px;">비밀번호 변경</button>
+			<button type="button" class="btn btn-primary" id="updateBtn" style="font-size: 13px;">수정하기</button>&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn btn-primary" id="pwdUpdateBtn" style="font-size: 13px;">비밀번호 변경</button>&nbsp;&nbsp;&nbsp;
+			<button type="button" class="btn btn-secondary" id="withdrawalBtn" style="font-size: 13px;">탈퇴하기</button>
           </div>
           <br>
         </div> <!-- form_txtInput E -->

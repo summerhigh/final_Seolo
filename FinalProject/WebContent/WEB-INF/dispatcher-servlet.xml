@@ -154,36 +154,4 @@
 	</bean>
    
    
-   
-   <!-- 진하 : 체크리스트 작성 컨트롤러 등록  -->
-   
-   <!-- 
-   <bean name="checkDAO" class="com.seolo.check.ChecklistDAO">
-   		<property name="dataSource" ref="localDataSource"></property>
-   </bean>
-   
-   <bean name="/checkfirstinsertform.action" class="com.seolo.check.CheckFirstInsertFormController">
-   		<property name="dao" ref="checkDAO"></property>
-   </bean>
-   
-   <bean name="/checkfirstinsert.action" class="com.seolo.check.CheckFirstInsertController">
-   		<property name="dao" ref="checkDAO"></property>
-   </bean>
-
-   <bean name="/ajax.action" class="com.seolo.check.AddressAjaxController">
-   		<property name="dao" ref="checkDAO"></property>
-   </bean>
-
-   <bean name="/checksecondinsertform.action" class="com.seolo.check.CheckSecondInsertFormController">
-   		<property name="dao" ref="checkDAO"></property>
-   </bean> -->
-
-   
-   <!-- 
-   다영/다정
-   <bean name="/mainadmin.action" class="com.seolo.controller.AdminController">
-		<property name="dao" ref=""></property>
-   </bean>
-    -->
-   
 </beans>

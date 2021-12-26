@@ -114,7 +114,7 @@ src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8debbf5b35bae9b060adac364d027afd&lib
 		</div>
 
 		<!-- 폼 시작 -->
-		<form class="needs-validation" novalidate=""  action="" method="post" id="checkFirst">
+		<form class="needs-validation" novalidate=""  action="" method="post" id="readCheck">
 			<div class="row">
 				<div class="col-md-8">
 					<h4 class="mb-3">
