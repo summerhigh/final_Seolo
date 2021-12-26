@@ -140,14 +140,18 @@
     </bean>
    
 
-   <!-- 미화: 나의 체크리스트 페이지  -->
-   	<!-- <bean id="viewDAO" class="com.seolo.check.ViewDAO">
-   		<property name="dataSource" ref="localDataSource"></property>
-   	</bean>
-   	
-   	<bean name="/mychecklist.action" class="com.seolo.check.MyChecklistController">
-   		<property name="dao" ref="viewDAO"></property>
-   	</bean> -->
+    <!-- 미화: 나의 체크리스트 페이지  -->
+	<bean id="viewDAO" class="com.seolo.check.ViewDAO">
+		<property name="dataSource" ref="localDataSource"></property>
+	</bean>
+	
+	<bean name="/mychecklistform.action" class="com.seolo.check.MyChecklistFormController">
+		<property name="dao" ref="viewDAO"></property>
+	</bean>
+	
+	<bean name="/mychecklist.action" class="com.seolo.check.MyChecklistController">
+		<property name="dao" ref="viewDAO"></property>
+	</bean>
    
    
    
