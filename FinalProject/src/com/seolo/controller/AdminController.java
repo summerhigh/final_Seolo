@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.seolo.admin.INoticeDAO;
 import com.seolo.admin.NoticeDTO;
+import com.seolo.dto.AdminDTO;
 import com.seolo.personal.PersonalDTO;
 
 @Controller
@@ -28,8 +29,14 @@ public class AdminController
 	private SqlSession sqlSession;
 	
 	@RequestMapping(value = "/mainadmin.action", method = RequestMethod.GET)
-	public String mainadmin(Model model)
+	public String mainadmin(Model model, HttpSession session)
 	{
+		
+		AdminDTO adminSession = (AdminDTO)session.getAttribute("adminLogin");
+		
+		// 관리자가 아니면 접속 불가
+		if (adminSession == null)
+			return "redirect:main.action";
 		
 		return "WEB-INF/view/Main_admin.jsp";
 	}
