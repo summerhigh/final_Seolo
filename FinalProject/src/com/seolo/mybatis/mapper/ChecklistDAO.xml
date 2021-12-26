@@ -141,6 +141,27 @@
 		)T
 		WHERE T.FAST =1
 	</select>
+	
+	
+	<!-- 점수 추가 리스트 -->
+	<!-- 
+	<select id="scoreList" resultType="com.seolo.dto.PlusDTO">
+		SELECT PTIME_NO, CHECK_NO, TITLE, COMMENTS, TIME
+		FROM PLUS_TIME
+		WHERE CHECK_NO = #{checkNo}
+		ORDER BY PTIME_NO DESC
+	</select>
+	 -->
+	<!-- 시간 추가 리스트 -->
+	<!-- 
+	<select id="timeList" resultType="com.seolo.dto.PlusDTO">
+		SELECT PSCORE_NO, CHECK_NO, TITLE, COMMENTS, SCORENO
+		FROM PLUS_SCORE
+		WHERE CHECK_NO = #{checkNo}
+		ORDER BY PSCORE_NO DESC
+	</select>	
+	 -->
+	
 </mapper>
 
 

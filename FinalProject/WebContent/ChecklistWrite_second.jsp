@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 String cp = request.getContextPath();
@@ -18,6 +19,36 @@ String cp = request.getContextPath();
 	color: #FFA7A7;
 }
 </style>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+
+/*
+	$(document).ready(function()
+	{
+		// 확인
+		// alert("확인");
+		
+		$("#timeDelete").click(function name()
+		{
+			if(confirm("이 추가항목을 정말 삭제하시겠습니까?"))
+			{
+				$(location).attr("href", "secondtimedelete.action?plusTimeNo=" + $(this).val());
+			}
+		});
+		
+		$("#scoreDelete").click(function name()
+		{
+			if(confirm("이 추가항목을 정말 삭제하시겠습니까?"))
+			{
+				$(location).attr("href", "secondscoredelete.action?plusScoreNo=" + $(this).val());
+			}
+		});
+		
+	});
+*/
+
+
+</script>
 </head>
 <body>
 
@@ -40,52 +71,79 @@ String cp = request.getContextPath();
 
 		<!-- SecondTimeInsertForm.jsp -->
 		<a href="secondtimeinsertform.action" role="button" class="btn btn-secondary" 
-		id="btnAdd" style="vertical-align: bottom;">시간 관련항목 추가하기</a>
+		id="btnAdd" style="vertical-align: bottom;">시간 관련항목 입력하기</a>
 		
 		<!-- SecondScoreInsertForm.jsp -->
-		<a href="secondscoreinsertform.action" role="button" class="btn btn-secondary" 
-		id="btnAdd" style="vertical-align: bottom;">점수 관련항목 추가하기</a>
+		<a href="secondscoreinsertform.action" role="button" class="btn btn-info" 
+		id="btnAdd" style="vertical-align: bottom;">점수 관련항목 입력하기</a>
 		
+		<a href="thirdinsertform.action" role="button" class="btn btn-primary float-right" 
+		id="btnAdd" style="vertical-align: bottom; ">다음으로</a>
 		
+		<input type="hidden" id="checkNo" name="checkNo" placeholder="체크리스트고유번호">
 
 		<br>
 		<br>
+
+		<%-- ${fn:length(timeList)}
+		${fn:length(scoreList)} --%>
 
 		<table class="table table-striped table-condensed table-hover">
-			<tr class="text-center">
+			<tr style="font-weight: bold;">
 				<td>추가항목명</td>
 				<td>코멘트</td>
 				<td>점수 / 시간</td>
 				<td>수정</td>
 				<td>삭제</td>
 			</tr>
-			<tr class="text-center">
-				<td>도서관</td>
-				<td>신축 도서관이 근처에 있음</td>
-				<td>4.5</td>
-				<td>
-					<button type="button" class="btn btn-secondary">수정하기</button>
-				</td>
-				<td>
-					<button type="button" class="btn btn-secondary">삭제하기</button>
-				</td>
-			</tr>
-			<tr class="text-center">
-				<td>고척돔까지</td>
-				<td>고척돔까지 도보로 걸리는 시간</td>
-				<td>30</td>
-				<td>
-					<button type="button" class="btn btn-secondary">수정하기</button>
-				</td>
-				<td>
-					<button type="button" class="btn btn-secondary">삭제하기</button>
-				</td>
-			</tr>
+			<c:choose>
+				<%-- 데이터가 존재하지 않을 때 --%>
+				<c:when test="${fn:length(timeList)==0 && fn:length(scoreList)==0}">
+					<tr>
+						<td colspan="5"><br>
+							<p class="text-center">입력된 추가항목이 없습니다. 추가항목을 입력해주세요.</p>
+						</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+			<c:forEach var="list" items="${timeList }">
+					<tr>
+						<td>${list.timeTitle }</td>
+						<td>${list.timeComments }</td>
+						<td>${list.time }</td>
+						<td>
+							<a href="secondtimeupdateform.action?plusTimeNo=${list.plusTimeNo }"
+							role="button" class="btn btn-secondary btn-xs btnUpdate" 
+							name="timeUpdate${list.plusTimeNo }" id="timeUpdate${list.plusTimeNo }">수정</a>
+								
+						</td>
+						<td>
+							<a href="secondtimedelete.action?plusTimeNo=${list.plusTimeNo }"
+							role="button" class="btn btn-secondary btn-xs btnDelete" 
+							name="timeDelete${list.plusTimeNo }" id="timeDelete${list.plusTimeNo }">삭제</a>
+						</td>
+					</tr>
+					</c:forEach>
+					<c:forEach var="list" items="${scoreList }">
+					<tr>
+						<td>${list.scoreTitle }</td>
+						<td>${list.scoreComments }</td>
+						<td>${list.scoreNo }</td>		
+						<td>
+							<a href="secondscoreupdateform.action?plusScoreNo=${list.plusScoreNo}"
+							role="button" class="btn btn-info btn-xs btnUpdate" 
+							name="scoreUpdate${list.plusScoreNo}" id="scoreUpdate${list.plusScoreNo}">수정</a>	
+						</td>
+						<td>
+							<a href="secondscoredelete.action?plusScoreNo=${list.plusScoreNo}"
+							role="button" class="btn btn-info btn-xs btnDelete" 
+							name="scoreDelete${list.plusScoreNo}" id="scoreDelete${list.plusScoreNo}">삭제</a>
+						</td>
+					</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</table>
-
-
 	</div>
-
-
 </body>
 </html>

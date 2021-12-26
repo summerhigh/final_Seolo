@@ -56,6 +56,13 @@ public interface IChecklistDAO
 	// 지금 계정번호에서 가장 최근에 쓴 체크리스트 번호 가져오기 (sysdate로 정렬해서 첫번째꺼)
 	public int searchCheckNo(int acNo);
 	
+	/*
+	// 시간추가항목 전체리스트 가져오기 - 고유번호가 큰 순 정렬
+	public ArrayList<PlusDTO> timeList(int checkNo);
+	
+	// 점수추가항목 전체리스트 가져오기 - 고유번호가 큰 순 정렬
+	public ArrayList<PlusDTO> scoreList(int checkNo);
+	*/
 	
 	/*
 	// 체크리스트 입력할 때 들어가는 것.
