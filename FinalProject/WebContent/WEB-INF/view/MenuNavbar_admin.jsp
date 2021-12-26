@@ -19,10 +19,22 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 
 <script type="text/javascript">
 
-   $(function()
-   {
-      
-   });
+	
+	$(document).ready(function()
+	{
+		$("#adminlogout").on("click", function()
+		{
+			if (confirm("로그아웃 하시겠습니까?"))
+			{
+				$(location).attr("href", "logout.action");
+			}
+				return;			
+		});
+		   		
+		   		
+		   		
+		   		
+	});
 
 </script>
 
@@ -62,28 +74,12 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
       </li>
     </ul>
     
-    <c:choose>
-         <c:when test="${empty userLogin}">
-            <ul class="navbar-nav mr-auto navbar-right navbar-nav my-2 my-md-0 mr-md-3">
-              <li class="nav-item">
-                 <a class="nav-link" href="personalinsertform.action">회원 가입</a>
-               </li>
-               <li class="nav-item">
-                 <a class="nav-link" href="loginform.action">&nbsp;&nbsp;로그인</a>
-               </li>
-           </ul>
-         </c:when>
-         <c:when test="${!empty userLogin}">
-            <ul class="navbar-nav mr-auto navbar-right navbar-nav my-2 my-md-0 mr-md-3">
-              <li class="nav-item">
-              <a class="nav-link" href="#">마이페이지</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="logout.action" onclick="return confirm('로그아웃 하시겠습니까?');">&nbsp;&nbsp;로그아웃</a>
-            </li>
-           </ul>
-         </c:when>
-    </c:choose>
+    <ul class="navbar-nav mr-auto navbar-right navbar-nav my-2 my-md-0 mr-md-3">
+    	<li class="nav-item">
+      		<a class="nav-link" href="#" id="adminlogout">&nbsp;&nbsp;로그아웃</a>
+    	</li>
+   	</ul>
+
 
    </div>
 </nav>

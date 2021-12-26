@@ -52,8 +52,7 @@
    <!-- 로그인 영역 -->
    <div class="container text-center">   
    
-      <form action="login.action" class="form-signin" id="loginForm">
-      
+      <form action="adminlogin.action" class="form-signin" id="loginForm" method="post">
       <c:if test="${errMsg == 1}">
          <div class="alert alert-primary alert-dismissible fade show" role="alert" id="errMsg">
             <strong>로그인 정보가 <br>올바르지 않습니다!</strong>
@@ -62,20 +61,12 @@
             </button>
          </div>
       </c:if>
-      <c:if test="${errMsg == 2}">
-         <div class="alert alert-danger alert-dismissible fade show" role="alert" id="errMsg">
-            <strong>10회 이상 경고 누적으로<br>로그인이 제한되었습니다.</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-      </c:if>
       
-         <h1 class="h3 mb-3 font-weight-normal">로그인</h1>
+         <h1 class="h3 mb-3 font-weight-normal">관리자 로그인</h1>
          <label for="id" class="sr-only">ID</label>
-         <input type="text" id="id" name="id" class="form-control" placeholder="User ID" required autofocus>
+         <input type="text" id="ad_Id" name="ad_Id" class="form-control" placeholder="User ID" required autofocus>
          <label for="pwd" class="sr-only">Password</label>
-         <input type="password" id="pwd" name="pwd" class="form-control" placeholder="Password" required>
+         <input type="password" id="ad_Pw" name="ad_Pw" class="form-control" placeholder="Password" required>
          
          <!-- 로그인 상태 유지 기능 -->
          <div class="checkbox mb-3">
@@ -86,7 +77,7 @@
          <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
          <p></p>
          
-         <p class="mt-5 mb-3 text-muted"><a href="idsearchform.action">아이디 찾기</a> / <a href="pwdsearchoneform.action">비밀번호 찾기</a> /  <a href="adminloginform.action">ADMIN</a></p>
+         <p class="mt-5 mb-3 text-muted"><a href="loginform.action">일반회원 로그인</a></p>
          <p></p>
       </form>
       
