@@ -1,3 +1,9 @@
+/*==================================
+   IChecklistDAO.java
+   - 체크리스트 입력 중 첫 번째
+     기본항목 입력에 관한 인터페이스
+===================================*/
+
 package com.seolo.idao;
 
 import java.util.ArrayList;

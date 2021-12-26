@@ -19,36 +19,8 @@ String cp = request.getContextPath();
 	color: #FFA7A7;
 }
 </style>
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript">
-
-/*
-	$(document).ready(function()
-	{
-		// 확인
-		// alert("확인");
-		
-		$("#timeDelete").click(function name()
-		{
-			if(confirm("이 추가항목을 정말 삭제하시겠습니까?"))
-			{
-				$(location).attr("href", "secondtimedelete.action?plusTimeNo=" + $(this).val());
-			}
-		});
-		
-		$("#scoreDelete").click(function name()
-		{
-			if(confirm("이 추가항목을 정말 삭제하시겠습니까?"))
-			{
-				$(location).attr("href", "secondscoredelete.action?plusScoreNo=" + $(this).val());
-			}
-		});
-		
-	});
-*/
 
 
-</script>
 </head>
 <body>
 

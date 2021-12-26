@@ -214,13 +214,14 @@ String cp = request.getContextPath();
 						<br>
 						<p class="text-center">나의 스티커가 존재하지 않습니다.</p>
 					</c:if>
-
 					<!-- 스티커가 존재할 때 -->
 					<c:if test="${stickerList.size() != 0 }">
 						<div class="btn-group-toggle" data-toggle="buttons">
 							<!-- 모두 선택 버튼-->
+							<!--
 							<label class="btn btn-outline-primary" id="allStickerLabel"> <input type="checkbox" id="allSticker"> 모두 선택
 							</label>
+							-->
 							<c:forEach var="sticker" items="${stickerList }">
 								<label class="btn btn-outline-primary"> <input type="checkbox" value="${sticker.stickerNo }" name="sticker"> ${sticker.content }
 								</label>
