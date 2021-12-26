@@ -8,16 +8,16 @@ public class ViewDTO
 	//-- '나의 체크리스트' 게시판 조회 시 사용하는 자료형
 	//   '체크리스트'와 '지역정보' 를 둘 다 조회할 수 있는 형태
 	
-	//○주요 속성 구성
+	//○ 주요 속성 구성
 	//-- 분류
-	private String type; 					// 나의 체크리스트, 체크리스트 북마크, 지역정보 북마크
-	private int checkNo, dongNo;			// PK
+	private String type; 				// 나의 체크리스트, 체크리스트 북마크, 지역정보 북마크
+	private int markNo, listNo;			// PK: 북마크 번호, 실제 글 번호·동 번호
 	
 	//-- 세부 속성
 	private String guName, dongName, title;
 	private int deposit, wolse, jeonse, maemae, convenience;
 	private double security, transport, honjap, pet;
-	private ArrayList<String> stickerList;	// 스티커 목록
+	private ArrayList<StickerDTO> stickerList;	// 스티커 목록
 	
 	//○ getter, setter 구성
 	public String getType()
@@ -28,21 +28,21 @@ public class ViewDTO
 	{
 		this.type = type;
 	}
-	public int getCheckNo()
+	public int getMarkNo()
 	{
-		return checkNo;
+		return markNo;
 	}
-	public void setCheckNo(int checkNo)
+	public void setMarkNo(int markNo)
 	{
-		this.checkNo = checkNo;
+		this.markNo = markNo;
 	}
-	public int getDongNo()
+	public int getListNo()
 	{
-		return dongNo;
+		return listNo;
 	}
-	public void setDongNo(int dongNo)
+	public void setListNo(int listNo)
 	{
-		this.dongNo = dongNo;
+		this.listNo = listNo;
 	}
 	public String getGuName()
 	{
@@ -140,15 +140,13 @@ public class ViewDTO
 	{
 		this.pet = pet;
 	}
-	public ArrayList<String> getStickerList()
+	public ArrayList<StickerDTO> getStickerList()
 	{
 		return stickerList;
 	}
-	public void setStickerList(ArrayList<String> stickerList)
+	public void setStickerList(ArrayList<StickerDTO> stickerList)
 	{
 		this.stickerList = stickerList;
 	}
-	
+
 }
-
-
