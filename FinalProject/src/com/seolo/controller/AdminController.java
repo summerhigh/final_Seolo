@@ -6,6 +6,7 @@
 package com.seolo.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.seolo.admin.INoticeDAO;
 import com.seolo.admin.NoticeDTO;
 import com.seolo.dto.AdminDTO;
+import com.seolo.dto.PageDTO;
 import com.seolo.personal.PersonalDTO;
 
 @Controller
@@ -43,11 +45,47 @@ public class AdminController
 	
 	// 공지사항 게시판 조회
 	@RequestMapping(value = "/noticelist.action", method = RequestMethod.GET)
-	public String noticeList(Model model)
+	public String noticeList(Model model, PageDTO dto, HttpServletRequest request)
 	{
 		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
+		
+		MyUtil my = new MyUtil();
+		// 사작여기서부터
+		String pageNum = request.getParameter("pageNum");
+		
+		System.out.println(pageNum);
+		// 현재 표시되어야 하는 페이지
+		int currentPage = 1;
+		
+		if(pageNum != null)
+			currentPage = Integer.parseInt(pageNum);
+		
+		// 전체 데이터 갯수 구하기		
+		int dataCount = dao.count();
+		// 전체 페이지를 기준으로 총 페이지 수 계산
+		int numPerPage = 10;	//-- 한 페이지에 표시할 데이터 갯수		
+		
+		int totalPage = my.getPageCount(numPerPage, dataCount);
+		// 데이터베이스에서 가져올 시작과 끝 위치
+		int start = (currentPage-1) * numPerPage + 1;
+		int end = currentPage * numPerPage;		
 
-		model.addAttribute("list", dao.list());
+
+		// 페이징 처리
+		String param = "";
+		
+		
+		String listUrl = "noticelist.action" + param;
+		String pageIndexList = my.pageIndexList(currentPage, totalPage, listUrl);
+		
+		
+		dto.setStart(start);
+		dto.setEnd(end);
+		
+		
+		// 실제 리스트 가져오기
+		model.addAttribute("list", dao.list(dto));
+		model.addAttribute("pageIndexList", pageIndexList);
 		model.addAttribute("catelist", dao.catelist());
 		
 		return "WEB-INF/view/NoticeList.jsp";

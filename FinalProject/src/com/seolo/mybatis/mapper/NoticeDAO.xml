@@ -7,46 +7,24 @@
 
 	<!-- 게시물 조회 -->
 	<!-- 페이징 기능 구현 시 추후 수정 필요할 수도... -->
-	<select id="list" resultType="com.seolo.admin.NoticeDTO">
-		<!-- 
-		SELECT NOTICE_NO, NOTICESORT_NAME,
-		NOTICE_TITLE, NOTICE_DATE
-		FROM VIEW_NOTICE
-		-->
-		  
-		<!-- <![CDATA[            
-            SELECT NOTICE_NO, NOTICESORT_NAME, NOTICE_TITLE, NOTICE_DATE
-			FROM
-			(
-			    SELECT ROWNUM RNUM, DATA.*
-			    FROM
-			    (
-			        SELECT NOTICE_NO, NOTICE_TITLE, NOTICESORT_NAME, TO_CHAR(NOTICE_DATE, 'YYYY-MM-DD') AS NOTICE_DATE
-			        FROM VIEW_NOTICE
-			        ORDER BY NOTICE_NO DESC
-			    ) DATA
-			)
-			WHERE RNUM >= ? AND RNUM <= ?
-        ]]>     -->      
-        
-        <![CDATA[
-		SELECT NO_NO, NOS_NAME, TITLE, NODATE
-		FROM
-		(
-		    SELECT ROWNUM RNUM, DATA.*
-		    FROM
-		    (
-		        SELECT NOTICE_NO "NO_NO", NOTICE_TITLE "TITLE", NOTICESORT_NAME "NOS_NAME", TO_CHAR(NOTICE_DATE, 'YYYY-MM-DD') AS NODATE
-		        FROM VIEW_NOTICE
-		        ORDER BY NOTICE_NO DESC
-		    ) DATA
-		)
-		]]>
-		 
-	<!-- WHERE RNUM >=1 AND RNUM <= 10 -->
-	<!-- 뷰 칼럼명 MainDTO 와 맞추기 -->
-
+	<select id="list" resultType="com.seolo.admin.NoticeDTO">  
+    <![CDATA[    
+  		 SELECT NO_NO, NOS_NAME, TITLE, NODATE
+  		 FROM
+  		 (
+    		   SELECT ROWNUM RNUM, DATA.*
+      		 FROM
+     		  (
+      		     SELECT NOTICE_NO "NO_NO", NOTICE_TITLE "TITLE", NOTICESORT_NAME "NOS_NAME", TO_CHAR(NOTICE_DATE, 'YYYY-MM-DD') AS NODATE
+      	    	 FROM VIEW_NOTICE
+       		    ORDER BY NOTICE_NO DESC
+     		  ) DATA
+		   )
+ 		  WHERE RNUM >=#{start} AND RNUM <= #{end}
+   ]]>
 	</select>
+	
+	
 		
 	<!-- 카테고리 조회 -->
 	<select id="catelist" resultType="com.seolo.admin.NoticeDTO">
@@ -84,5 +62,14 @@
 	</delete>
 	
 	<!--@@@ 분류 기능 -->
+
+
+	<!-- 데이터 총 갯수 -->
+	<select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM VIEW_NOTICE
+	</select>
+	
+			
 
 </mapper>

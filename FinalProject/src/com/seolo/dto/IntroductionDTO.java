@@ -5,7 +5,7 @@ public class IntroductionDTO
 	private int in_no;
 	private String ad_id, content;
 	
-	
+	// 덮어쓰기
 	// getter / setter 구성
 	public int getIn_no()
 	{
