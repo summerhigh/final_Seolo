@@ -27,6 +27,7 @@
 	</div>
 
 	<!-- 콘텐츠 영역 -->
+	<!-- 덮어쓰기 -->
 <br><br>
 
 <main role="main">
@@ -71,7 +72,7 @@
       </div>
       <div class="col-md-4">
         <h2>신고처리</h2><br>
-        <p><a class="btn btn-secondary" href="<%=cp%>/ReportCheck.jsp" role="button">조회하기 »</a></p>
+        <p><a class="btn btn-secondary" href="reportlist.action" role="button">조회하기 »</a></p>
       </div>
     </div>
 	<br><br>

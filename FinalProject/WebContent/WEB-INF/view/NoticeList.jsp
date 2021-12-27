@@ -9,6 +9,15 @@
 <head>
 <meta charset="UTF-8">
 <title>NoticeList.jsp</title>
+<style type="text/css">
+	
+	#pageId
+	{
+		font-size: 20px;
+	}
+
+</style>
+
 
 <!-- 통일하기로 한 부트스트랩 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" 
@@ -74,41 +83,15 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
       
       <!-- 글쓰기 버튼 -->
       <div class="d-flex justify-content-end">
-         <!-- 이 글쓰기 버튼은 관리자에게만 나타나는 버튼! -->
-               <button type="button" class="btn btn-primary" onclick="location.href='writenotice.action'">글쓰기</button>
-           </div>
-      <br><br>
-         
-         
+         	<!-- 이 글쓰기 버튼은 관리자에게만 나타나는 버튼! -->
+            <button type="button" class="btn btn-primary" onclick="location.href='writenotice.action'">글쓰기</button>
+      </div>
+           
       <!-- 페이징 처리 부분 -->
       <div class="dataTables_paginate paging_simple_numbers" style="text-align:center; id="datatable_paginate">
-         <ul id="datatable_pagination" class="pagination datatable-custom-pagination justify-content-center">
-            <!-- prev 부분도 필요할까봐 넣어둠! -->
-            <li class="paginate_item page-item disabled">
-               <a class="paginate_button previous page-link" aria-controls="datatable" data-dt-idx="0" tabindex="0" id="datatable_previous">
-               <span aria-hidden="true">Prev</span></a>
-            </li>
-            <li class="paginate_item page-item active">
-               <a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="1" tabindex="0">1</a>
-            <!-- </li>
-            <li class="paginate_item page-item">
-               <a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="2" tabindex="0">2</a>
-            </li>
-            <li class="paginate_item page-item">
-               <a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="2" tabindex="0">3</a>
-            </li>
-            <li class="paginate_item page-item">
-               <a class="paginate_button page-link" aria-controls="datatable" data-dt-idx="2" tabindex="0">4</a>
-            </li> 
-            <li class="paginate_item page-item">
-               <a class="paginate_button next page-link" aria-controls="datatable" data-dt-idx="3" tabindex="0" id="datatable_next">
-               <span aria-hidden="true">Next</span></a> -->
-	        <li class="paginate_item page-item disabled">
-	        <a class="paginate_button next page-link" aria-controls="datatable" data-dt-idx="3" tabindex="0" id="datatable_next">
-	        <span aria-hidden="true">Next</span></a>
-            </li>
-         </ul>
+             <span style="text-align: center;">${pageIndexList }</span>
       </div>
+	   <br><br><br>
    </div>
 </div>
 

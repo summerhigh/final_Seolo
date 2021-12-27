@@ -7,10 +7,12 @@ package com.seolo.admin;
 
 import java.util.ArrayList;
 
+import com.seolo.dto.PageDTO;
+
 public interface INoticeDAO
 {	
 	// 게시물 목록
-	public ArrayList<NoticeDTO> list();
+	public ArrayList<NoticeDTO> list(PageDTO dto);
 	
 	// 게시물 카테고리 목록
 	public ArrayList<NoticeDTO> catelist();
@@ -29,5 +31,7 @@ public interface INoticeDAO
 	
 	// 게시물 총 개수
 	public int count();
+	
+	
 	
 }

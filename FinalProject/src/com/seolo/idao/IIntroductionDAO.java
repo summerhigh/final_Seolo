@@ -20,5 +20,6 @@ public interface IIntroductionDAO
 	public int modify(IntroductionDTO n);
 	// 				  ------------------
 	// 					이거를 가지고 modify 에 사용하고 int 형으로 출력한다.
+	//덮어쓰기
 
 }

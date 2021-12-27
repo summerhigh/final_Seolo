@@ -41,7 +41,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 
 </head>
 <body>
-
+<!-- 파일덮어쓰기 -->
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
   <a class="navbar-brand mr-auto mr-lg-0 font-weight-bold" href="mainadmin.action" >서로</a>
