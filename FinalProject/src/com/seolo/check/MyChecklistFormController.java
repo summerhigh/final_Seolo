@@ -9,9 +9,12 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
+
+import com.seolo.personal.PersonalDTO;
 
 public class MyChecklistFormController implements Controller
 {
@@ -26,29 +29,40 @@ public class MyChecklistFormController implements Controller
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		ModelAndView mav = new ModelAndView();
-		int acNo = 1; //→ 세션에서 계정정보 확인
 		
-		ArrayList<GuDTO> guList = new ArrayList<GuDTO>();
-		ArrayList<DongDTO> dongList = new ArrayList<DongDTO>();
-		ArrayList<StickerDTO> stickerList = new ArrayList<StickerDTO>();
-		
-		try
+		HttpSession session = request.getSession();
+		if(session.getAttribute("userLogin")==null)
 		{
-			guList = dao.guList();
-			dongList = dao.dongList();
-			stickerList = dao.stickerList(acNo);
-
-			mav.addObject("guList", guList);
-			mav.addObject("dongList", dongList);
-			mav.addObject("stickerList", stickerList);
-			mav.setViewName("/WEB-INF/view/MyChecklistsForm.jsp");
+			mav.setViewName("main.action");
+			return mav;
 		}
-		catch (Exception e)
+		else
 		{
-			System.out.println(e.toString());
-		}
+			PersonalDTO user = (PersonalDTO)session.getAttribute("userLogin");
+			int acNo= Integer.parseInt(user.getAc_No());
 
-		return mav;
+			ArrayList<GuDTO> guList = new ArrayList<GuDTO>();
+			ArrayList<DongDTO> dongList = new ArrayList<DongDTO>();
+			ArrayList<StickerDTO> stickerList = new ArrayList<StickerDTO>();
+			
+			try
+			{
+				guList = dao.guList();
+				dongList = dao.dongList();
+				stickerList = dao.stickerList(acNo);
+
+				mav.addObject("guList", guList);
+				mav.addObject("dongList", dongList);
+				mav.addObject("stickerList", stickerList);
+				mav.setViewName("/WEB-INF/view/MyChecklistsForm.jsp");
+			}
+			catch (Exception e)
+			{
+				System.out.println(e.toString());
+			}
+
+			return mav;
+		}
 
 	}
 }

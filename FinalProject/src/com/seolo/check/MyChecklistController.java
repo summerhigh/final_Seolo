@@ -5,9 +5,12 @@ import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
+
+import com.seolo.personal.PersonalDTO;
 
 
 public class MyChecklistController implements Controller
@@ -25,7 +28,16 @@ public class MyChecklistController implements Controller
 		ModelAndView mav = new ModelAndView();
 		
 		//→ 세션 확인 → 로그인 상태 확인 및 계정정보 받아오기
-		int acNo = 1; 
+		HttpSession session = request.getSession();
+		if(session.getAttribute("userLogin")==null)
+		{
+			mav.setViewName("main.action");
+			return mav;
+		}
+
+		PersonalDTO user = (PersonalDTO)session.getAttribute("userLogin");
+		int acNo= Integer.parseInt(user.getAc_No());
+		
 		
 		// ① 선택된 알아볼 내용 값 받아오기
 		String type = request.getParameter("typeSelect");	//-- %, 나의 체크리스트, 북마크 체크리스트, 북마크 지역정보

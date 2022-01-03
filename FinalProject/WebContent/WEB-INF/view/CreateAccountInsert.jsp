@@ -594,13 +594,6 @@ crossorigin="anonymous">
       // 닉네임 ajax함수
       function confirmNick()
       {
-         if ($("#nickName").val()=="")
-         {
-            $("#nickOkMsg").html("");
-            $("#nickErrMsg").html("");
-            return;
-         }
-         
          $.post("confirmnickname.action", {nickName : $("#nickName").val()}, function(data)
          {
             var result = data;

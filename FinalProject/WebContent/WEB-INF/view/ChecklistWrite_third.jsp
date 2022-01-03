@@ -70,7 +70,7 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
         
         	<!-- 4. 작성 완료 후 나의 체크리스트로 돌아가기 -->
 			<div class="text-center mb-4">
-		    	<a class="btn btn-lg btn-primary" role="button" href="WEB-INF/view/MyChecklists.jsp">작성 완료</a>
+		    	<a class="btn btn-lg btn-primary" role="button" href="mychecklistform.action">작성 완료</a>
 	    	</div>
      	</div>
 	</div>

@@ -63,7 +63,14 @@ String cp = request.getContextPath();
 
    <!-- 내비바 -->
    <div>
-      <c:import url="MenuNavbar_admin.jsp"></c:import>
+   		<c:choose>
+			<c:when test="${!empty adminLogin }">
+				<c:import url="MenuNavbar_admin.jsp"></c:import>
+			</c:when>
+			<c:otherwise>
+				<c:import url="/nav.action"></c:import>
+			</c:otherwise>
+   		</c:choose>
    </div>
 
    <br>
@@ -136,10 +143,12 @@ String cp = request.getContextPath();
             &nbsp;
             <button type="submit" class="btn btn-primary" value="${view.no_no }">삭제하기</button>
             &nbsp; --%>
-            <button type="submit" class="btn btn-primary" value="${view.no_no }">수정하기</button>
-            &nbsp;
-            <button type="submit" class="btn btn-danger" value="${view.no_no }">삭제하기</button>
-            &nbsp;
+            <c:if test="${!empty adminLogin}">
+            	<button type="submit" class="btn btn-primary" value="${view.no_no }">수정하기</button>
+	            &nbsp;
+	            <button type="submit" class="btn btn-danger" value="${view.no_no }">삭제하기</button>
+	            &nbsp;
+            </c:if>
             <button type="button" class="btn btn-secondary" onclick="location.href='noticelist.action'">목록으로</button>
          </div>
          <br> <br>
