@@ -115,9 +115,8 @@ String cp = request.getContextPath();
                <!-- <td>{{ article.content }}</td> -->
                <td colspan="3"><br><br>
                <%-- 신고 당한 곳 주소 : http://seoro/List/${view.check_no }.com  --%>
-               신고 당한 곳 주소 : <a href="/seoro/List/${view.check_no}.com">http://seoro/List/${view.check_no}.com</a>
-               (추후 체크리스트 주소 나오면 수정.
-                / 신고된 체크리스트 고유번호 : ${view.check_no })
+               신고 당한 곳 주소 : <a href="readcheck.action?checkNo=${view.check_no}">http://localhost:8090/FinalProject/readcheck.action?checkNo=${view.check_no}</a>
+               <br>신고된 체크리스트 고유번호 : ${view.check_no }
                </td>
                <!-- <br> 신고 당한 곳 주소 : http://seoro/List/131.com</td> -->
                <!-- 주소 추후 추가. 아마 게시판 주소 + 해당 고유번호 넣으면 되지 않을까.. 일단은 고유번호 넣어놓기 -->

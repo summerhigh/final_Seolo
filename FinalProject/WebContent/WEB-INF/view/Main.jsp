@@ -74,12 +74,8 @@
 
 					<div class="container">
 						<div class="carousel-caption text-left">
-							<h1>메인페이지 1</h1>
-							<p>Some representative placeholder content for the first
-								slide of the carousel.</p>
-							<p>
-								<a class="btn btn-lg btn-primary" href="#">Sign up today</a>
-							</p>
+							<h1>서로 : SEOLO</h1>
+							<p>서울시의 1인가구를 위한 홈페이지 서로</p>
 						</div>
 					</div>
 				</div>
@@ -95,12 +91,8 @@
 
 					<div class="container">
 						<div class="carousel-caption">
-							<h1>메인페이지 2</h1>
-							<p>Some representative placeholder content for the second
-								slide of the carousel.</p>
-							<p>
-								<a class="btn btn-lg btn-primary" href="#">Learn more</a>
-							</p>
+							<h1>체크리스트</h1>
+							<p>체크리스트 작성을 통한 서울의 각 동네 정보 공유</p>
 						</div>
 					</div>
 				</div>
@@ -116,12 +108,8 @@
 
 					<div class="container">
 						<div class="carousel-caption text-right">
-							<h1>메인페이지 3</h1>
-							<p>Some representative placeholder content for the third
-								slide of this carousel.</p>
-							<p>
-								<a class="btn btn-lg btn-primary" href="#">Browse gallery</a>
-							</p>
+							<h1>공동구매</h1>
+							<p>같은 동네 주민들과 1인 가구를 위한 공동구매를 시작해보세요.</p>
 						</div>
 					</div>
 				</div>
@@ -251,18 +239,5 @@
 			</p>
 		</footer>
 	</div><!-- div.main 끝 -->
-
-<!-- 필요없는 부분 같음...?
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script>
-		window.jQuery
-				|| document
-						.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')
-	</script>
-	<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
- -->
 </body>
 </html>

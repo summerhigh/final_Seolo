@@ -133,10 +133,10 @@ public class AdminController
 	
 	// 공지사항 게시물 조회
 	@RequestMapping(value = "/noticeview.action", method = RequestMethod.GET)
-	public String noticeView(@RequestParam("no_no") int no_no, Model model)
+	public String noticeView(@RequestParam("no_no") int no_no, Model model, HttpSession session)
 	{
 		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
-
+		
 		model.addAttribute("view", dao.view(no_no));
 		
 		return "WEB-INF/view/NoticeSee.jsp";
