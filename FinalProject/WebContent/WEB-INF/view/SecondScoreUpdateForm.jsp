@@ -58,7 +58,7 @@ String cp = request.getContextPath();
 
 
 		<!-- 폼 시작 -->
-		<form class="needs-validation" name="plusScore" id="plusScore" action="secondscoreinsert.action">
+		<form class="needs-validation" name="plusScore" id="plusScore" action="secondscoreupdate.action">
 			<div class="container">
 				<div class="mb-3">
 					<label for="scoreTitle" style="font-weight: bold;">추가항목 제목</label> 

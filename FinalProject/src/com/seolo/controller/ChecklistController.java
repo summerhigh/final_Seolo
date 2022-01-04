@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.seolo.check.StickerDTO;
 import com.seolo.dto.ChecklistDTO;
@@ -143,9 +144,12 @@ public class ChecklistController
       
       // return "ChecklistWrite_second.jsp";
       return "WEB-INF/view/ChecklistWrite_second.jsp";   
+      // return "checksecondinsert.action";
    }
-
    
+   
+   
+
    
    // 1번 체크리스트에서 주소 ajax 처리한다
    @RequestMapping(value = "/ajax.action", method = RequestMethod.POST)
@@ -185,6 +189,55 @@ public class ChecklistController
 
    
    //////// 두번째 입력폼 /////////////////////////////////////////////////////////////////////////////////////////////////
+   
+   
+   // 추가!! 2번 입력폼을 불러와준다 - 리다이렉트하기
+   @RequestMapping(value="/checksecondinsert.action", method=RequestMethod.GET)
+   public String secondInsertForm(Model model, HttpSession session, PlusDTO dto, HttpServletRequest request)
+   {
+	   IPlusDAO dao = sqlSession.getMapper(IPlusDAO.class);
+	   
+	   if (session.getAttribute("userLogin")==null)   // 로그인 안하면 차단
+      {
+         return "redirect:main.action";
+      }
+      else
+      {
+    	  // 여기서 해줘야할 것 : 가져와라 이 체크리스트에 해당하는 목록들을 
+    	  PersonalDTO user = (PersonalDTO)session.getAttribute("userLogin");
+          
+          int acNo = Integer.parseInt(user.getAc_No());
+          
+          int checkNo = dao.searchCheckNo(acNo);
+          
+          dto.setCheckNo(String.valueOf(checkNo));
+          
+          
+          ArrayList<PlusDTO> timeList = new ArrayList<PlusDTO>();
+          ArrayList<PlusDTO> scoreList = new ArrayList<PlusDTO>();
+          
+          
+          // 만약 시간 추가항목이 null이 아니라면 리스트를 넘겨주겠다.
+          if(dao.timeList(checkNo) != null)
+        	  timeList = dao.timeList(checkNo);
+          
+          
+          // 만약 점수 추가항목이 null이 아니라면 리스트를 넘겨주겠다
+          if(dao.scoreList(checkNo) != null)
+             scoreList = dao.scoreList(checkNo);
+          
+          
+          model.addAttribute("timeList", timeList);
+          model.addAttribute("scoreList", scoreList);
+    	  
+      }
+	   
+	   return "WEB-INF/view/ChecklistWrite_second.jsp";
+   }
+
+   
+   
+   
    
    // 시간 추가항목 입력폼으로 보내기
    @RequestMapping(value="/secondtimeinsertform.action", method=RequestMethod.GET)
@@ -254,6 +307,7 @@ public class ChecklistController
       
       // return "SecondScoreInsertForm.jsp";
       return "WEB-INF/view/SecondScoreInsertForm.jsp";
+      
    }
 
 
@@ -309,8 +363,9 @@ public class ChecklistController
       }
       
       // return "ChecklistWrite_second.jsp";
-      return "WEB-INF/view/ChecklistWrite_second.jsp";
+      // return "WEB-INF/view/ChecklistWrite_second.jsp";
    
+      return "redirect:checksecondinsert.action";
    }
 
    
@@ -359,8 +414,9 @@ public class ChecklistController
       }
       
       // return "ChecklistWrite_second.jsp";
-      return "WEB-INF/view/ChecklistWrite_second.jsp";
+      // return "WEB-INF/view/ChecklistWrite_second.jsp";
    
+      return "redirect:checksecondinsert.action";
    }
    
 
@@ -398,7 +454,9 @@ public class ChecklistController
       }
       
       // return "ChecklistWrite_second.jsp";
-      return "WEB-INF/view/ChecklistWrite_second.jsp";
+      // return "WEB-INF/view/ChecklistWrite_second.jsp";
+      
+      return "redirect:checksecondinsert.action";
       
    }
 
@@ -435,8 +493,9 @@ public class ChecklistController
       }
       
       // return "ChecklistWrite_second.jsp";
-      return "WEB-INF/view/ChecklistWrite_second.jsp";
+      // return "WEB-INF/view/ChecklistWrite_second.jsp";
       
+      return "redirect:checksecondinsert.action";
    }
    
    
@@ -496,7 +555,7 @@ public class ChecklistController
    
    // 시간 추가항목 수정하기 
    @RequestMapping(value="/secondtimeupdate.action", method=RequestMethod.GET)
-   public String plusTimeUpdate(Model model, HttpSession session, PlusDTO dto, HttpServletRequest request)
+   public String plusTimeUpdate(@RequestParam("plusTimeNo") String plusTimeNo , Model model, HttpSession session, PlusDTO dto, HttpServletRequest request)
    {
       IPlusDAO dao = sqlSession.getMapper(IPlusDAO.class);
 
@@ -507,10 +566,16 @@ public class ChecklistController
       }
       else
       {   
-         // System.out.println("plusTimeNo : " + request.getParameter("plusTimeNo"));
-         // System.out.println("title : " + request.getParameter("timeTitle"));
-         // System.out.println("time : " + request.getParameter("time"));
-         // System.out.println("comment : " + request.getParameter("timeComments"));
+        // System.out.println("plusTimeNo1 : " + request.getParameter("plusTimeNo"));
+        // System.out.println("title : " + request.getParameter("timeTitle"));
+        // System.out.println("time : " + request.getParameter("time"));
+        // System.out.println("comment : " + request.getParameter("timeComments"));
+    	  
+    	 
+    	 // 여기 수정중.. 혹시나 plusTimeNo문제인가 했는데.. 아니네ㅋ
+    	 dto.setPlusTimeNo(Integer.parseInt(plusTimeNo));
+    	 
+    	 // System.out.println("plusTimeNo2 : " + request.getParameter("plusTimeNo"));
          
          if(request.getParameter("timeComments") != null)
             dao.modifyTimeco(dto);
@@ -518,9 +583,12 @@ public class ChecklistController
             dao.modifyTime(dto);
       }
       
-      // return "ChecklistWrite_second.jsp";
-      return "WEB-INF/view/ChecklistWrite_second.jsp";
+      // 어떤 컨트롤러가 문제인지 보려고(수정컨트롤러 or 리다이렉트컨트롤러) 아예 다른 컨트롤러 불러봤는데 안불러져
+      // 귀신들린게 분명함.... HELPPP
+      // return "redirect:thirdinsertform.action"; 여기로 가지지 않고 이 밑에걸로 계속 가져....
       
+      return "redirect:checksecondinsert.action";
+   
    }
    
    
@@ -544,8 +612,9 @@ public class ChecklistController
       }
          
       // return "ChecklistWrite_second.jsp";
-      return "WEB-INF/view/ChecklistWrite_second.jsp";
+      // return "WEB-INF/view/ChecklistWrite_second.jsp";
       
+      return "redirect:checksecondinsert.action";
    }
    
 
@@ -676,5 +745,4 @@ public class ChecklistController
 
 
 }
-
 

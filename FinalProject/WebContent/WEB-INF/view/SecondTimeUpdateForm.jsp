@@ -69,7 +69,7 @@
 
 
 		<!-- 폼 시작 -->
-		<form class="needs-validation" name="plusTime" id="plusTime" action="secondtimeinsert.action">
+		<form class="needs-validation" name="plusTime" id="plusTime" action="secondtimeupdate.action">
 
 			<div class="container">
 				<div class="mb-3">
