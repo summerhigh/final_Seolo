@@ -76,10 +76,23 @@ String cp = request.getContextPath();
 <body>
 
 	<!-- 내비바 -->
+<%-- 
 	<div>
 		<c:import url="MenuNavbar_admin.jsp"></c:import>
 	</div>
-
+ --%>
+ 
+ <!-- 내비바 -->
+   <div>
+   		<c:choose>
+			<c:when test="${!empty adminLogin }">
+				<c:import url="MenuNavbar_admin.jsp"></c:import>
+			</c:when>
+			<c:otherwise>
+				<c:import url="/nav.action"></c:import>
+			</c:otherwise>
+   		</c:choose>
+   </div>
 	<br>
 	<br>
 	<br>
@@ -151,10 +164,12 @@ String cp = request.getContextPath();
 								<br>
 								<%-- <button type="submit" class="btn btn-primary" id="updateBtn" value="${list.faq_no }">수정하기</button> --%>
 								<div style="float: right;">
-									<button type="submit" class="btn btn-info" id="updateBtn"
-										value="${list.faq_no }">수정하기</button>
-									<button type="submit" class="btn btn-danger"
-										value="${list.faq_no }">삭제하기</button>
+									<c:if test="${!empty adminLogin}">
+										<button type="submit" class="btn btn-info" id="updateBtn"
+											value="${list.faq_no }">수정하기</button>
+										<button type="submit" class="btn btn-danger"
+											value="${list.faq_no }">삭제하기</button>
+									</c:if>
 								</div>
 								<br>
 								<br>
@@ -168,7 +183,9 @@ String cp = request.getContextPath();
 			<!-- 글쓰기 버튼 -->
 			<div class="d-flex justify-content-end">
 				<!-- 이 글쓰기 버튼은 관리자에게만 나타나는 버튼! -->
-				<button type="submit" class="btn btn-primary" id="writeBtn">글쓰기</button>
+				<c:if test="${!empty adminLogin}">
+					<button type="submit" class="btn btn-primary" id="writeBtn">글쓰기</button>
+				</c:if>
 			</div>
 			<br>
 			<br>
