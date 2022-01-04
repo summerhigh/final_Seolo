@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.seolo.admin.INoticeDAO;
 import com.seolo.admin.NoticeDTO;
+import com.seolo.dto.AdminDTO;
 import com.seolo.dto.FaqRunDTO;
 import com.seolo.dto.ReportRunDTO;
 import com.seolo.idao.IAccountListDAO;
@@ -70,9 +71,23 @@ public class FaqController
 	}
 
 	// 자주 묻는 게시판 입력 기능 수행
+	// 로그인 세션에서 관리자 아이디 받아와서, 추가하기 수정
 	@RequestMapping(value= "/faqinsert.action", method = RequestMethod.POST)
-	public String FaqInsert(FaqRunDTO n)
+	public String FaqInsert(FaqRunDTO n, HttpSession session)
 	{
+		/*
+		// 관리자 아이디 세션에서 받아와서 추가
+		AdminDTO admin = (AdminDTO)session.getAttribute("adminLogin");
+		String ad_id = admin.getAd_Id();
+		n.setAd_id(ad_id);
+		*/
+		
+		// 관리자 아이디 세션에서 받아와서 추가
+		AdminDTO admin = (AdminDTO)session.getAttribute("adminLogin");
+		String ad_id = admin.getAd_Id();
+		n.setAd_id(ad_id);
+		
+		
 		IFaqRunDAO dao = sqlSession.getMapper(IFaqRunDAO.class);
 		
 		dao.add(n);

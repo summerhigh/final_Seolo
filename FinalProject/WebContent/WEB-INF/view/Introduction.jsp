@@ -1,8 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-String cp = request.getContextPath();
+	String cp = request.getContextPath();
+	pageContext.setAttribute("replaceChar", "\n");
 %>
 <!DOCTYPE html>
 <html>
@@ -46,22 +48,11 @@ String cp = request.getContextPath();
 						<span class="text-decoration-line-through"><b>서</b>울 사는
 							솔<b>로</b>(1인 가구)들을 위한 사이트</span>
 					</div>
-					<!-- 수정 가능 -->
-					<!-- 
-					<p class="lead" href="">Lorem ipsum dolor sit amet consectetur
-						adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi
-						consequatur obcaecati excepturi alias magni, accusamus eius
-						blanditiis delectus ipsam minima ea iste laborum vero? Lorem ipsum
-						dolor sit amet consectetur adipisicing elit. Praesentium at
-						dolorem quidem modi. Nam sequi consequatur obcaecati excepturi
-						alias magni, accusamus eius blanditiis delectus ipsam minima ea
-						iste laborum vero?</p>
-				 -->
-				 
 				 <div>
 				 
 				 <!-- controller에 view로 내가 설정한 이름에 content(DTO)에있는아이를 데랴와서 출력 -->
-				 <p style="font-size: 18px;">${view.content }</p>
+				 <%-- <p style="font-size: 18px;">${view.content }</p> --%>
+				 <p style="font-size: 18px;">${fn:replace(view.content, replaceChar, "<br/>") }</p>
 				 </div>
 				 </div>
 			</div>

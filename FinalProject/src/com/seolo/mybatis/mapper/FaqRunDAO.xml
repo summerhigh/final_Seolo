@@ -8,9 +8,10 @@
  <!-- 생성 / 수정/ 삭제 -->
  
  <!-- 생성 -> VALUES 뒤에는 DTO 꺼 갖다 써야되니까~ -->
+ <!-- 관리자 아이디 수정 -->
  <insert id="add">
  	INSERT INTO FAQ(FAQ_NO, AD_ID, QS_NO, TITLE, CONTENT)
-	VALUES(FAQESEQ.NEXTVAL, 'admin2', #{qs_no}, #{title}, #{content})
+	VALUES(FAQESEQ.NEXTVAL, #{ad_id}, #{qs_no}, #{title}, #{content})
  </insert>
  
  <update id="modify">

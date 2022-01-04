@@ -1,8 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-String cp = request.getContextPath();
+	String cp = request.getContextPath();
+	pageContext.setAttribute("replaceChar", "\n");
 %>
 <!DOCTYPE html>
 <html>
@@ -99,6 +101,7 @@ String cp = request.getContextPath();
 		<ul class="nav nav-tabs page-header-tabs" id="categori" role="tablist">
 			<li class="nav-item"><a class="nav-link " href="">회원 관리</a></li>
 			<li class="nav-item"><a class="nav-link " href="">체크리스트</a></li>
+			<li class="nav-item"><a class="nav-link " href="">공동구매</a></li>
 			<li class="nav-item"><a class="nav-link " href="">기타</a></li>
 		</ul>
 		
@@ -146,7 +149,8 @@ String cp = request.getContextPath();
 						<div id="collapse${list.faq_no }" class="collapse"
 							aria-labelledby="heading${list.faq_no }"
 							data-parent="#accordionExample">
-							<div class="card-body">${list.faq_content }
+							<%-- <div class="card-body">${list.faq_content } --%>
+							<div class="card-body">${fn:replace(list.faq_content, replaceChar, "<br/>") }
 								<br>
 								<br>
 								<%-- <button type="submit" class="btn btn-primary" id="updateBtn" value="${list.faq_no }">수정하기</button> --%>
