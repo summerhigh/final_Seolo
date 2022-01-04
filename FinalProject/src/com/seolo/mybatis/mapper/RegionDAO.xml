@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.seolo.idao.IRegionDAO">
+	<!-- 해당 인터페이스(ISampleDAO)의 각각 메소드에 어떤 쿼리문(sql)을 매칭시켜줄지 -->
+	
+	<select id="guList" resultType="com.seolo.dto.RegionDTO">
+		SELECT GU_NO AS GUNO, GUNAME
+		FROM GU
+		ORDER BY GUNO
+	</select>
+	
+	<select id="dongList" resultType="com.seolo.dto.RegionDTO">
+		SELECT DONGNO, DONGNAME, GUNO
+		FROM
+		(
+		    SELECT D.DONG_NO AS DONGNO, D.DONGNAME AS DONGNAME, G.GU_NO AS GUNO, G.GUNAME AS GUNAME
+		    FROM DONG D, GU G
+		    WHERE D.GU_NO=G.GU_NO(+)
+		    ORDER BY GUNO, DONGNAME
+		)
+		WHERE GUNO=#{guNo}
+	</select>
+	
+	<select id="localList" resultType="com.seolo.dto.LocalDTO">
+		SELECT DONGNO, DONGNAME, NVL(ROUND(WOLSEAVG), -1) AS MWOLSE, NVL(ROUND(WOLSEDEPOSITAVG), -1) AS DEPOSIT
+			    , NVL(ROUND(JEONSEAVG), -1) AS MJEONSE, NVL(ROUND(MAEMAEAVG), -1) AS MMAEMAE, NVL(ROUND(SECURITYAVG, 1), -1) AS SECURITY_SCORE
+			    , NVL(ROUND(TRANSPORTAVG, 1), -1) AS TRANSPORT_SCORE, NVL(ROUND(HONJAPAVG, 1), -1) AS HONJAP_SCORE
+			    , NVL(ROUND(CONVENIENCEAVG, 1), -1) AS CONVENIENCE_SCORE, NVL(ROUND(PETAVG, 1), -1) AS PET_SCORE
+		FROM VIEW_REGION
+		WHERE GUNO=#{guNo}
+		ORDER BY DONGNAME
+	</select>
+	
+	<select id="checkList" resultType="com.seolo.dto.RegionDTO">
+		SELECT CHECKNO, GUNO, GUNAME, DONGNO, DONGNAME
+		    , NVL(MWOLSE, -1) AS MWOLSE, NVL(DEPOSIT, -1) AS DEPOSIT, NVL(MJEONSE, -1) AS MJEONSE, NVL(MMAEMAE, -1) AS MMAEMAE
+		    , NVL(PET_SCORE, -1) AS PET_SCORE, NVL(SECURITY_SCORE, -1) AS SECURITY_SCORE
+		    , NVL(TRANSPORT_SCORE, -1) AS TRANSPORT_SCORE, NVL(HONJAP_SCORE, -1) AS HONJAP_SCORE
+		    , NVL((MART+LAUNDRY+HOSPITAL+FOOD+CULTURE+PARK), -1) AS CONVENIENCE
+		FROM VIEW_DONGCHECKLIST
+		WHERE DONGNO=#{dongNo}
+		ORDER BY CHECKNO DESC
+	</select>
+	
+</mapper>
