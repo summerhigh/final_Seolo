@@ -20,10 +20,10 @@ String cp = request.getContextPath();
 	<!-- 체크리스트 작성 뷰 페이지 -->
 
 	<!-- 메뉴바 영역 -->
-	<div>
+<%-- 	<div>
 		<c:import url="MenuNavbar_new.jsp"></c:import>
 	</div>
-
+ --%>
 	<!-- 본문 영역 -->
 	<div class="container">
 		<div class="py-5 text-center">
