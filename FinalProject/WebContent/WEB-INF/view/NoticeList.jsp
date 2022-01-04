@@ -28,8 +28,18 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
 <body>
 
 <!-- 내비바 -->
-<div><c:import url="MenuNavbar_admin.jsp"></c:import></div>
-
+<%-- <div><c:import url="MenuNavbar_admin.jsp"></c:import></div> --%>
+<!-- 내비바 -->
+   <div>
+   		<c:choose>
+			<c:when test="${!empty adminLogin }">
+				<c:import url="MenuNavbar_admin.jsp"></c:import>
+			</c:when>
+			<c:otherwise>
+				<c:import url="/nav.action"></c:import>
+			</c:otherwise>
+   		</c:choose>
+   </div>
 <br><br><br><br><br>
 
 <div class="container">
@@ -84,7 +94,9 @@ integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amn
       <!-- 글쓰기 버튼 -->
       <div class="d-flex justify-content-end">
          	<!-- 이 글쓰기 버튼은 관리자에게만 나타나는 버튼! -->
-            <button type="button" class="btn btn-primary" onclick="location.href='writenotice.action'">글쓰기</button>
+         	<c:if test="${!empty adminLogin}">
+            	<button type="button" class="btn btn-primary" onclick="location.href='writenotice.action'">글쓰기</button>
+            </c:if>
       </div>
            
       <!-- 페이징 처리 부분 -->
