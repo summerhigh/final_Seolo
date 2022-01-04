@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-String cp = request.getContextPath();
+	String cp = request.getContextPath();
 %>
 <!DOCTYPE html>
 <html>
@@ -48,7 +48,7 @@ body {
 		}
 		
     	 //alert($("#title").val() + $("#content").val() + $("#nos_no").val());
-    	 //-> 2021-12-23일 점검 예정을 알려드립니다.더욱 좋은 서비스를 제공드리기 위해 최선을 다하겠습니다.1
+    	 //-> 2021-12-23일 점검 예정을 알려드립니다.더욱 좋은 서비스를 제공드리기 위해 최선을 다하겠습니다.
     	 //-> 내용들 다 받아 옴... 근데 수정이 안됨.........
     	 //-> 이제 수정 됨 진짜 이상하다...
     	 

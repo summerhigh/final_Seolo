@@ -33,14 +33,15 @@
 	</select>
 	
 	<!-- 게시물 추가 -->
+	<!-- 세션에서 받아온 관리자 아이디 추가 -->
 	<insert id="add">
 		INSERT INTO NOTICE(NO_NO, AD_ID, NOS_NO, TITLE, CONTENT, NODATE)
-		VALUES(NOTICESEQ.NEXTVAL, 'admin2', #{nos_no}, #{title}, #{content}, SYSDATE)
+		VALUES(NOTICESEQ.NEXTVAL, #{ad_id}, #{nos_no}, #{title}, #{content}, SYSDATE)
 	</insert>
 	
 	<!-- 게시물 조회 -->
 	<select id="view" resultType="com.seolo.admin.NoticeDTO">
-		SELECT NO_NO, TITLE, CONTENT, TO_CHAR(NODATE, 'YYYY-MM-DD') AS NODATE
+		SELECT NO_NO, TITLE, CONTENT, AD_ID, TO_CHAR(NODATE, 'YYYY-MM-DD') AS NODATE
 		FROM NOTICE
 		WHERE NO_NO = #{no_no}
 	</select>

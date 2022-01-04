@@ -102,8 +102,9 @@ public class AdminController
 
 	// 공지사항 게시물 작성
 	// (+) 로그인 세션 작성 후, 관리자 아이디 받아와서 INSERT에 넣어주는 기능 필요
+	// -> 추가 완료.
 	@RequestMapping(value = "/noticeinsert.action", method = RequestMethod.POST)
-	public String noticeInsert(NoticeDTO n)
+	public String noticeInsert(NoticeDTO n, HttpSession session)
 	{
 		
 		// AC_NO, 관리자 아이디 받아와서 테이블에 insert 해줘야 함!
@@ -116,13 +117,10 @@ public class AdminController
 	      int acNo = Integer.parseInt(user.getAc_No());
 		*/
 		
-		/*
-		// 1. 세션에 담겨있는 유저 객체 꺼내기
-    	Map<String,Object> userVo =session.getAttribute(LOGIN); 
-    	// 로그인 인터셉터에서 세션에 담은 userVo 가 java.util.Map 이라는 가정
-		// 2. 조회조건 객체에 유저 정보 넣기
-		cri.setUserName((String)userVo.get("userName"); // 실제 소스에 맞게 고치세요. 
-		*/
+		// 관리자 아이디 세션에서 받아와서 추가
+		AdminDTO admin = (AdminDTO)session.getAttribute("adminLogin");
+		String ad_id = admin.getAd_Id();
+		n.setAd_id(ad_id);
 		
 		INoticeDAO dao = sqlSession.getMapper(INoticeDAO.class);
 		

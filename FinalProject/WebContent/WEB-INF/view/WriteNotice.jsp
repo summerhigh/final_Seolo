@@ -2,8 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-String cp = request.getContextPath();
+	String cp = request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +34,7 @@ body {
    //$();        // jquery();
    $(document).ready(function()
    {
+	   
       // 직원 추가 버튼이 클릭되었을 때 수행해야 할 코드 처리
       $("#submitBtn").click(function()
 	{
@@ -47,15 +49,16 @@ body {
 		}
 		
 		// 폼 submit 액션 처리 수행
+		//var html = $("#content").val().replace(/(?:\r\n|\r|\n)/g, '<br>');
+		//alert(html);
+
 		$("#noticeinsertform").submit();
 
 	});
       
    });
-
    
 </script>
-
 
 
 </head>
