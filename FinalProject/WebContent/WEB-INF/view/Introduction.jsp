@@ -25,10 +25,22 @@
 <body>
 	<!-- 파일덮어쓰기 -->
 	<!-- 메뉴 영역 -->
+	<!-- 내비바 -->
+   <div>
+   		<c:choose>
+			<c:when test="${!empty adminLogin }">
+				<c:import url="MenuNavbar_admin.jsp"></c:import>
+			</c:when>
+			<c:otherwise>
+				<c:import url="/nav.action"></c:import>
+			</c:otherwise>
+   		</c:choose>
+   </div>
+	<%-- 
 	<div>
 		<c:import url="MenuNavbar_admin.jsp"></c:import>
 	</div>
-
+ --%>
 	<!-- 콘텐츠 영역 -->
 	<br>
 	<br>
@@ -57,10 +69,12 @@
 				 </div>
 			</div>
 			<div class="d-flex justify-content-end">
-				<button type="submit"class="btn btn-primary"
-				onclick="location.href='introductionform.action'"
-				>수정하기</button>
-				<%-- href="<%=cp%>/UpdateIntroduction.jsp" --%>
+				<c:if test="${!empty adminLogin}">
+					<button type="submit"class="btn btn-primary"
+					onclick="location.href='introductionform.action'"
+					>수정하기</button>
+					<%-- href="<%=cp%>/UpdateIntroduction.jsp" --%>
+				</c:if>
 			</div>
 			<br><br>
 		</div>
